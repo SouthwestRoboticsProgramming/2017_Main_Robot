@@ -48,10 +48,10 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	public void open() {
-		
+		GearSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 
 	public void close() {
-		
+		GearSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 }
