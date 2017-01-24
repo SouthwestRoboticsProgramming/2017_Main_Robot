@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -16,7 +18,7 @@ public class GearSubsystem extends Subsystem{
 	
 	protected void initDefaultCommand() {
 		// TODO command that calls checkForGear alot
-		
+		setDefaultCommand(new GearCheckCommand());
 	}
 	
 	public GearSubsystem() {
