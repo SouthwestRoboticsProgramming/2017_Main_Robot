@@ -25,6 +25,8 @@ public class GearSubsystem extends Subsystem{
 		GearTest = new DigitalInput(6);//get port #s for all of these
 		GearSolenoid = new DoubleSolenoid(5,6);//make these actual ports
 		GearTalon = new Talon(6);//need PWM port
+		
+		rotateSpeed = 0.5f;
 	}
 	
 	public void checkForGear() {//Call often and maybe auto align gears
