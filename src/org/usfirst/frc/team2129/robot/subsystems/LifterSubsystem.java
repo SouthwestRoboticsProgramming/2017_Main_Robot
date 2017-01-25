@@ -1,0 +1,34 @@
+package org.usfirst.frc.team2129.robot.subsystems;
+
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class LifterSubsystem extends Subsystem {
+
+	Talon LifterTalon;
+	
+	float upSpeed;
+	float downSpeed;
+	
+	protected void initDefaultCommand() {
+		
+	}
+	
+	public LifterSubsystem() {
+		
+		LifterTalon = new Talon(7);//Need ports
+	}
+	
+	public void GoUp() {
+		LifterTalon.set(upSpeed);
+	}
+	
+	public void GoDown() {
+		LifterTalon.set(downSpeed);
+	}
+	
+	public void Stop() {
+		LifterTalon.set(0.0);
+	}
+
+}

@@ -4,6 +4,7 @@ package org.usfirst.frc.team2129.robot;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.LifterSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.PneumaticsManagmentSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -22,6 +23,7 @@ public class Robot extends IterativeRobot {
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();
 	public static final GearSubsystem gearSubsystem = new GearSubsystem();
+	public static final LifterSubsystem lifterSubsystem = new LifterSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 
