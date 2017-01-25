@@ -13,7 +13,7 @@ public class LifterSubsystem extends Subsystem {
 	float downSpeed;
 	
 	protected void initDefaultCommand() {
-		
+		setDefaultCommand(new LifterStop());
 	}
 	
 	public LifterSubsystem() {
