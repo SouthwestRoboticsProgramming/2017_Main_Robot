@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.RobotMap;
 import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
 import org.usfirst.frc.team2129.util.ShiftingGearbox;
 import org.usfirst.frc.team2129.util.SimpleShiftingGearbox;
@@ -42,17 +43,17 @@ public class DrivetrainSubsystem extends Subsystem {
 	}
 	
 	public DrivetrainSubsystem(){
-		leftGearboxMotor1   = new CANTalon(10);
-		leftGearboxMotor2   = new CANTalon(11);
-		leftGearboxMotor3   = new Jaguar(1);
+		leftGearboxMotor1   = new CANTalon(RobotMap.RightMotor1);
+		leftGearboxMotor2   = new CANTalon(RobotMap.RightMotor2);
+		leftGearboxMotor3   = new Jaguar(RobotMap.RightMotor3);
 		leftGearboxShifter  = new DoubleSolenoid(1, 2);
 		leftGearbox         = new SimpleShiftingGearbox(
 			leftGearboxMotor1, leftGearboxMotor2, null,
 			null, 0.5d, 0.25d, true);
 		
-		rightGearboxMotor1  = new CANTalon(20);
-		rightGearboxMotor2  = new CANTalon(21);
-		rightGearboxMotor3  = new Jaguar(2);
+		rightGearboxMotor1  = new CANTalon(RobotMap.LeftMotor1);
+		rightGearboxMotor2  = new CANTalon(RobotMap.LeftMotor2);
+		rightGearboxMotor3  = new Jaguar(RobotMap.RightMotor3);
 		rightGearboxShifter = new Solenoid(0);
 		rightGearbox        = new SimpleShiftingGearbox(
 			rightGearboxMotor1, rightGearboxMotor2, null,
