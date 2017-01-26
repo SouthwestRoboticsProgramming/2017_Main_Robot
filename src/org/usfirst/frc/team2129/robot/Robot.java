@@ -10,6 +10,7 @@ import org.usfirst.frc.team2129.robot.subsystems.PneumaticsManagmentSubsystem;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -86,6 +87,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("Ultrasonic", Robot.drivetrainSubsystem.getVoltage());
+		SmartDashboard.putBoolean("LightLeft", Robot.drivetrainSubsystem.getLeft());
+		SmartDashboard.putBoolean("lightRight", Robot.drivetrainSubsystem.getRight());
 	}
 
 	/**
