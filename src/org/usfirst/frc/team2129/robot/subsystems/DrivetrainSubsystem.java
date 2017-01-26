@@ -6,6 +6,7 @@ import org.usfirst.frc.team2129.util.SimpleShiftingGearbox;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -27,6 +28,8 @@ public class DrivetrainSubsystem extends Subsystem {
 	public SimpleShiftingGearbox rightGearbox;
 	
 	public RobotDrive      robotDrive;
+	
+	AnalogInput Ultrasonic1;
 	
 	protected void initDefaultCommand() {
 		setDefaultCommand(new UserDriveCommand());
@@ -50,9 +53,19 @@ public class DrivetrainSubsystem extends Subsystem {
 			rightGearboxShifter, 0.5d, 0.4d, false);
 		
 		robotDrive          = new RobotDrive(leftGearbox, rightGearbox);
+		
+		Ultrasonic1 = new AnalogInput(0);//needs port
 	}
 	
 	public void tankDrive(double left, double right){
 		robotDrive.tankDrive(left, right);
+	}
+	
+	public int getValue() {
+		return Ultrasonic1.getValue();
+	}
+	
+	public double getVoltage() {
+		return Ultrasonic1.getVoltage();
 	}
 }
