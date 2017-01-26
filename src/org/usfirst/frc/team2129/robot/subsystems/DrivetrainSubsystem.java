@@ -7,6 +7,7 @@ import org.usfirst.frc.team2129.util.SimpleShiftingGearbox;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -30,6 +31,10 @@ public class DrivetrainSubsystem extends Subsystem {
 	public RobotDrive      robotDrive;
 	
 	AnalogInput Ultrasonic1;
+	
+	//Mark has a plan for these
+	DigitalInput LightSensorLeft;
+	DigitalInput LightSensorRight;
 	
 	protected void initDefaultCommand() {
 		setDefaultCommand(new UserDriveCommand());
@@ -60,12 +65,20 @@ public class DrivetrainSubsystem extends Subsystem {
 	public void tankDrive(double left, double right){
 		robotDrive.tankDrive(left, right);
 	}
-	
+	//Mark has a plan for all of this...
 	public int getValue() {
 		return Ultrasonic1.getValue();
 	}
 	
 	public double getVoltage() {
 		return Ultrasonic1.getVoltage();
+	}
+	
+	public boolean getLeft() {
+		return LightSensorLeft.get();
+	}
+	
+	public boolean getRight() {
+		return LightSensorRight.get();
 	}
 }
