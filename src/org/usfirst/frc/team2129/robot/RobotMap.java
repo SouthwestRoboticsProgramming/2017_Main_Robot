@@ -27,4 +27,7 @@ public class RobotMap {
 	public static int ShiftLeft1 = 1;
 	public static int ShifterLeft2 = 2;
 	public static int GearSolenoid1;
+	
+	//Ultrasonic
+	public static int Ultrasonic = 0;
 }
