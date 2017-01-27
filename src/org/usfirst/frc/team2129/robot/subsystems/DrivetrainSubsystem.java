@@ -46,7 +46,7 @@ public class DrivetrainSubsystem extends Subsystem {
 		leftGearboxMotor1   = new CANTalon(RobotMap.RightMotor1);
 		leftGearboxMotor2   = new CANTalon(RobotMap.RightMotor2);
 		leftGearboxMotor3   = new Jaguar(RobotMap.RightMotor3);
-		leftGearboxShifter  = new DoubleSolenoid(1, 2);
+		leftGearboxShifter  = new DoubleSolenoid(RobotMap.ShiftLeft1, RobotMap.ShifterLeft2);
 		leftGearbox         = new SimpleShiftingGearbox(
 			leftGearboxMotor1, leftGearboxMotor2, null,
 			null, 0.5d, 0.25d, true);
@@ -54,7 +54,7 @@ public class DrivetrainSubsystem extends Subsystem {
 		rightGearboxMotor1  = new CANTalon(RobotMap.LeftMotor1);
 		rightGearboxMotor2  = new CANTalon(RobotMap.LeftMotor2);
 		rightGearboxMotor3  = new Jaguar(RobotMap.RightMotor3);
-		rightGearboxShifter = new Solenoid(0);
+		rightGearboxShifter = new Solenoid(RobotMap.ShifterRight);
 		rightGearbox        = new SimpleShiftingGearbox(
 			rightGearboxMotor1, rightGearboxMotor2, null,
 			rightGearboxShifter, 0.5d, 0.4d, false);

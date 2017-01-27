@@ -15,4 +15,8 @@ public class RobotMap {
 	public static int RightMotor2 = 21;
 	public static int RightMotor3 = 2;
 	
+	//Solenoids
+	public static int ShifterRight = 0;
+	public static int ShiftLeft1 = 1;
+	public static int ShifterLeft2 = 2;
 }
