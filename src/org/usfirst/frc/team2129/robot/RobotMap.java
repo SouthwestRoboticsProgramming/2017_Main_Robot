@@ -14,6 +14,8 @@ public class RobotMap {
 	public static int RightMotor1 = 20;
 	public static int RightMotor2 = 21;
 	public static int RightMotor3 = 2;
+	public static int GearTalon = 6;//These need ports
+	public static int LiftMotor = 7;
 	
 	//Solenoids
 	public static int ShifterRight = 0;

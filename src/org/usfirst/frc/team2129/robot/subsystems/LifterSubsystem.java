@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.RobotMap;
 import org.usfirst.frc.team2129.robot.commands.LifterStop;
 
 import edu.wpi.first.wpilibj.Talon;
@@ -18,7 +19,7 @@ public class LifterSubsystem extends Subsystem {
 	
 	public LifterSubsystem() {
 		setDefaultCommand(new LifterStop());
-		LifterTalon = new Talon(7);//Need ports
+		LifterTalon = new Talon(RobotMap.LiftMotor);
 	}
 	
 	public void GoUp() {

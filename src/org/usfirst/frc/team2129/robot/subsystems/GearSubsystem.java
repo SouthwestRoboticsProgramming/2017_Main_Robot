@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.RobotMap;
 import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -24,7 +25,7 @@ public class GearSubsystem extends Subsystem{
 	public GearSubsystem() {
 		GearTest = new DigitalInput(6);//get port #s for all of these
 		GearSolenoid = new DoubleSolenoid(5,6);//make these actual ports
-		GearTalon = new Talon(6);//need PWM port
+		GearTalon = new Talon(RobotMap.GearTalon);
 		
 		rotateSpeed = 0.5f;
 	}
