@@ -2,12 +2,15 @@
 package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.LifterSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.PneumaticsManagmentSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,6 +23,8 @@ public class Robot extends IterativeRobot {
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();
+	public static final GearSubsystem gearSubsystem = new GearSubsystem();
+	public static final LifterSubsystem lifterSubsystem = new LifterSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 
@@ -82,6 +87,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		SmartDashboard.putNumber("Ultrasonic", Robot.drivetrainSubsystem.getVoltage());
+		SmartDashboard.putBoolean("LightLeft", Robot.drivetrainSubsystem.getLeft());
+		SmartDashboard.putBoolean("lightRight", Robot.drivetrainSubsystem.getRight());
 	}
 
 	/**
