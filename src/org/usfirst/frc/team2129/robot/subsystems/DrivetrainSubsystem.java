@@ -3,10 +3,12 @@ package org.usfirst.frc.team2129.robot.subsystems;
 import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
 import org.usfirst.frc.team2129.util.ShiftingGearbox;
 import org.usfirst.frc.team2129.util.SimpleShiftingGearbox;
+import org.usfirst.frc.team2129.util.XSolenoidWrapper;
 
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -28,6 +30,8 @@ public class DrivetrainSubsystem extends Subsystem {
 	
 	public RobotDrive      robotDrive;
 	
+	public Encoder leftEncoder;
+	
 	protected void initDefaultCommand() {
 		setDefaultCommand(new UserDriveCommand());
 	}
@@ -39,7 +43,7 @@ public class DrivetrainSubsystem extends Subsystem {
 		leftGearboxShifter  = new DoubleSolenoid(1, 2);
 		leftGearbox         = new SimpleShiftingGearbox(
 			leftGearboxMotor1, leftGearboxMotor2, null,
-			null, 0.5d, 0.25d, true);
+			null, 0.6d, 0.25d, true);
 		
 		rightGearboxMotor1  = new CANTalon(20);
 		rightGearboxMotor2  = new CANTalon(21);
@@ -47,9 +51,11 @@ public class DrivetrainSubsystem extends Subsystem {
 		rightGearboxShifter = new Solenoid(0);
 		rightGearbox        = new SimpleShiftingGearbox(
 			rightGearboxMotor1, rightGearboxMotor2, null,
-			rightGearboxShifter, 0.5d, 0.4d, false);
+			new XSolenoidWrapper(rightGearboxShifter), 0.6d, 0.4d, false);
 		
 		robotDrive          = new RobotDrive(leftGearbox, rightGearbox);
+		
+		leftEncoder = new Encoder(0, 1);
 	}
 	
 	public void tankDrive(double left, double right){

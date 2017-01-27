@@ -10,13 +10,13 @@ public class SimpleShiftingGearbox implements SpeedController {
 	double shiftDrop;
 	boolean shifterInverted;
 	boolean inverted=false;
-	Solenoid shifter;
+	XSolenoidWrapper shifter;
 	SpeedController controller1;
 	SpeedController controller2;
 	SpeedController controller3;
 	
 	public SimpleShiftingGearbox(SpeedController c1, SpeedController c2, SpeedController c3,
-			Solenoid solenoid, double threshold, double drop, boolean solenoidInverted){
+			XSolenoidWrapper solenoid, double threshold, double drop, boolean solenoidInverted){
 		controller1=c1;
 		controller2=c2;
 		controller3=c3;
