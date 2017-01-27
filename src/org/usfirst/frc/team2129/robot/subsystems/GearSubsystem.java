@@ -17,17 +17,17 @@ public class GearSubsystem extends Subsystem{
 	
 	float rotateSpeed;
 	
-	protected void initDefaultCommand() {
-		// TODO command that calls checkForGear alot
-		setDefaultCommand(new GearCheckCommand());
-	}
-	
 	public GearSubsystem() {
 		GearTest = new DigitalInput(6);//get port #s for all of these
 		GearSolenoid = new DoubleSolenoid(5,6);//make these actual ports
 		GearTalon = new Talon(RobotMap.GearTalon);
 		
 		rotateSpeed = 0.5f;
+	}
+	
+	protected void initDefaultCommand() {
+		// TODO command that calls checkForGear alot
+		setDefaultCommand(new GearCheckCommand());
 	}
 	
 	public void checkForGear() {//Call often and maybe auto align gears
