@@ -62,6 +62,8 @@ public class DrivetrainSubsystem extends Subsystem {
 		robotDrive          = new RobotDrive(leftGearbox, rightGearbox);
 		
 		Ultrasonic1 = new AnalogInput(0);//needs port
+		LightSensorLeft = new DigitalInput(RobotMap.DriveLightLeft);
+		LightSensorRight = new DigitalInput(RobotMap.DriveLightRight);
 	}
 	
 	public void tankDrive(double left, double right){

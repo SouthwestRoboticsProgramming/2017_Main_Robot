@@ -17,8 +17,14 @@ public class RobotMap {
 	public static int GearTalon = 6;//These need ports
 	public static int LiftMotor = 7;
 	
+	//Light Sensors
+	public static int GearLight = 0;
+	public static int DriveLightLeft = 1;
+	public static int DriveLightRight = 2;
+	
 	//Solenoids
 	public static int ShifterRight = 0;
 	public static int ShiftLeft1 = 1;
 	public static int ShifterLeft2 = 2;
+	public static int GearSolenoid1;
 }

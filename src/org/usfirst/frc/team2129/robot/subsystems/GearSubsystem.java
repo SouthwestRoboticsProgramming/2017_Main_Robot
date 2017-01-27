@@ -18,7 +18,7 @@ public class GearSubsystem extends Subsystem{
 	float rotateSpeed;
 	
 	public GearSubsystem() {
-		GearTest = new DigitalInput(6);//get port #s for all of these
+		GearTest = new DigitalInput(RobotMap.GearLight);//get port #s for all of these
 		GearSolenoid = new DoubleSolenoid(5,6);//make these actual ports
 		GearTalon = new Talon(RobotMap.GearTalon);
 		
