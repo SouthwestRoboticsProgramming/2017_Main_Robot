@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Ultrasonic", Robot.drivetrainSubsystem.getVoltage());
 		SmartDashboard.putBoolean("LightLeft", Robot.drivetrainSubsystem.getLeft());
-		SmartDashboard.putBoolean("lightRight", Robot.drivetrainSubsystem.getRight());
+		SmartDashboard.putBoolean("LightRight", Robot.drivetrainSubsystem.getRight());
 	}
 
 	/**
