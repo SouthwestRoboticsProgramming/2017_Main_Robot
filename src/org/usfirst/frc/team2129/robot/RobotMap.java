@@ -22,8 +22,8 @@ public class RobotMap {
 	
 	//Light Sensors
 	public static int GearLight = 0;
-	public static int DriveLightLeft = 1;
-	public static int DriveLightRight = 2;
+	public static int DriveLightLeft = 4;
+	public static int DriveLightRight = 5;
 	
 	//Solenoids
 	public static int ShifterRight = 0;
