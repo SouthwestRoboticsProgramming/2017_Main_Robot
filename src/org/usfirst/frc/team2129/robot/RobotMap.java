@@ -29,8 +29,8 @@ public class RobotMap {
 	public static int ShifterRight = 0;
 	public static int ShiftLeft1 = 1;
 	public static int ShifterLeft2 = 2;
-	public static int GearSolenoid1 = 3;
-	public static int GearSolenoid2 = 4;
+	public static int GearSolenoidLeft = 3;
+	public static int GearSolenoidRight = 4;
 	
 	//Ultrasonic
 	public static int Ultrasonic = 0;

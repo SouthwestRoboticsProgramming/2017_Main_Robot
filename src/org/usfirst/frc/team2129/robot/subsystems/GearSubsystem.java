@@ -5,6 +5,7 @@ import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,14 +13,16 @@ public class GearSubsystem extends Subsystem{
 	//Inputs
 	DigitalInput GearTest;
 	//Outputs
-	DoubleSolenoid GearSolenoid;
+	Solenoid GearSolenoidLeft;
+	Solenoid GearSolenoidRight;
 	Talon GearTalon;
 	
 	float rotateSpeed;
 	
 	public GearSubsystem() {
-		GearTest = new DigitalInput(RobotMap.GearLight);//get port #s for all of these
-		GearSolenoid = new DoubleSolenoid(RobotMap.GearSolenoid1 ,RobotMap.GearSolenoid2);//make these actual ports
+		GearTest = new DigitalInput(RobotMap.GearLight);
+		GearSolenoidLeft = new Solenoid(RobotMap.GearSolenoidLeft);
+		GearSolenoidRight = new Solenoid(RobotMap.GearSolenoidRight);
 		GearTalon = new Talon(RobotMap.GearTalon);
 		
 		rotateSpeed = 0.5f;
@@ -51,10 +54,12 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	public void open() {
-		GearSolenoid.set(DoubleSolenoid.Value.kForward);
+		GearSolenoidLeft.set(true);
+		GearSolenoidRight.set(true);
 	}
 
 	public void close() {
-		GearSolenoid.set(DoubleSolenoid.Value.kReverse);
+		GearSolenoidLeft.set(false);
+		GearSolenoidRight.set(false);
 	}
 }
