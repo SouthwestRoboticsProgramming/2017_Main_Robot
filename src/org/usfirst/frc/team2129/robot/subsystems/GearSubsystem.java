@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearSubsystem extends Subsystem{
 	//Inputs
 	DigitalInput GearTest;
+	DigitalInput GearLimitLeft;
+	DigitalInput GearLimitRight;
 	//Outputs
 	Solenoid GearSolenoidLeft;
 	Solenoid GearSolenoidRight;
@@ -21,6 +23,8 @@ public class GearSubsystem extends Subsystem{
 	
 	public GearSubsystem() {
 		GearTest = new DigitalInput(RobotMap.GearLight);
+		GearLimitLeft = new DigitalInput(RobotMap.GearLimitLeft);
+		GearLimitRight = new DigitalInput(RobotMap.GearLimitRight);
 		GearSolenoidLeft = new Solenoid(RobotMap.GearSolenoidLeft);
 		GearSolenoidRight = new Solenoid(RobotMap.GearSolenoidRight);
 		GearTalon = new Talon(RobotMap.GearTalon);
@@ -42,11 +46,19 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	public void rotateLeft() {
-		GearTalon.set(rotateSpeed);
+		if (!GearLimitLeft.get()) {
+			GearTalon.set(rotateSpeed);
+		} else {
+			GearTalon.set(0);
+		}
 	}
 	
 	public void rotateRight() {
-		GearTalon.set(rotateSpeed * -1);
+		if (!GearLimitRight.get()) {
+			GearTalon.set(rotateSpeed * -1);
+		} else {
+			GearTalon.set(0);
+		}
 	}
 	
 	public void rotateStop() {

@@ -32,6 +32,10 @@ public class RobotMap {
 	public static int GearSolenoidLeft = 3;
 	public static int GearSolenoidRight = 4;
 	
+	//Limit switches
+	public static int GearLimitLeft = 0;
+	public static int GearLimitRight = 0;
+	
 	//Ultrasonic
 	public static int Ultrasonic = 0;
 }
