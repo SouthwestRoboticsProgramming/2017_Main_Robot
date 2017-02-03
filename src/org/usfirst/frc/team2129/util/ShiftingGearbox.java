@@ -1,10 +1,8 @@
 package org.usfirst.frc.team2129.util;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShiftingGearbox implements SpeedController {
@@ -41,7 +39,6 @@ public class ShiftingGearbox implements SpeedController {
 		this.motor1=motor1;
 		this.motor2=motor2;
 		this.motor3=motor3;
-		this.shifter=shifter;
 		
 		this.twoMotorThreshold=threshold2;
 		this.threeMotorThreshold=threshold3;

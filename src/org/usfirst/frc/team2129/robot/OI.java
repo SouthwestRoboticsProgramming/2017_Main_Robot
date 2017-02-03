@@ -1,6 +1,10 @@
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,5 +43,14 @@ public class OI {
 	
 	public Joystick        leftJoystick        = new Joystick(0);
 	public Joystick        rightJoystick       = new Joystick(1);
+	public Joystick        thirdJoystick       = new Joystick(2);
+	
+	Button testAutoBtn = new JoystickButton(leftJoystick, 6);
+	Button BDMBtn = new JoystickButton(leftJoystick, 7);
+	
+	public OI(){
+		testAutoBtn.whenPressed(new AutoOrientCommand(90, 1, 0.5, false));
+		BDMBtn.whenPressed(new AutoOrientCommand(0, 1, 0.5, true));
+	}
 	
 }

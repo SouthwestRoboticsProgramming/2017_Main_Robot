@@ -1,16 +1,17 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
+import org.usfirst.frc.team2129.robot.map.*;
+import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.LifterSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.PneumaticsManagmentSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,11 +21,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	public static final TestRobotMap map = new TestRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();
-	public static final GearSubsystem gearSubsystem = new GearSubsystem();
-	public static final LifterSubsystem lifterSubsystem = new LifterSubsystem();
+	public static final GearSubsystem gearSubsystem = null;//new GearSubsystem();
+	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 
@@ -64,6 +67,10 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	
+	public void autonomousInit(){
+		//new AutoOrientCommand(180, 5).st;
+	}
+	
 
 	/**
 	 * This function is called periodically during autonomous
@@ -87,10 +94,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		SmartDashboard.putNumber("Ultrasonic", Robot.drivetrainSubsystem.getVoltage());
-		SmartDashboard.putBoolean("LightLeft", Robot.drivetrainSubsystem.getLeft());
-		SmartDashboard.putBoolean("lightRight", Robot.drivetrainSubsystem.getRight());
 	}
 
 	/**

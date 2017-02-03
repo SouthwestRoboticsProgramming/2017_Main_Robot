@@ -124,7 +124,8 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
   private AtomicBoolean m_freed = new AtomicBoolean(false);
 
   private SPI m_spi;
-  private DigitalOutput m_reset;
+  @SuppressWarnings("unused")
+private DigitalOutput m_reset;
   private DigitalInput m_interrupt;
 
   // Sample from the IMU
@@ -138,8 +139,10 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
     public double mag_x;
     public double mag_y;
     public double mag_z;
-    public double baro;
-    public double temp;
+    @SuppressWarnings("unused")
+	public double baro;
+    @SuppressWarnings("unused")
+	public double temp;
     public double dt;
 
     // Swap axis as appropriate for yaw axis selection

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
-import org.usfirst.frc.team2129.robot.RobotMap;
+import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -18,9 +18,9 @@ public class GearSubsystem extends Subsystem{
 	float rotateSpeed;
 	
 	public GearSubsystem() {
-		GearTest = new DigitalInput(RobotMap.GearLight);//get port #s for all of these
-		GearSolenoid = new DoubleSolenoid(RobotMap.GearSolenoid1 ,RobotMap.GearSolenoid2);//make these actual ports
-		GearTalon = new Talon(RobotMap.GearTalon);
+		GearTest = new DigitalInput(Robot.map.GearLight);//get port #s for all of these
+		GearSolenoid = null;//new DoubleSolenoid(RobotMap.GearSolenoid1 ,RobotMap.GearSolenoid2);//make these actual ports
+		GearTalon = null;//new Talon(RobotMap.GearTalon);
 		
 		rotateSpeed = 0.5f;
 	}

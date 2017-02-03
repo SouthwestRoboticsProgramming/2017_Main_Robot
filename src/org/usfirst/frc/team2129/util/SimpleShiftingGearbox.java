@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2129.util;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class SimpleShiftingGearbox implements SpeedController {

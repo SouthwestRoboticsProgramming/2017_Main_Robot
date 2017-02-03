@@ -1,50 +1,42 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
-import org.usfirst.frc.team2129.robot.commands.ReportIMUCommand;
-
-import com.analog.adis16448.frc.ADIS16448_IMU;
+import org.usfirst.frc.team2129.robot.commands.ReportCommand;
+import org.usfirst.frc.team2129.util.CalibratedADISIMU;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class IMUSubsystem extends Subsystem {
 	
-	public ADIS16448_IMU imu;
-	double degrees_per_unit = 0.25d;
-	double zero_offset_x=0d;
-	double zero_offset_y=0d;
-	double zero_offset_z=0d;
+	public CalibratedADISIMU imu;
 	
 	public IMUSubsystem(){
-		imu=new ADIS16448_IMU();
-		//imu.calibrate();
+		imu=new CalibratedADISIMU();
+		zero();
 	}
 
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		setDefaultCommand(new ReportIMUCommand());
+		setDefaultCommand(new ReportCommand());
 	}
 	
 	public void zero(){
-		zero_offset_x=imu.getAngleX();
-		zero_offset_y=imu.getAngleY();
-		zero_offset_z=imu.getAngleZ();
+		imu.zero();
 	}
 	
-	public void setRatio(double deg2u){
-		degrees_per_unit=deg2u;
+	public void calibrate(){
+		imu.calibrate();
 	}
 	
 	public double getX(){
-		return (imu.getAngleX()-zero_offset_x)*degrees_per_unit;
+		return imu.getX();
 	}
 	
 	public double getY(){
-		return (imu.getAngleY()-zero_offset_y)*degrees_per_unit;
+		return imu.getY();
 	}
 	
 	public double getZ(){
-		return (imu.getAngleZ()-zero_offset_z)*degrees_per_unit;
+		return imu.getZ();
 	}
-
 }

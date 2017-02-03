@@ -1,20 +1,15 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
-import org.usfirst.frc.team2129.robot.RobotMap;
+import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
-import org.usfirst.frc.team2129.util.ShiftingGearbox;
 import org.usfirst.frc.team2129.util.SimpleShiftingGearbox;
 import org.usfirst.frc.team2129.util.XSolenoidWrapper;
-
-import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -36,6 +31,7 @@ public class DrivetrainSubsystem extends Subsystem {
 	
 
 	public Encoder leftEncoder;
+	public Encoder rightEncoder;
 
 	AnalogInput Ultrasonic1;
 	
@@ -48,28 +44,29 @@ public class DrivetrainSubsystem extends Subsystem {
 	}
 	
 	public DrivetrainSubsystem(){
-		leftGearboxMotor1   = new CANTalon(RobotMap.RightMotor1);
-		leftGearboxMotor2   = new CANTalon(RobotMap.RightMotor2);
-		leftGearboxMotor3   = new Jaguar(RobotMap.RightMotor3);
-		leftGearboxShifter  = new DoubleSolenoid(RobotMap.ShiftLeft1, RobotMap.ShifterLeft2);
+		leftGearboxMotor1   = Robot.map.RightMotor1.get();
+		leftGearboxMotor2   = Robot.map.RightMotor2.get();
+		leftGearboxMotor3   = null;
+		leftGearboxShifter  = new DoubleSolenoid(Robot.map.ShiftLeft1, Robot.map.ShifterLeft2);
 		leftGearbox         = new SimpleShiftingGearbox(
-			leftGearboxMotor1, leftGearboxMotor2, null,
+			leftGearboxMotor1, leftGearboxMotor2, leftGearboxMotor3,
 			null, 0.6d, 0.25d, true);
 		
-		rightGearboxMotor1  = new CANTalon(RobotMap.LeftMotor1);
-		rightGearboxMotor2  = new CANTalon(RobotMap.LeftMotor2);
-		rightGearboxMotor3  = new Jaguar(RobotMap.RightMotor3);
-		rightGearboxShifter = new Solenoid(RobotMap.ShifterRight);
+		rightGearboxMotor1  = Robot.map.LeftMotor1.get();
+		rightGearboxMotor2  = Robot.map.LeftMotor2.get();
+		rightGearboxMotor3  = null;
+		rightGearboxShifter = new Solenoid(Robot.map.ShifterRight);
 		rightGearbox        = new SimpleShiftingGearbox(
-			rightGearboxMotor1, rightGearboxMotor2, null,
+			rightGearboxMotor1, rightGearboxMotor2, rightGearboxMotor3,
 			new XSolenoidWrapper(rightGearboxShifter), 0.6d, 0.4d, false);
 		
 		robotDrive          = new RobotDrive(leftGearbox, rightGearbox);
 		
 		leftEncoder = new Encoder(0, 1);
-		Ultrasonic1 = new AnalogInput(RobotMap.Ultrasonic);//needs port
-		LightSensorLeft = new DigitalInput(RobotMap.DriveLightLeft);
-		LightSensorRight = new DigitalInput(RobotMap.DriveLightRight);
+		rightEncoder = new Encoder(2, 3);
+		//Ultrasonic1 = new AnalogInput(RobotMap.Ultrasonic);//needs port
+		//LightSensorLeft = new DigitalInput(RobotMap.DriveLightLeft);
+		//LightSensorRight = new DigitalInput(RobotMap.DriveLightRight);
 	}
 	
 	public void tankDrive(double left, double right){
