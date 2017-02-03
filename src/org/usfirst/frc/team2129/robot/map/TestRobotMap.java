@@ -5,6 +5,8 @@ import org.usfirst.frc.team2129.util.NullMotorDescriptor;
 import org.usfirst.frc.team2129.util.PWMMotorDescriptor;
 
 public class TestRobotMap {
+	public int GearLimitLeft = 4;
+
 	//Compressor
 	public int Compressor = 0;
 	
@@ -32,4 +34,12 @@ public class TestRobotMap {
 	
 	//Ultrasonic
 	public int Ultrasonic = 0;
+
+	public int GearLimitRight = 5;
+
+	public int GearSolenoidLeft = 6;
+
+	public int GearSolenoidRight=7;
+
+	public int GearTalon=8;
 }

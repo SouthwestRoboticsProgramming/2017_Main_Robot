@@ -5,22 +5,29 @@ import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearSubsystem extends Subsystem{
 	//Inputs
 	DigitalInput GearTest;
+	DigitalInput GearLimitLeft;
+	DigitalInput GearLimitRight;
 	//Outputs
-	DoubleSolenoid GearSolenoid;
+	Solenoid GearSolenoidLeft;
+	Solenoid GearSolenoidRight;
 	Talon GearTalon;
 	
 	float rotateSpeed;
 	
 	public GearSubsystem() {
-		GearTest = new DigitalInput(Robot.map.GearLight);//get port #s for all of these
-		GearSolenoid = null;//new DoubleSolenoid(RobotMap.GearSolenoid1 ,RobotMap.GearSolenoid2);//make these actual ports
-		GearTalon = null;//new Talon(RobotMap.GearTalon);
+		GearTest = new DigitalInput(Robot.map.GearLight);
+		GearLimitLeft = new DigitalInput(Robot.map.GearLimitLeft);
+		GearLimitRight = new DigitalInput(Robot.map.GearLimitRight);
+		GearSolenoidLeft = new Solenoid(Robot.map.GearSolenoidLeft);
+		GearSolenoidRight = new Solenoid(Robot.map.GearSolenoidRight);
+		GearTalon = new Talon(Robot.map.GearTalon);
 		
 		rotateSpeed = 0.5f;
 	}
@@ -39,11 +46,19 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	public void rotateLeft() {
-		GearTalon.set(rotateSpeed);
+		if (!GearLimitLeft.get()) {
+			GearTalon.set(rotateSpeed);
+		} else {
+			GearTalon.set(0);
+		}
 	}
 	
 	public void rotateRight() {
-		GearTalon.set(rotateSpeed * -1);
+		if (!GearLimitRight.get()) {
+			GearTalon.set(rotateSpeed * -1);
+		} else {
+			GearTalon.set(0);
+		}
 	}
 	
 	public void rotateStop() {
@@ -51,10 +66,12 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	public void open() {
-		GearSolenoid.set(DoubleSolenoid.Value.kForward);
+		GearSolenoidLeft.set(true);
+		GearSolenoidRight.set(true);
 	}
 
 	public void close() {
-		GearSolenoid.set(DoubleSolenoid.Value.kReverse);
+		GearSolenoidLeft.set(false);
+		GearSolenoidRight.set(false);
 	}
 }
