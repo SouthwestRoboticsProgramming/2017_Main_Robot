@@ -3,6 +3,7 @@ package org.usfirst.frc.team2129.robot.subsystems;
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -11,9 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearSubsystem extends Subsystem{
 	//Inputs
+	AnalogInput GearPot;
 	DigitalInput GearTest;
-	DigitalInput GearLimitLeft;
-	DigitalInput GearLimitRight;
 	//Outputs
 	Solenoid GearSolenoidLeft;
 	Solenoid GearSolenoidRight;
@@ -22,9 +22,8 @@ public class GearSubsystem extends Subsystem{
 	float rotateSpeed;
 	
 	public GearSubsystem() {
+		GearPot = new AnalogInput(Robot.map.GearPot);
 		GearTest = new DigitalInput(Robot.map.GearLight);
-		GearLimitLeft = new DigitalInput(Robot.map.GearLimitLeft);
-		GearLimitRight = new DigitalInput(Robot.map.GearLimitRight);
 		GearSolenoidLeft = new Solenoid(Robot.map.GearSolenoidLeft);
 		GearSolenoidRight = new Solenoid(Robot.map.GearSolenoidRight);
 		GearTalon = new Talon(Robot.map.GearTalon);
@@ -37,6 +36,11 @@ public class GearSubsystem extends Subsystem{
 		setDefaultCommand(new GearCheckCommand());
 	}
 	
+	public int getPot() {
+		System.out.println(GearPot.getValue());
+		return GearPot.getValue();
+	}
+	
 	public void checkForGear() {//Call often and maybe auto align gears
 		if (GearTest.get()) {
 			rotateRight();
@@ -46,19 +50,11 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	public void rotateLeft() {
-		if (!GearLimitLeft.get()) {
-			GearTalon.set(rotateSpeed);
-		} else {
-			GearTalon.set(0);
-		}
+		GearTalon.set(rotateSpeed);
 	}
 	
 	public void rotateRight() {
-		if (!GearLimitRight.get()) {
-			GearTalon.set(rotateSpeed * -1);
-		} else {
-			GearTalon.set(0);
-		}
+		GearTalon.set(rotateSpeed * -1);
 	}
 	
 	public void rotateStop() {
