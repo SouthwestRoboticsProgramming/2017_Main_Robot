@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class UserDriveCommand extends Command {
 	
+	double left, right;
+	
 	public UserDriveCommand() {
 		requires(Robot.drivetrainSubsystem);
 	}
@@ -16,6 +18,20 @@ public class UserDriveCommand extends Command {
 	}
 
 	protected void execute() {
-		Robot.drivetrainSubsystem.tankDrive(Robot.oi.leftJoystick.getY(), Robot.oi.rightJoystick.getY());
+		left = Robot.oi.leftJoystick.getY();
+		right = Robot.oi.rightJoystick.getY();
+		
+		if (left > 0.75) {
+			left = 0.75;
+		} else if (left < -0.75) {
+			left = -0.75;
+		}
+		
+		if (right > 0.75) {
+			right = 0.75;
+		} else if (right < -0.75) {
+			right = -0.75;
+		}
+		Robot.drivetrainSubsystem.tankDrive(left, right);
 	}
 }
