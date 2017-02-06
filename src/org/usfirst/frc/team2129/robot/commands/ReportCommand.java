@@ -18,6 +18,14 @@ public class ReportCommand extends Command {
 	}
 	
 	public void execute(){
+		SmartDashboard.putBoolean("compressor_enabled", Robot.pneumaticsManagmentSubsystem.compressor.enabled());
+		SmartDashboard.putBoolean("compressor_cth_f", Robot.pneumaticsManagmentSubsystem.compressor.getCompressorCurrentTooHighFault());
+		SmartDashboard.putBoolean("compressor_cth_sf", Robot.pneumaticsManagmentSubsystem.compressor.getCompressorCurrentTooHighStickyFault());
+		SmartDashboard.putBoolean("compressor_nc_f", Robot.pneumaticsManagmentSubsystem.compressor.getCompressorNotConnectedFault());
+		SmartDashboard.putBoolean("compressor_nc_sf", Robot.pneumaticsManagmentSubsystem.compressor.getCompressorNotConnectedStickyFault());
+		SmartDashboard.putBoolean("compressor_s_f", Robot.pneumaticsManagmentSubsystem.compressor.getCompressorShortedFault());
+		SmartDashboard.putBoolean("compressor_s_sf", Robot.pneumaticsManagmentSubsystem.compressor.getCompressorShortedStickyFault());
+		
 		SmartDashboard.putString("ReportIMUCommand", "RUNNING");
 		SmartDashboard.putNumber("imu_ax", Robot.imuSubsystem.getX());
 		SmartDashboard.putNumber("imu_ay", Robot.imuSubsystem.getY());

@@ -1,8 +1,8 @@
 
 package org.usfirst.frc.team2129.robot;
 
-import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
-import org.usfirst.frc.team2129.robot.map.*;
+import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
+import org.usfirst.frc.team2129.robot.map.TestRobotMap;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
@@ -22,11 +22,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 	
-	public static final TestRobotMap map = new TestRobotMap();
+	public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();
-	public static final GearSubsystem gearSubsystem = null;//new GearSubsystem();
+	public static final GearSubsystem gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();

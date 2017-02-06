@@ -71,6 +71,10 @@ public class AutoOrientCommand extends Command {
 		double calc = (delta/360)*kP;
 		calc+=Preferences.getInstance().getDouble("kBASE", 0.1);
 		
+		if (calc>Preferences.getInstance().getDouble("kCAP", 0.4)){
+			calc=Preferences.getInstance().getDouble("kCAP", 0.4);
+		}
+		
 		calc*=dir;
 		
 		SmartDashboard.putNumber("AOC_Angle", getAngle());
@@ -80,8 +84,14 @@ public class AutoOrientCommand extends Command {
 		SmartDashboard.putNumber("dtime", System.currentTimeMillis()-done_start_time);
 		SmartDashboard.putNumber("treq", time_req);
 		
-		if(!onTarget()) Robot.drivetrainSubsystem.tankDrive(1*calc, -1*calc);
-		else Robot.drivetrainSubsystem.tankDrive(0, 0);
+		if(!onTarget()){
+			Robot.drivetrainSubsystem.tankDrive(1*calc, -1*calc);
+			SmartDashboard.putBoolean("filtered_running", true);
+		}
+		else{
+			Robot.drivetrainSubsystem.tankDrive(0, 0);
+			SmartDashboard.putBoolean("filtered_running", false);
+		}
 	}
 	
 	public void initialize(){

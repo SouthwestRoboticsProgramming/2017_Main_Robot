@@ -1,13 +1,12 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.Robot;
-import org.usfirst.frc.team2129.robot.commands.GearCheckCommand;
+import org.usfirst.frc.team2129.robot.commands.ManualGearCommand;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearSubsystem extends Subsystem{
@@ -15,59 +14,54 @@ public class GearSubsystem extends Subsystem{
 	AnalogInput GearPot;
 	DigitalInput GearTest;
 	//Outputs
-	Solenoid GearSolenoidLeft;
-	Solenoid GearSolenoidRight;
-	Talon GearTalon;
+	Solenoid GearSolenoid;
+	
+	SpeedController gearMotor;
 	
 	float rotateSpeed;
 	
 	public GearSubsystem() {
-		GearPot = new AnalogInput(Robot.map.GearPot);
-		GearTest = new DigitalInput(Robot.map.GearLight);
-		GearSolenoidLeft = new Solenoid(Robot.map.GearSolenoidLeft);
-		GearSolenoidRight = new Solenoid(Robot.map.GearSolenoidRight);
-		GearTalon = new Talon(Robot.map.GearTalon);
+		gearMotor = Robot.map.GearMotor.get();
+		GearSolenoid=new Solenoid(Robot.map.GearSolenoid);
 		
 		rotateSpeed = 0.5f;
 	}
 	
 	protected void initDefaultCommand() {
 		// TODO command that calls checkForGear alot
-		setDefaultCommand(new GearCheckCommand());
+		setDefaultCommand(new ManualGearCommand());
 	}
 	
 	public int getPot() {
-		System.out.println(GearPot.getValue());
-		return GearPot.getValue();
+		//System.out.println(GearPot.getValue());
+		return 0;//GearPot.getValue();
 	}
 	
 	public void checkForGear() {//Call often and maybe auto align gears
-		if (GearTest.get()) {
-			rotateRight();
-		} else {
-			rotateStop();
-		}
+//		if (GearTest.get()) {
+//			rotateRight();
+//		} else {
+//			rotateStop();
+//		}
 	}
 	
 	public void rotateLeft() {
-		GearTalon.set(rotateSpeed);
+//		gearMotor.set(rotateSpeed);
 	}
 	
 	public void rotateRight() {
-		GearTalon.set(rotateSpeed * -1);
+//		gearMotor.set(rotateSpeed * -1);
 	}
 	
 	public void rotateStop() {
-		GearTalon.set(0);
+//		gearMotor.set(0);
 	}
 	
 	public void open() {
-		GearSolenoidLeft.set(true);
-		GearSolenoidRight.set(true);
+		GearSolenoid.set(true);
 	}
 
 	public void close() {
-		GearSolenoidLeft.set(false);
-		GearSolenoidRight.set(false);
+		GearSolenoid.set(false);
 	}
 }
