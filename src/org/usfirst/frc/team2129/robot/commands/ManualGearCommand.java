@@ -22,6 +22,14 @@ public class ManualGearCommand extends Command {
 			SmartDashboard.putString("g_p_req_state", "OFF (5)");
 			Robot.gearSubsystem.close();
 		}
+		
+		if (Robot.oi.leftJoystick.getRawButton(4)) {
+			Robot.gearSubsystem.rotateLeft();
+		} else if (Robot.oi.leftJoystick.getRawButton(5)) {
+			Robot.gearSubsystem.rotateRight();
+		} else {
+			Robot.gearSubsystem.rotateStop();
+		}
 	}
 	
 	protected boolean isFinished() {

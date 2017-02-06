@@ -50,15 +50,9 @@ public class OI {
 	Button testAutoBtn = new JoystickButton(leftJoystick, 6);
 	Button BDMBtn = new JoystickButton(leftJoystick, 7);
 	
-	Button GearRotateLeft = new JoystickButton(leftJoystick, 4);
-	Button GearRotateRight = new JoystickButton(rightJoystick, 5);
-	
 	public OI(){
 		testAutoBtn.whenPressed(new AutoOrientCommand(90, 1, 0.5, false));
 		BDMBtn.whenPressed(new AutoOrientCommand(0, 1, 0.5, true));
-		
-		GearRotateLeft.whenPressed(new GearLeft());
-		GearRotateRight.whenPressed(new GearRight());
 	}
 	
 }
