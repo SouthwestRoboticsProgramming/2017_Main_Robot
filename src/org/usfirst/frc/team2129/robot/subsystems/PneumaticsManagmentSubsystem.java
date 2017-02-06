@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class PneumaticsManagmentSubsystem extends Subsystem {
-	Compressor compressor = new Compressor(Robot.map.Compressor);
+	public Compressor compressor = new Compressor(Robot.map.Compressor);
 	
 	public PneumaticsManagmentSubsystem(){
 		compressor.setClosedLoopControl(true);

@@ -47,7 +47,7 @@ public class DrivetrainSubsystem extends Subsystem {
 		leftGearboxMotor1   = Robot.map.RightMotor1.get();
 		leftGearboxMotor2   = Robot.map.RightMotor2.get();
 		leftGearboxMotor3   = null;
-		leftGearboxShifter  = new DoubleSolenoid(Robot.map.ShiftLeft1, Robot.map.ShifterLeft2);
+		leftGearboxShifter  = null;//new DoubleSolenoid(Robot.map.ShiftLeft1, Robot.map.ShifterLeft2);
 		leftGearbox         = new SimpleShiftingGearbox(
 			leftGearboxMotor1, leftGearboxMotor2, leftGearboxMotor3,
 			null, 0.6d, 0.25d, true);
@@ -55,7 +55,7 @@ public class DrivetrainSubsystem extends Subsystem {
 		rightGearboxMotor1  = Robot.map.LeftMotor1.get();
 		rightGearboxMotor2  = Robot.map.LeftMotor2.get();
 		rightGearboxMotor3  = null;
-		rightGearboxShifter = new Solenoid(Robot.map.ShifterRight);
+		rightGearboxShifter = null;//new Solenoid(Robot.map.ShifterRight);
 		rightGearbox        = new SimpleShiftingGearbox(
 			rightGearboxMotor1, rightGearboxMotor2, rightGearboxMotor3,
 			new XSolenoidWrapper(rightGearboxShifter), 0.6d, 0.4d, false);
