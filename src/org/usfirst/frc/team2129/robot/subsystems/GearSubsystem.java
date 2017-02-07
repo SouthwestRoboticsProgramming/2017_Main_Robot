@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearSubsystem extends Subsystem{
 	//Inputs
-	AnalogInput GearPot;
-	DigitalInput GearTest;
+	DigitalInput GearLight;
 	//Outputs
 	Solenoid GearSolenoid;
 	
@@ -28,21 +27,7 @@ public class GearSubsystem extends Subsystem{
 	}
 	
 	protected void initDefaultCommand() {
-		// TODO command that calls checkForGear alot
 		setDefaultCommand(new ManualGearCommand());
-	}
-	
-	public int getPot() {
-		//System.out.println(GearPot.getValue());
-		return 0;//GearPot.getValue();
-	}
-	
-	public void checkForGear() {//Call often and maybe auto align gears
-//		if (GearTest.get()) {
-//			rotateRight();
-//		} else {
-//			rotateStop();
-//		}
 	}
 	
 	public void rotateLeft() {
