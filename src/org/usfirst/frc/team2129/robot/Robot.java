@@ -5,6 +5,7 @@ import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
 import org.usfirst.frc.team2129.robot.map.TestRobotMap;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.FlashyLightsSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.PneumaticsManagmentSubsystem;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();
 	public static final GearSubsystem gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
+	public static final FlashyLightsSubsystem lightsSubsystem = new FlashyLightsSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 

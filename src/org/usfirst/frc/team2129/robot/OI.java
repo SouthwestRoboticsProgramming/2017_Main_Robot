@@ -1,9 +1,6 @@
 package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
-import org.usfirst.frc.team2129.robot.commands.GearLeft;
-import org.usfirst.frc.team2129.robot.commands.GearRight;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

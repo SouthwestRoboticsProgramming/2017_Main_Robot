@@ -23,9 +23,13 @@ public class ProductionRobotMap {
 	public MotorDescriptor GearMotor = new NullMotorDescriptor();// new PWMMotorDescriptor(31);
 	
 	//Light Sensors
-	public int GearLight = 0;
-	public int DriveLightLeft = 1;
-	public int DriveLightRight = 2;
+	public int GearLight = 5;
+	public int DriveLightLeft = 6;
+	public int DriveLightRight = 7;
+	
+	//Flashy Lights
+	public int FlashyLightLeft = 0;
+	public int FlashyLightRight = 1;
 	
 	//Solenoids
 	public int ShifterRight = 2;
