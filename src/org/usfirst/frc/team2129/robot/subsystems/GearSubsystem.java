@@ -30,16 +30,25 @@ public class GearSubsystem extends Subsystem{
 		setDefaultCommand(new ManualGearCommand());
 	}
 	
+	public void autoRotate() {
+		//need ether limit switch or potentiometer to make this good
+		if (GearLight.get()) {
+			rotateLeft();
+		} else {
+			rotateStop();
+		}
+	}
+	
 	public void rotateLeft() {
-//		gearMotor.set(rotateSpeed);
+		gearMotor.set(rotateSpeed);
 	}
 	
 	public void rotateRight() {
-//		gearMotor.set(rotateSpeed * -1);
+		gearMotor.set(rotateSpeed * -1);
 	}
 	
 	public void rotateStop() {
-//		gearMotor.set(0);
+		gearMotor.set(0);
 	}
 	
 	public void open() {

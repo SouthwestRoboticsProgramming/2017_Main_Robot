@@ -23,7 +23,9 @@ public class ManualGearCommand extends Command {
 			Robot.gearSubsystem.close();
 		}
 		
-		if (Robot.oi.leftJoystick.getRawButton(4)) {
+		if (Robot.oi.leftJoystick.getRawButton(3)) {
+			Robot.gearSubsystem.autoRotate();
+		} else if (Robot.oi.leftJoystick.getRawButton(4)) {
 			Robot.gearSubsystem.rotateLeft();
 		} else if (Robot.oi.leftJoystick.getRawButton(5)) {
 			Robot.gearSubsystem.rotateRight();
