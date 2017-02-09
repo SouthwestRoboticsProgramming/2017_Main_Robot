@@ -9,23 +9,23 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DrivetrainSubsystem extends Subsystem {
 	public SpeedController leftGearboxMotor1;
 	public SpeedController leftGearboxMotor2;
-	public SpeedController leftGearboxMotor3;
-	public DoubleSolenoid        leftGearboxShifter;
-	public SimpleShiftingGearbox leftGearbox;
+	public SplitSpeedController leftGearbox;
 	
 	public SpeedController rightGearboxMotor1;
 	public SpeedController rightGearboxMotor2;
-	public SpeedController rightGearboxMotor3;
-	public Solenoid  rightGearboxShifter;
-	public SimpleShiftingGearbox rightGearbox;
+	public SplitSpeedController rightGearbox;
+	
+	public Solenoid  shifter;
 	
 	public RobotDrive      robotDrive;
 	
@@ -46,19 +46,13 @@ public class DrivetrainSubsystem extends Subsystem {
 	public DrivetrainSubsystem(){
 		leftGearboxMotor1   = Robot.map.RightMotor1.get();
 		leftGearboxMotor2   = Robot.map.RightMotor2.get();
-		leftGearboxMotor3   = null;
-		leftGearboxShifter  = null;//new DoubleSolenoid(Robot.map.ShiftLeft1, Robot.map.ShifterLeft2);
-		leftGearbox         = new SimpleShiftingGearbox(
-			leftGearboxMotor1, leftGearboxMotor2, leftGearboxMotor3,
-			null, 0.6d, 0.25d, true);
+		leftGearbox         = new SplitSpeedController(leftGearboxMotor1, leftGearboxMotor2);
 		
 		rightGearboxMotor1  = Robot.map.LeftMotor1.get();
 		rightGearboxMotor2  = Robot.map.LeftMotor2.get();
-		rightGearboxMotor3  = null;
-		rightGearboxShifter = null;//new Solenoid(Robot.map.ShifterRight);
-		rightGearbox        = new SimpleShiftingGearbox(
-			rightGearboxMotor1, rightGearboxMotor2, rightGearboxMotor3,
-			new XSolenoidWrapper(rightGearboxShifter), 0.6d, 0.4d, false);
+		rightGearbox        = new SplitSpeedController(rightGearboxMotor1, rightGearboxMotor2);
+		
+		shifter = new Solenoid(Robot.map.shifter);
 		
 		robotDrive          = new RobotDrive(leftGearbox, rightGearbox);
 		
@@ -71,6 +65,16 @@ public class DrivetrainSubsystem extends Subsystem {
 	
 	public void tankDrive(double left, double right){
 		robotDrive.tankDrive(left, right);
+		double dmz=Preferences.getInstance().getDouble("gy_mute_zone", 0.02);
+		if(Math.abs(left)<dmz && Math.abs(right)<dmz){
+			if(Preferences.getInstance().getBoolean("dynamic_gy_mute", false)){
+				Robot.imuSubsystem.imu.freeze();
+				SmartDashboard.putBoolean("dynamic_gy_freeze", true);
+			}
+		}else{
+			Robot.imuSubsystem.imu.unfreeze();
+			SmartDashboard.putBoolean("dynamic_gy_freeze", false);
+		}
 	}
 	//Mark has a plan for all of this...
 	public int getValue() {
@@ -87,5 +91,9 @@ public class DrivetrainSubsystem extends Subsystem {
 	
 	public boolean getRight() {
 		return LightSensorRight.get();
+	}
+	
+	public void setShift(boolean state){
+		shifter.set(state);
 	}
 }

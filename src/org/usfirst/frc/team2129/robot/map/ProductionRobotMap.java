@@ -35,9 +35,8 @@ public class ProductionRobotMap {
 	public int FlashyLightRight = 1;
 	
 	//Solenoids
-	public int ShifterRight = 2;
-	public int ShiftLeft1 = 1;
-	public int GearSolenoid = 0;
+	public int shifter = 0;
+	public int GearSolenoid = 1;
 	
 	//Cameras
 	public SortedMap<String, Integer> cameras;

@@ -32,11 +32,11 @@ public class GearSubsystem extends Subsystem{
 	
 	public void autoRotate() {
 		//need ether limit switch or potentiometer to make this good
-		if (GearLight.get()) {
-			rotateLeft();
-		} else {
-			rotateStop();
-		}
+//		if (GearLight.get()) {
+//			rotateLeft();
+//		} else {
+//			rotateStop();
+//		}
 	}
 	
 	public void rotateLeft() {
