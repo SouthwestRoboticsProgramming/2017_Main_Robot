@@ -3,6 +3,7 @@ package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
 import org.usfirst.frc.team2129.robot.map.TestRobotMap;
+import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.FlashyLightsSubsystem;
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static final GearSubsystem gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static final FlashyLightsSubsystem lightsSubsystem = new FlashyLightsSubsystem();
+	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
 
@@ -88,6 +90,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		cameraSubsystem.init();
 	}
 
 	/**

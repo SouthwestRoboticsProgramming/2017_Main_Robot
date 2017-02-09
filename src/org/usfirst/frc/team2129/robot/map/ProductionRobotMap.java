@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2129.robot.map;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 import org.usfirst.frc.team2129.util.CANMotorDescriptor;
 import org.usfirst.frc.team2129.util.MotorDescriptor;
 import org.usfirst.frc.team2129.util.NullMotorDescriptor;
@@ -35,6 +38,15 @@ public class ProductionRobotMap {
 	public int ShifterRight = 2;
 	public int ShiftLeft1 = 1;
 	public int GearSolenoid = 0;
+	
+	//Cameras
+	public SortedMap<String, Integer> cameras;
+	public ProductionRobotMap(){
+		cameras=new TreeMap<String, Integer>();
+		cameras.put("First Camera", 0);
+		cameras.put("Second Camera", 1);
+		cameras.put("Third Camera", 2);
+	}
 	
 	//Ultrasonic
 	public int Ultrasonic = 0;
