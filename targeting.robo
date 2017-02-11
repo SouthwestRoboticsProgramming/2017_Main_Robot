@@ -8,15 +8,50 @@
 </Read_HTTP>
 <RGB_Filter>
   <channel>2</channel>
-  <hue_value>35</hue_value>
+  <hue_value>23</hue_value>
   <hysteresis>0</hysteresis>
-  <min_value>141</min_value>
+  <min_value>25</min_value>
 </RGB_Filter>
 <Blob_Overlap>
   <image1>Current</image1>
   <image2>Current</image2>
   <invert_results>FALSE</invert_results>
 </Blob_Overlap>
+<Blob_Filter>
+  <create_blob_array_variable>FALSE</create_blob_array_variable>
+  <filters>
+    <tab>
+      <filter>
+        <count_threshold>0</count_threshold>
+        <create_array>0</create_array>
+        <filter_id>8</filter_id>
+        <invert_count>0</invert_count>
+        <invert_threshold>0</invert_threshold>
+        <minimum_size>11</minimum_size>
+        <weight_threshold>0.5</weight_threshold>
+      </filter>
+      <filter:2>
+        <count_threshold>0</count_threshold>
+        <create_array>0</create_array>
+        <filter_id>91</filter_id>
+        <invert_count>0</invert_count>
+        <invert_threshold>0</invert_threshold>
+        <num_holes>0</num_holes>
+        <weight_threshold>0.5</weight_threshold>
+      </filter:2>
+    </tab>
+    <tab:2/>
+    <tab:3/>
+    <tab:4/>
+    <tab:5/>
+    <tab:6/>
+  </filters>
+  <font_size>Normal (10pt)</font_size>
+  <largest_is_background>FALSE</largest_is_background>
+  <show_weights>FALSE</show_weights>
+  <sort_array_on_x>FALSE</sort_array_on_x>
+  <sort_array_on_y>FALSE</sort_array_on_y>
+</Blob_Filter>
 <Dilate>
   <avoid_connection>FALSE</avoid_connection>
   <count>1</count>
@@ -45,6 +80,16 @@
         <num_holes>0</num_holes>
         <weight_threshold>0.5</weight_threshold>
       </filter:2>
+      <filter:3>
+        <count_threshold>0</count_threshold>
+        <create_array>0</create_array>
+        <filter_id>85</filter_id>
+        <invert_count>0</invert_count>
+        <invert_threshold>0</invert_threshold>
+        <threshold>0.80000</threshold>
+        <weight_threshold>0.5</weight_threshold>
+        <window_size>2</window_size>
+      </filter:3>
     </tab>
     <tab:2/>
     <tab:3/>
@@ -64,37 +109,36 @@
   <order_array_on_x>FALSE</order_array_on_x>
   <order_array_on_y>FALSE</order_array_on_y>
   <overlay_image>Source</overlay_image>
-  <shape_index>15</shape_index>
   <thickness>1</thickness>
 </Blob_Replace>
 <Python_Program_v2x>
   <auto_reload>TRUE</auto_reload>
   <continue_on_errors>TRUE</continue_on_errors>
-  <script>from __future__ import division
-
-#where is the centerpunch
-#measuring toolbox is gone
-#cry cry cry cry cry
-
+  <script>from __future__ import division
+
+#where is the centerpunch
+#measuring toolbox is gone
+#cry cry cry cry cry
+
 import rr
-raw_blobs = rr.GetArrayVariable("BLOBS")[::-1]
-
-blobs=[]
-while raw_blobs:
-	blobs.append([raw_blobs.pop() for _ in range(2)])
-
-if len(blobs)==2:
-	blob_l=blobs[0] if blobs[0][0]&lt;blobs[1][0] else blobs[1]
-	blob_r=blobs[0] if blob_l is blobs[1] else blobs[0]
-	#^--Broken
-	
+raw_blobs = rr.GetArrayVariable("BLOBS")[::-1]
+
+blobs=[]
+while raw_blobs:
+	blobs.append([raw_blobs.pop() for _ in range(2)])
+
+if len(blobs)==2:
+	blob_l=blobs[0] if blobs[0][0]&lt;blobs[1][0] else blobs[1]
+	blob_r=blobs[0] if blob_l is blobs[1] else blobs[0]
+	#^--Broken
+	
 	target=rr.GetVariable("IMAGE_WIDTH")/2.
-	center=(blobs[0][0]+blobs[1][0])/2.
+	center=(blobs[0][0]+blobs[1][0])/2.
 	rr.SetVariable("L_OFF_X", int(target-center));
-	rr.SetVariable("L_OFF_C", center)
-else:
-	rr.SetVariable("L_OFF_X", "??")
-	rr.SetVariable("L_OFF_C", "??")</script>
+	rr.SetVariable("L_OFF_C", center)
+else:
+	pass#rr.SetVariable("L_OFF_X", "??")
+	#rr.SetVariable("L_OFF_C", "??")</script>
   <source_mode>gui</source_mode>
   <tab_size_index>1</tab_size_index>
 </Python_Program_v2x>
@@ -144,3 +188,12 @@ else:
   <y_start>0</y_start>
   <y_start_map>0</y_start_map>
 </Display_Line>
+<NetworkTables>
+  <delay>100</delay>
+  <filter_type_index>0</filter_type_index>
+  <hostname>10.21.29.2</hostname>
+  <port>1735</port>
+  <prefix>/SmartDashboard/</prefix>
+  <variables_to_send>L_OFF_X</variables_to_send>
+  <variable_type_index>0</variable_type_index>
+</NetworkTables>

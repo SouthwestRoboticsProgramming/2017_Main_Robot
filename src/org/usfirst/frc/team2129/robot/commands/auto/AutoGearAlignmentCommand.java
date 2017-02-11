@@ -28,6 +28,12 @@ public class AutoGearAlignmentCommand extends Command {
 		double speed=((double)Math.abs(offset)/90.)*Preferences.getInstance().getDouble("gear_align_spd", 0.3);
 		speed+=Preferences.getInstance().getDouble("gear_align_base", 0.3);
 		
+		if(Math.max(Math.abs(Robot.drivetrainSubsystem.leftEncoder.getRate()),
+				Math.abs(Robot.drivetrainSubsystem.rightEncoder.getRate()))<
+				Preferences.getInstance().getDouble("gear_align_0fuzz", 4)){
+			speed+=Preferences.getInstance().getDouble("gear_align_0bonus", 0.1);
+		}
+		
 		
 		speed*=Preferences.getInstance().getDouble("gear_align_emul", -1);
 		SmartDashboard.putNumber("calc", speed);
