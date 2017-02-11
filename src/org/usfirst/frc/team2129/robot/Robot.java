@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 	
-	public static final ProductionRobotMap map = new ProductionRobotMap();
+	public static final TestRobotMap map = new TestRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();

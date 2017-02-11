@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2129.robot.map;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 import org.usfirst.frc.team2129.util.MotorDescriptor;
 import org.usfirst.frc.team2129.util.NullMotorDescriptor;
 import org.usfirst.frc.team2129.util.PWMMotorDescriptor;
@@ -19,27 +22,28 @@ public class TestRobotMap {
 	public MotorDescriptor LiftMotor1 = new NullMotorDescriptor();
 	public MotorDescriptor LiftMotor2 = new NullMotorDescriptor();
 	
-	//Light Sensors
-	public int GearLight = 0;
-	public int DriveLightLeft = 1;
-	public int DriveLightRight = 2;
+	public MotorDescriptor GearMotor = new NullMotorDescriptor();
 	
-	//Solenoids
-	public int ShifterRight = 0;
-	public int ShiftLeft1 = 1;
-	public int ShifterLeft2 = 2;
-	public int GearSolenoid1 = 3;
-	public int GearSolenoid2 = 4;
+	public int FlashyLightLeft = 0;
+	public int FlashyLightRight = 1;
+	
 	
 	//Potentiometers
 	public int GearPot = 0;
 	
 	//Ultrasonic
-	public int Ultrasonic = 0;
+	public int Ultrasonic = 1;
 
-	public int GearSolenoidLeft = 6;
-
-	public int GearSolenoidRight=7;
+	public int GearSolenoid = 6;
 
 	public int GearTalon=8;
+	
+	public int shifter = 0;
+	
+	public SortedMap<String, Integer> cameras;
+	String defaultCamera = "cam0";
+	public TestRobotMap(){
+		cameras=new TreeMap<String, Integer>();
+		cameras.put(defaultCamera, 0);
+	}
 }

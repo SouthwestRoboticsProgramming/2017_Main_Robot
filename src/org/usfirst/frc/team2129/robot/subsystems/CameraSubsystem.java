@@ -9,6 +9,7 @@ import org.usfirst.frc.team2129.robot.commands.ManualCameraCommand;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CameraSubsystem extends Subsystem {
@@ -21,6 +22,7 @@ public class CameraSubsystem extends Subsystem {
 	boolean inited=false;
 	MjpegServer server;
 	Map<String, UsbCamera> cameras = new HashMap<String, UsbCamera>();
+	String curr;
 	
 	
 	public void init(){
@@ -29,9 +31,13 @@ public class CameraSubsystem extends Subsystem {
 			server=new MjpegServer("RoboRIO-2129-FRC", 1180);
 			for(String key:Robot.map.cameras.keySet()){
 				System.err.println("registering key: "+key+" to "+Robot.map.cameras.get(key).toString());
-				cameras.put(key, new UsbCamera(key, Robot.map.cameras.get(key)));
+				UsbCamera cam = new UsbCamera(key, Robot.map.cameras.get(key));
+				cameras.put(key, cam);
+//				VideoMode[] modes = cam.enumerateVideoModes();
+//				cam.setVideoMode(modes[0]);
+				curr=key;
 			}
-			server.setSource(cameras.values().stream().findFirst().get());
+			setCamera(curr);
 		}
 	}
 	
@@ -41,7 +47,12 @@ public class CameraSubsystem extends Subsystem {
 	
 	public void setCamera(String camera){
 		if(cameras.containsKey(camera)){
+			curr=camera;
 			server.setSource(cameras.get(camera));
 		}
+	}
+	
+	public UsbCamera getCurrentCam(){
+		return cameras.get(curr);
 	}
 }
