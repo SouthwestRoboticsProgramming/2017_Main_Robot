@@ -4,3 +4,6 @@ dist/
 build/
 .project
 .classpath
+.externalToolBuilders/
+.classpath
+dist/
