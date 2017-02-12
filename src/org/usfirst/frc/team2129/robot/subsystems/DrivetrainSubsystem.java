@@ -2,12 +2,9 @@ package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
-import org.usfirst.frc.team2129.util.SimpleShiftingGearbox;
-import org.usfirst.frc.team2129.util.XSolenoidWrapper;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.RobotDrive;

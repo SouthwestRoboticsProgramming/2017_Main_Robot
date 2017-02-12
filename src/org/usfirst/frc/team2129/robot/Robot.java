@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
-import org.usfirst.frc.team2129.robot.map.TestRobotMap;
+
 import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
@@ -22,6 +22,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+
+
+import org.usfirst.frc.team2129.robot.map.TestRobotMap;
+@SuppressWarnings("unused") //Yellow triangles bug me, and this is so that you can switch prod<-->test quickfasts
 public class Robot extends IterativeRobot {
 	
 	public static final ProductionRobotMap map = new ProductionRobotMap();

@@ -9,7 +9,6 @@ import org.usfirst.frc.team2129.robot.commands.ManualCameraCommand;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CameraSubsystem extends Subsystem {
