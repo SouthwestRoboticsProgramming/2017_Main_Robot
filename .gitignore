@@ -7,3 +7,5 @@ build/
 .externalToolBuilders/
 .classpath
 dist/
+*.pyc
+__pycache__/
