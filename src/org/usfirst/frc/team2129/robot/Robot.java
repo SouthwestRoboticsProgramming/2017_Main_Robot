@@ -9,7 +9,7 @@ import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.FlashyLightsSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.PneumaticsManagmentSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.PeripheralsManagmentSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
 	public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-	public static final PneumaticsManagmentSubsystem pneumaticsManagmentSubsystem = new PneumaticsManagmentSubsystem();
+	public static final PeripheralsManagmentSubsystem peripheralsSubsystem = new PeripheralsManagmentSubsystem();
 	public static final GearSubsystem gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 	public static final FlashyLightsSubsystem lightsSubsystem = new FlashyLightsSubsystem();

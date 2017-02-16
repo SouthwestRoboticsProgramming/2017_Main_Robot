@@ -3,58 +3,31 @@ package org.usfirst.frc.team2129.robot.subsystems;
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.ManualGearCommand;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class GearSubsystem extends Subsystem{
 	//Inputs
-	DigitalInput GearLight;
+	public DigitalInput gearLightSensor;
+	public ADXRS450_Gyro gearGyro;
+	
 	//Outputs
-	Solenoid GearSolenoid;
-	
-	SpeedController gearMotor;
-	
-	float rotateSpeed;
+	public Solenoid gearSolenoid;
+	public SpeedController gearMotor;
 	
 	public GearSubsystem() {
 		gearMotor = Robot.map.GearMotor.get();
-		GearSolenoid=new Solenoid(Robot.map.GearSolenoid);
-		
-		rotateSpeed = 0.5f;
+		gearSolenoid=new Solenoid(Robot.map.gearSolenoid);
+		gearLightSensor=new DigitalInput(Robot.map.gearLightSensor);
+		gearGyro=new ADXRS450_Gyro();
 	}
 	
 	protected void initDefaultCommand() {
 		setDefaultCommand(new ManualGearCommand());
-	}
-	
-	public void autoRotate() {
-		//need ether limit switch or potentiometer to make this good
-//		if (GearLight.get()) {
-//			rotateLeft();
-//		} else {
-//			rotateStop();
-//		}
-	}
-	
-	public void rotateLeft() {
-		gearMotor.set(rotateSpeed);
-	}
-	
-	public void rotateRight() {
-		gearMotor.set(rotateSpeed * -1);
-	}
-	
-	public void rotateStop() {
-		gearMotor.set(0);
-	}
-	
-	public void open() {
-		GearSolenoid.set(true);
-	}
-
-	public void close() {
-		GearSolenoid.set(false);
 	}
 }

@@ -11,27 +11,10 @@ public class ManualGearCommand extends Command {
 	}
 	
 	public void execute(){
-		SmartDashboard.putString("g_p_req_state", "NREQ");
-		
-		if (Robot.oi.thirdJoystick.getRawButton(4)){
-			SmartDashboard.putString("g_p_req_state", "ON (4)");
-			Robot.gearSubsystem.open();
-		}
-		
-		if (Robot.oi.thirdJoystick.getRawButton(5)){
-			SmartDashboard.putString("g_p_req_state", "OFF (5)");
-			Robot.gearSubsystem.close();
-		}
-		
-		if (Robot.oi.leftJoystick.getRawButton(3)) {
-			Robot.gearSubsystem.autoRotate();
-		} else if (Robot.oi.leftJoystick.getRawButton(4)) {
-			Robot.gearSubsystem.rotateLeft();
-		} else if (Robot.oi.leftJoystick.getRawButton(5)) {
-			Robot.gearSubsystem.rotateRight();
-		} else {
-			Robot.gearSubsystem.rotateStop();
-		}
+		Robot.gearSubsystem.gearSolenoid.set(Robot.oi.thirdJoystick.getRawButton(3));
+		SmartDashboard.putBoolean("j3b3", Robot.oi.thirdJoystick.getRawButton(3));
+		SmartDashboard.putBoolean("gear_real", Robot.gearSubsystem.gearSolenoid.get());
+		Robot.gearSubsystem.gearMotor.set(Robot.oi.thirdJoystick.getX());
 	}
 	
 	protected boolean isFinished() {

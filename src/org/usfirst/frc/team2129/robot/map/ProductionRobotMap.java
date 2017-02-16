@@ -23,20 +23,21 @@ public class ProductionRobotMap {
 	public MotorDescriptor LiftMotor2 = new PWMMotorDescriptor(1);
 	
 	//Gear Stuff
-	public MotorDescriptor GearMotor = new NullMotorDescriptor();// new PWMMotorDescriptor(31);
+	public MotorDescriptor GearMotor = new CANMotorDescriptor(31);
 	
-	//Light Sensors
-	public int GearLight = 5;
-	public int DriveLightLeft = 6;
-	public int DriveLightRight = 7;
+	//Digital sensors (DI)
+	public int gearLightSensor = 4;
 	
-	//Flashy Lights
+	//Analog sensors (AI)
+	public int gearGyro = 0;
+	
+	//Flashy Lights (RELAYS)
 	public int FlashyLightLeft = 0;
 	public int FlashyLightRight = 1;
 	
-	//Solenoids
+	//Solenoids (SOLENOIDS)
 	public int shifter = 0;
-	public int GearSolenoid = 1;
+	public int gearSolenoid = 1;
 	
 	//Cameras
 	public SortedMap<String, Integer> cameras;

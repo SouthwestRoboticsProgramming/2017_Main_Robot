@@ -29,12 +29,16 @@ public class CameraSubsystem extends Subsystem {
 			inited=true;
 			server=new MjpegServer("RoboRIO-2129-FRC", 1180);
 			for(String key:Robot.map.cameras.keySet()){
-				System.err.println("registering key: "+key+" to "+Robot.map.cameras.get(key).toString());
-				UsbCamera cam = new UsbCamera(key, Robot.map.cameras.get(key));
-				cameras.put(key, cam);
-//				VideoMode[] modes = cam.enumerateVideoModes();
-//				cam.setVideoMode(modes[0]);
-				curr=key;
+				try{
+					System.err.println("registering key: "+key+" to "+Robot.map.cameras.get(key).toString());
+					UsbCamera cam = new UsbCamera(key, Robot.map.cameras.get(key));
+					cameras.put(key, cam);
+	//				VideoMode[] modes = cam.enumerateVideoModes();
+	//				cam.setVideoMode(modes[0]);
+					curr=key;
+				}catch(Exception e){
+					System.err.println("Snarfed err"+e.toString()+"creating cam"+key);
+				}
 			}
 			setCamera(curr);
 		}
