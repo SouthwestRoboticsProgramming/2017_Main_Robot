@@ -9,6 +9,7 @@ import org.usfirst.frc.team2129.robot.commands.ManualCameraCommand;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class CameraSubsystem extends Subsystem {
@@ -33,8 +34,8 @@ public class CameraSubsystem extends Subsystem {
 					System.err.println("registering key: "+key+" to "+Robot.map.cameras.get(key).toString());
 					UsbCamera cam = new UsbCamera(key, Robot.map.cameras.get(key));
 					cameras.put(key, cam);
-	//				VideoMode[] modes = cam.enumerateVideoModes();
-	//				cam.setVideoMode(modes[0]);
+					VideoMode[] modes = cam.enumerateVideoModes();
+					cam.setVideoMode(modes[modes.length-1]);
 					curr=key;
 				}catch(Exception e){
 					System.err.println("Snarfed err"+e.toString()+"creating cam"+key);

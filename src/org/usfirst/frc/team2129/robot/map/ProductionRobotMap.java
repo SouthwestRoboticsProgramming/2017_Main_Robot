@@ -5,7 +5,6 @@ import java.util.TreeMap;
 
 import org.usfirst.frc.team2129.util.CANMotorDescriptor;
 import org.usfirst.frc.team2129.util.MotorDescriptor;
-import org.usfirst.frc.team2129.util.NullMotorDescriptor;
 import org.usfirst.frc.team2129.util.PWMMotorDescriptor;
 
 public class ProductionRobotMap {
@@ -46,7 +45,7 @@ public class ProductionRobotMap {
 		cameras=new TreeMap<String, Integer>();
 		cameras.put(defaultCamera, 0);
 		cameras.put("cam1", 1);
-		cameras.put("cam2", 2);
+		//cameras.put("cam2", 2);
 	}
 	
 	//Ultrasonic

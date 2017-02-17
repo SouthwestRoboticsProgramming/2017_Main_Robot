@@ -51,7 +51,7 @@ public class ReportCommand extends Command {
 		SmartDashboard.putNumber("pdp_total_energy", Robot.peripheralsSubsystem.pdp.getTotalEnergy());
 		SmartDashboard.putNumber("pdp_ch[15]", Robot.peripheralsSubsystem.pdp.getCurrent(15));
 		
-		SmartDashboard.putNumber("gear_gyro_pos", Robot.gearSubsystem.gearGyro.getAngle());
+		SmartDashboard.putNumber("gear_gyro_pos", Robot.gearSubsystem.getGyro());
 		SmartDashboard.putBoolean("gear_light", Robot.gearSubsystem.gearLightSensor.get());
 		
 		SmartDashboard.putNumber("talon_pos", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).getPosition());
@@ -59,6 +59,8 @@ public class ReportCommand extends Command {
 		
 		if(Robot.oi.leftJoystick.getRawButton(2)||Robot.oi.rightJoystick.getRawButton(2)){
 			Robot.imuSubsystem.imu.calibrate();
+			Robot.gearSubsystem.gearGyro.calibrate();
+			Robot.gearSubsystem.zeroGyro();
 			Robot.imuSubsystem.zero();
 		}
 		
