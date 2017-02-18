@@ -31,7 +31,7 @@ public class ManualCameraCommand extends Command {
 			idx+=1;
 		}
 		Robot.cameraSubsystem.setCamera(selected);
-		SmartDashboard.putData("camchoose__r_", chooser);
+		SmartDashboard.putData("camchoose__r__", chooser);
 	}
 	
 	boolean set=false;

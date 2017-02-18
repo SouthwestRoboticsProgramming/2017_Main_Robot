@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.AutomatedClimbCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
@@ -54,6 +55,7 @@ public class OI {
 	Button gearLineupBtn = new JoystickButton(leftJoystick, 8);
 	Button gearHomeBtn = new JoystickButton(leftJoystick, 9);
 	Button gearAlignBtn = new JoystickButton(leftJoystick, 4);
+	Button climbBtn = new JoystickButton(rightJoystick, 4);
 	
 	public OI(){
 		testAutoBtn.whenPressed(new AutoOrientCommand(90, 1, 0.5, false));
@@ -61,6 +63,7 @@ public class OI {
 		gearLineupBtn.whileHeld(new AutoGearAlignmentCommand());
 		gearHomeBtn.whenPressed(new CalibrateAndMoveGear());
 		gearAlignBtn.whileHeld(new AlignGearForPlacementCommand());
+		climbBtn.toggleWhenActive(new AutomatedClimbCommand());
 	}
 	
 }

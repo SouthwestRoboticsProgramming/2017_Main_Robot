@@ -33,6 +33,7 @@ public class MoveGearToRecvCommand extends Command {
 	}
 	
 	public void execute(){
+		SmartDashboard.putString("gearcalibrate_state", "2_running");
 		SmartDashboard.putNumber("gear_recv_out", gearPID.get());
 		SmartDashboard.putNumber("gear_recv_delta", gearPID.getDeltaSetpoint());
 		SmartDashboard.putNumber("gear_recv_ps_rd", Robot.gearSubsystem.getPIDSource().pidGet());

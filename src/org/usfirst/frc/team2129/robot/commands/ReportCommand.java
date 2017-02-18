@@ -55,8 +55,8 @@ public class ReportCommand extends Command {
 		SmartDashboard.putNumber("gear_enc_rate", Robot.gearSubsystem.getRate());
 		SmartDashboard.putBoolean("gear_light", Robot.gearSubsystem.gearLightSensor.get());
 		
-//		SmartDashboard.putNumber("talon_pos", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).getPosition());
-//		SmartDashboard.putString("talon_staet", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).isSensorPresent(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute).toString());
+		SmartDashboard.putNumber("climb_pos", Robot.climberSubsystem.encoder.getDistance());
+		SmartDashboard.putNumber("climb_rate", Robot.climberSubsystem.encoder.getRate());
 		
 		if(Robot.oi.leftJoystick.getRawButton(2)||Robot.oi.rightJoystick.getRawButton(2)){
 			Robot.imuSubsystem.imu.calibrate();
