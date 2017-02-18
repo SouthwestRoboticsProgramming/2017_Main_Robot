@@ -2,6 +2,7 @@ package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
+import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -27,8 +28,8 @@ public class DrivetrainSubsystem extends Subsystem {
 	public RobotDrive      robotDrive;
 	
 
-	public Encoder leftEncoder;
-	public Encoder rightEncoder;
+	public IEncoder leftEncoder;
+	public IEncoder rightEncoder;
 
 	AnalogInput Ultrasonic1;
 	
@@ -53,8 +54,8 @@ public class DrivetrainSubsystem extends Subsystem {
 		
 		robotDrive          = new RobotDrive(leftGearbox, rightGearbox);
 		
-		leftEncoder = new Encoder(0, 1);
-		rightEncoder = new Encoder(2, 3);
+		leftEncoder = Robot.map.leftEncoder.get();
+		rightEncoder = Robot.map.rightEncoder.get();
 		//Ultrasonic1 = new AnalogInput(RobotMap.Ultrasonic);//needs port
 		//LightSensorLeft = new DigitalInput(RobotMap.DriveLightLeft);
 		//LightSensorRight = new DigitalInput(RobotMap.DriveLightRight);

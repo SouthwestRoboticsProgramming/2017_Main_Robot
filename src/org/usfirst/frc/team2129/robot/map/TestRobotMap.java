@@ -3,9 +3,14 @@ package org.usfirst.frc.team2129.robot.map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.usfirst.frc.team2129.util.MotorDescriptor;
-import org.usfirst.frc.team2129.util.NullMotorDescriptor;
-import org.usfirst.frc.team2129.util.PWMMotorDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.CANTalonEncoderDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.IEncoderDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.NullEncoderDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.QuadratureEncoderDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.CANMotorDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.MotorDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.NullMotorDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.PWMMotorDescriptor;
 
 public class TestRobotMap {
 
@@ -22,23 +27,25 @@ public class TestRobotMap {
 	public MotorDescriptor LiftMotor1 = new NullMotorDescriptor();
 	public MotorDescriptor LiftMotor2 = new NullMotorDescriptor();
 	
-	public MotorDescriptor GearMotor = new NullMotorDescriptor();
+	public MotorDescriptor GearMotor = new CANMotorDescriptor(1);	
 	
+	//Encoders (DI)
+	public IEncoderDescriptor leftEncoder = new QuadratureEncoderDescriptor(0, 1);
+	public IEncoderDescriptor rightEncoder = new QuadratureEncoderDescriptor(2, 3);
+	public IEncoderDescriptor gearEncoder = new QuadratureEncoderDescriptor(5, 6);
+	public IEncoderDescriptor climbEncoder = new NullEncoderDescriptor();
+	
+	//Digital sensors (DI)
+	public int gearLightSensor = 4;
+	
+	
+	//Flashy Lights (RELAYS)
 	public int FlashyLightLeft = 0;
 	public int FlashyLightRight = 1;
 	
-	
-	//Potentiometers
-	public int GearPot = 0;
-	
-	//Ultrasonic
-	public int Ultrasonic = 1;
-
-	public int GearSolenoid = 6;
-
-	public int GearTalon=8;
-	
+	//Solenoids (SOLENOIDS)
 	public int shifter = 0;
+	public int gearSolenoid = 1;
 	
 	public SortedMap<String, Integer> cameras;
 	String defaultCamera = "cam0";

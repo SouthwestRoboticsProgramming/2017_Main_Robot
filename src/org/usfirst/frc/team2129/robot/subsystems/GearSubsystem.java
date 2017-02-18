@@ -2,12 +2,11 @@ package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.ManualGearCommand;
+import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,8 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearSubsystem extends Subsystem{
 	//Inputs
 	public DigitalInput gearLightSensor;
-	public ADXRS450_Gyro gearGyro;
-	double gyroZero = 0;
+	IEncoder gearEncoder;
 	
 	//Outputs
 	public Solenoid gearSolenoid;
@@ -26,8 +24,7 @@ public class GearSubsystem extends Subsystem{
 		gearMotor = Robot.map.GearMotor.get();
 		gearSolenoid=new Solenoid(Robot.map.gearSolenoid);
 		gearLightSensor=new DigitalInput(Robot.map.gearLightSensor);
-		gearGyro=new ADXRS450_Gyro();
-		
+		gearEncoder=Robot.map.gearEncoder.get();
 	}
 	
 	protected void initDefaultCommand() {
@@ -38,36 +35,19 @@ public class GearSubsystem extends Subsystem{
 		return gearLightSensor.get();
 	}
 	
-	public void zeroGyro(){
-		gyroZero=gearGyro.getAngle();
+	public void zeroAgle(){
+		gearEncoder.zero();
 	}
 	
-	public double getGyro(){
-		return gearGyro.getAngle()-gyroZero;
+	public double getAngle(){
+		return gearEncoder.getDistance();
 	}
 	
-	public GearSSPIDSource getPIDSource(){
-		return new GearSSPIDSource();
+	public double getRate(){
+		return gearEncoder.getRate();
 	}
 	
-	public class GearSSPIDSource implements PIDSource{
-
-		@Override
-		public PIDSourceType getPIDSourceType() {
-			// TODO Auto-generated method stub
-			return PIDSourceType.kDisplacement;
-		}
-
-		@Override
-		public double pidGet() {
-			return Robot.gearSubsystem.getGyro();
-		}
-
-		@Override
-		public void setPIDSourceType(PIDSourceType arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
+	public PIDSource getPIDSource(){
+		return gearEncoder;
 	}
 }

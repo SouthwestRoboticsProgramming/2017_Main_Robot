@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2129.util;
+package org.usfirst.frc.team2129.util.motordesc;
 
 import com.ctre.CANTalon;
 

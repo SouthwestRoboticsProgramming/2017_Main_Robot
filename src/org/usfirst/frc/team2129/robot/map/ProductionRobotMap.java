@@ -3,9 +3,12 @@ package org.usfirst.frc.team2129.robot.map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.usfirst.frc.team2129.util.CANMotorDescriptor;
-import org.usfirst.frc.team2129.util.MotorDescriptor;
-import org.usfirst.frc.team2129.util.PWMMotorDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.CANTalonEncoderDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.IEncoderDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.QuadratureEncoderDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.CANMotorDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.MotorDescriptor;
+import org.usfirst.frc.team2129.util.motordesc.PWMMotorDescriptor;
 
 public class ProductionRobotMap {
 	//Compressor
@@ -24,11 +27,14 @@ public class ProductionRobotMap {
 	//Gear Stuff
 	public MotorDescriptor GearMotor = new CANMotorDescriptor(31);
 	
+	//Encoders (DI)
+	public IEncoderDescriptor leftEncoder = new QuadratureEncoderDescriptor(0, 1);
+	public IEncoderDescriptor rightEncoder = new QuadratureEncoderDescriptor(2, 3);
+	public IEncoderDescriptor gearEncoder = new QuadratureEncoderDescriptor(5, 6);
+	public IEncoderDescriptor climbEncoder = new CANTalonEncoderDescriptor(RightMotor2);
+	
 	//Digital sensors (DI)
 	public int gearLightSensor = 4;
-	
-	//Analog sensors (AI)
-	public int gearGyro = 0;
 	
 	//Flashy Lights (RELAYS)
 	public int FlashyLightLeft = 0;

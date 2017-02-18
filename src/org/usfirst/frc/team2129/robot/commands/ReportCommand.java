@@ -51,16 +51,16 @@ public class ReportCommand extends Command {
 		SmartDashboard.putNumber("pdp_total_energy", Robot.peripheralsSubsystem.pdp.getTotalEnergy());
 		SmartDashboard.putNumber("pdp_ch[15]", Robot.peripheralsSubsystem.pdp.getCurrent(15));
 		
-		SmartDashboard.putNumber("gear_gyro_pos", Robot.gearSubsystem.getGyro());
+		SmartDashboard.putNumber("gear_enc_pos", Robot.gearSubsystem.getAngle());
+		SmartDashboard.putNumber("gear_enc_rate", Robot.gearSubsystem.getRate());
 		SmartDashboard.putBoolean("gear_light", Robot.gearSubsystem.gearLightSensor.get());
 		
-		SmartDashboard.putNumber("talon_pos", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).getPosition());
-		SmartDashboard.putString("talon_staet", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).isSensorPresent(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute).toString());
+//		SmartDashboard.putNumber("talon_pos", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).getPosition());
+//		SmartDashboard.putString("talon_staet", ((CANTalon)Robot.drivetrainSubsystem.rightGearboxMotor2).isSensorPresent(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute).toString());
 		
 		if(Robot.oi.leftJoystick.getRawButton(2)||Robot.oi.rightJoystick.getRawButton(2)){
 			Robot.imuSubsystem.imu.calibrate();
-			Robot.gearSubsystem.gearGyro.calibrate();
-			Robot.gearSubsystem.zeroGyro();
+			Robot.gearSubsystem.zeroAgle();
 			Robot.imuSubsystem.zero();
 		}
 		
@@ -69,8 +69,8 @@ public class ReportCommand extends Command {
 		}
 		
 		if(Robot.oi.leftJoystick.getRawButton(4)||Robot.oi.rightJoystick.getRawButton(4)){
-			Robot.drivetrainSubsystem.leftEncoder.reset();
-			Robot.drivetrainSubsystem.rightEncoder.reset();
+			Robot.drivetrainSubsystem.leftEncoder.zero();
+			Robot.drivetrainSubsystem.rightEncoder.zero();
 		}
 	}
 
