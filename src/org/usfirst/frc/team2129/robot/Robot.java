@@ -27,7 +27,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team2129.robot.map.TestRobotMap;
 @SuppressWarnings("unused") //Yellow triangles bug me, and this is so that you can switch prod<-->test quickfasts
 public class Robot extends IterativeRobot {
-	
+
+//	public static final TestRobotMap map = new TestRobotMap();
 	public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();

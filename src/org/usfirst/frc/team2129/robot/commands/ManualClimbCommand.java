@@ -1,21 +1,18 @@
 package org.usfirst.frc.team2129.robot.commands;
 
-import org.usfirst.frc.team2129.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
-
-public class ManualClimbCommand extends Command {
+public class ManualClimbCommand extends ClimbCommand {
 
 	public ManualClimbCommand(){
-		requires(Robot.climberSubsystem);
+		requires(getSubsystem());
 	}
 	
 	protected boolean isFinished() {
 		return false;
 	}
-	
-	public void execute(){
-		Robot.climberSubsystem.setSpeed(Robot.oi.thirdJoystick.getY());
+
+	public void execute() {
+//		getSubsystem().setSpeed(Robot.oi.thirdJoystick.getY());
+		getSubsystem().stopClimbing();
 	}
 
 }

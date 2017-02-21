@@ -3,13 +3,11 @@ package org.usfirst.frc.team2129.robot;
 import org.usfirst.frc.team2129.robot.commands.AutomatedClimbCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
-import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.CalibrateAndMoveGear;
-import org.usfirst.frc.team2129.robot.commands.auto.CalibrateGearGyroCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,20 +48,15 @@ public class OI {
 	public Joystick        rightJoystick       = new Joystick(1);
 	public Joystick        thirdJoystick       = new Joystick(2);
 	
-	Button testAutoBtn = new JoystickButton(leftJoystick, 6);
-	Button BDMBtn = new JoystickButton(leftJoystick, 7);
-	Button gearLineupBtn = new JoystickButton(leftJoystick, 8);
-	Button gearHomeBtn = new JoystickButton(leftJoystick, 9);
-	Button gearAlignBtn = new JoystickButton(leftJoystick, 4);
-	Button climbBtn = new JoystickButton(rightJoystick, 4);
-	
 	public OI(){
-		testAutoBtn.whenPressed(new AutoOrientCommand(90, 1, 0.5, false));
-		BDMBtn.whenPressed(new AutoOrientCommand(0, 1, 0.5, true));
-		gearLineupBtn.whileHeld(new AutoGearAlignmentCommand());
-		gearHomeBtn.whenPressed(new CalibrateAndMoveGear());
-		gearAlignBtn.whileHeld(new AlignGearForPlacementCommand());
-		climbBtn.toggleWhenActive(new AutomatedClimbCommand());
+		new JoystickButton(rightJoystick, 2).whileHeld(new AutoGearAlignmentCommand());
+		Command acc = new AutomatedClimbCommand();
+		
+		new JoystickButton(rightJoystick, 4).toggleWhenActive(acc);
+		new JoystickButton(leftJoystick, 4).toggleWhenActive(acc);
+		
+		new JoystickButton(leftJoystick, 11).whenPressed(new CalibrateAndMoveGear());
+		new JoystickButton(leftJoystick, 12).whenPressed(new AlignGearForPlacementCommand());
 	}
 	
 }

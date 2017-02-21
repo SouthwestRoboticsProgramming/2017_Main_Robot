@@ -1,25 +1,18 @@
 package org.usfirst.frc.team2129.robot.commands;
 
-import org.usfirst.frc.team2129.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-public class ManualGearCommand extends Command {
-	public ManualGearCommand(){
-		requires(Robot.gearSubsystem);
+public class ManualGearCommand extends Team2129Command {
+	public ManualGearCommand() {
+		requires(getGearSubsystem());
 	}
-	
-	public void execute(){
-		Robot.gearSubsystem.gearSolenoid.set(Robot.oi.thirdJoystick.getRawButton(3));
-		SmartDashboard.putBoolean("j3b3", Robot.oi.thirdJoystick.getRawButton(3));
-		SmartDashboard.putBoolean("gear_real", Robot.gearSubsystem.gearSolenoid.get());
-		Robot.gearSubsystem.gearMotor.set(Robot.oi.thirdJoystick.getX());
+
+	public void execute() {
+		getGearSolenoid().set(getLeftJoystick().getRawButton(3));
+		// setSmartDashboard("j3b3", Robot.oi.thirdJoystick.getRawButton(3));
+		setSmartDashboard("gear_real", getGearSolenoid().get());
+		getGearMotor().set(getThirdJoystick().getX());
 	}
-	
+
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

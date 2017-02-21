@@ -7,7 +7,6 @@ public class NullEncoderDescriptor extends IEncoderDescriptor {
 
 	@Override
 	protected IEncoder _get() {
-		// TODO Auto-generated method stub
 		return new NullIEncoder();
 	}
 

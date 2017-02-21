@@ -1,55 +1,79 @@
 package org.usfirst.frc.team2129.robot.commands;
 
-import org.usfirst.frc.team2129.robot.Robot;
-
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutomatedClimbCommand extends Command {
-	
-	Timer t;
-	boolean d;
-	boolean started;
-	
-	public AutomatedClimbCommand(){
-		requires(Robot.climberSubsystem);
-		t=new Timer();
-		t.reset();
-		t.stop();
-	}
-	
-	public void initialize(){
-		d=false;
-		started=false;
+public class AutomatedClimbCommand extends ClimbCommand {
+
+	private static final double AUTO_CLIMB_DONE_TIME = 0.25;
+	private static final double AUTO_CLIMB_SPEED = 0.6;
+	private Timer timer;
+	private boolean finished;
+	private boolean started;
+
+	public AutomatedClimbCommand() {
+		super();
+		requires(getSubsystem());
+		timer = new Timer();
+		timer.reset();
+		timer.stop();
 	}
 
-	public void execute(){
-		SmartDashboard.putNumber("auto_climb_time", t.get());
-		
-		if(Math.abs(Robot.climberSubsystem.encoder.getRate())<Preferences.getInstance().getDouble("auto_climb_off_threshold", 1)){
-			if(!started){
-				t.reset();
-				t.start();
-				started=true;
+	@Override
+	public void initialize() {
+		finished = false;
+		started = false;
+	}
+
+	@Override
+	public void execute() {
+		setSmartDashboard("auto_climb_time", timer.get());
+
+		if (getClimberRate() < getClimbingThreshold()) {
+			if (!started) {
+				timer.reset();
+				timer.start();
+				started = true;
 			}
-		}else{
-			started=false;
-			t.reset();
-			t.stop();
+		} else {
+			started = false;
+			timer.reset();
+			timer.stop();
 		}
-		
-		if(t.get()>Preferences.getInstance().getDouble("auto_climb_done_time", 0.25)){
-			Robot.climberSubsystem.setSpeed(0);
-			d=true;
-		}else{
-			Robot.climberSubsystem.setSpeed(Preferences.getInstance().getDouble("auto_climb_speed", 0.6));
+
+		if (timer.get() > Preferences.getInstance().getDouble("auto_climb_done_time", AUTO_CLIMB_DONE_TIME)) {
+			finish();
+		} else {
+			// This is really pointless if we're already climbing??
+			climb();
 		}
 	}
+
+	private void climb() {
+		getSubsystem().setSpeed(Preferences.getInstance().getDouble("auto_climb_speed", AUTO_CLIMB_SPEED));
+	}
+
+	private double getClimbingThreshold() {
+		return Preferences.getInstance().getDouble("auto_climb_off_threshold", 1);
+	}
 	
+	private double getClimberRate() {
+		return Math.abs(getSubsystem().encoder.getRate());
+	}
+
+	@Override
+	public void end() {
+		stopClimbing();
+	}
+
+	@Override
 	protected boolean isFinished() {
-		return d;
+		return finished;
+	}
+
+	public void finish() {
+		stopClimbing();
+		this.finished = true;
 	}
 
 }

@@ -3,40 +3,53 @@ package org.usfirst.frc.team2129.robot.subsystems;
 import org.usfirst.frc.team2129.robot.commands.ReportCommand;
 import org.usfirst.frc.team2129.util.CalibratedADISIMU;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+// IMU = Inertial Measurement Unit
+public class IMUSubsystem extends Team2129Subsystem {
 
-public class IMUSubsystem extends Subsystem {
-	
-	public CalibratedADISIMU imu;
-	
-	public IMUSubsystem(){
-		imu=new CalibratedADISIMU();
+	private CalibratedADISIMU imu;
+
+	public IMUSubsystem() {
+		imu = new CalibratedADISIMU();
 		zero();
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 		setDefaultCommand(new ReportCommand());
 	}
-	
-	public void zero(){
+
+	public void zero() {
 		imu.zero();
 	}
-	
-	public void calibrate(){
+
+	public void calibrate() {
 		imu.calibrate();
 	}
-	
-	public double getX(){
+
+	public double getX() {
 		return imu.getX();
 	}
-	
-	public double getY(){
+
+	public double getY() {
 		return imu.getY();
 	}
-	
-	public double getZ(){
+
+	public double getZ() {
 		return imu.getZ();
+	}
+
+	public void freeze() {
+		imu.freeze();
+	}
+
+	protected void unFreezeImu() {
+		imu.unfreeze();
+	}
+
+	public void setDashboardValues() {
+		setSmartDashboard("ReportIMUCommand", "RUNNING");
+		setSmartDashboard("imu_ax", getX());
+		setSmartDashboard("imu_ay", getY());
+		setSmartDashboard("imu_az", getZ());
 	}
 }

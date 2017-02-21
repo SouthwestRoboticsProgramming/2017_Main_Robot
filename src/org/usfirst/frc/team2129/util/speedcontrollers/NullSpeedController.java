@@ -3,8 +3,8 @@ package org.usfirst.frc.team2129.util.speedcontrollers;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class NullSpeedController implements SpeedController {
-	boolean inverted = false;
-	double output = 0d;
+	private boolean inverted = false;
+	private double output = 0d;
 
 	public void pidWrite(double output) {}
 	public double get() {return output;}

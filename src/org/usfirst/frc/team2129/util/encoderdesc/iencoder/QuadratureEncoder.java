@@ -3,12 +3,12 @@ package org.usfirst.frc.team2129.util.encoderdesc.iencoder;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class QuadratureEncoder extends IEncoderPIDSourceImplWrapper {
-	Encoder _encoder;
-	
-	public QuadratureEncoder(int i1 ,int i2){
-		_encoder=new Encoder(i1, i2);
+	private Encoder _encoder;
+
+	public QuadratureEncoder(int i1, int i2) {
+		_encoder = new Encoder(i1, i2);
 	}
-	
+
 	public double getDistance() {
 		return _encoder.getDistance();
 	}

@@ -10,53 +10,59 @@ import org.usfirst.frc.team2129.robot.commands.ManualCameraCommand;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class CameraSubsystem extends Subsystem {
-	public CameraSubsystem() {}
+public class CameraSubsystem extends Team2129Subsystem {
+	private boolean inited = false;
+	private MjpegServer server;
+	private Map<String, UsbCamera> cameras = new HashMap<String, UsbCamera>();
+	private String curr;
+	
+	public CameraSubsystem() {
+	}
 
 	protected void initDefaultCommand() {
 		setDefaultCommand(new ManualCameraCommand());
 	}
-	
-	boolean inited=false;
-	MjpegServer server;
-	Map<String, UsbCamera> cameras = new HashMap<String, UsbCamera>();
-	String curr;
-	
-	
-	public void init(){
-		if(!inited){
-			inited=true;
-			server=new MjpegServer("RoboRIO-2129-FRC", 1180);
-			for(String key:Robot.map.cameras.keySet()){
-				try{
-					System.err.println("registering key: "+key+" to "+Robot.map.cameras.get(key).toString());
-					UsbCamera cam = new UsbCamera(key, Robot.map.cameras.get(key));
-					cameras.put(key, cam);
-					VideoMode[] modes = cam.enumerateVideoModes();
-					cam.setVideoMode(modes[modes.length-1]);
-					curr=key;
-				}catch(Exception e){
-					System.err.println("Snarfed err"+e.toString()+"creating cam"+key);
-				}
-			}
+
+	public void init() {
+		if (!inited) {
+			inited = true;
+			server = new MjpegServer("RoboRIO-2129-FRC", 1180);
+			getCameraMap().forEach((name, value) -> initCamera(name, value));
 			setCamera(curr);
 		}
 	}
-	
-	public Set<String> getCameras(){
+
+	private void initCamera(String name, Integer value) {
+		try {
+			log("registering camera named: " + name + " to " + value.toString());
+			UsbCamera cam = new UsbCamera(name, value);
+			cameras.put(name, cam);
+			VideoMode[] modes = cam.enumerateVideoModes();
+			cam.setVideoMode(modes[modes.length - 1]);
+			curr = name;
+			
+		} catch (Exception e) {
+			log("Snarfed err" + e.toString() + "creating cam " + name);
+		}
+	}
+
+	public Set<String> getCameraNames() {
 		return Robot.map.cameras.keySet();
 	}
-	
-	public void setCamera(String camera){
-		if(cameras.containsKey(camera)){
-			curr=camera;
+
+	public void setCamera(String camera) {
+		if (cameras.containsKey(camera)) {
+			curr = camera;
 			server.setSource(cameras.get(camera));
 		}
 	}
-	
-	public UsbCamera getCurrentCam(){
+
+	public UsbCamera getCurrentCam() {
 		return cameras.get(curr);
+	}
+
+	public void configCamera() {
+		// this.getCurrentCam()
 	}
 }

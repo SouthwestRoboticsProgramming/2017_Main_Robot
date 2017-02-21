@@ -1,16 +1,16 @@
-<head><version>2.82.0</version></head>
+<head><version>2.83.7</version></head>
 <zoom>0</zoom>
 <Read_HTTP>
   <erase_on_error>TRUE</erase_on_error>
   <is_active>TRUE</is_active>
   <timeout>1000</timeout>
-  <url>10.21.29.2:1180/stream.mjpg</url>
+  <url>roboRIO-2129-FRC.local:1180/stream.mjpg</url>
 </Read_HTTP>
 <RGB_Filter>
   <channel>2</channel>
-  <hue_value>23</hue_value>
+  <hue_value>61</hue_value>
   <hysteresis>0</hysteresis>
-  <min_value>25</min_value>
+  <min_value>32</min_value>
 </RGB_Filter>
 <Blob_Overlap>
   <image1>Current</image1>
@@ -191,7 +191,7 @@ else:
 <NetworkTables>
   <delay>100</delay>
   <filter_type_index>0</filter_type_index>
-  <hostname>10.21.29.2</hostname>
+  <hostname>roboRIO-2129-FRC.local</hostname>
   <port>1735</port>
   <prefix>/SmartDashboard/</prefix>
   <variables_to_send>L_OFF_X</variables_to_send>

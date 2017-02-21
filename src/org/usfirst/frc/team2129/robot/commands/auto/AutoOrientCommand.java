@@ -1,105 +1,110 @@
 package org.usfirst.frc.team2129.robot.commands.auto;
 
-import org.usfirst.frc.team2129.robot.Robot;
+import org.usfirst.frc.team2129.robot.commands.Team2129Command;
 
-import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+public class AutoOrientCommand extends Team2129Command {
 
-public class AutoOrientCommand extends Command {
-	
-	double target;
-	double fuzz;
-	long done_start_time=-1;
-	long time_req;
-	
-	boolean bostonDynamicsMode;
-	
-	public AutoOrientCommand(double target, double fuzz, double time_req_f, boolean BDM){
-		this.target=target;
-		this.bostonDynamicsMode=BDM;
-		this.fuzz=fuzz;
-		this.time_req=1000;//(long)(time_req*1000.);
-		SmartDashboard.putString("AUTO_ORIENT_COMMAND", "CONSTRUCTED");
-		//requires(Robot.imuSubsystem);
-		requires(Robot.drivetrainSubsystem);
+	private double target;
+	private double fuzz;
+	private long done_start_time = -1;
+	private long time_req;
+
+	private boolean bostonDynamicsMode;
+
+	public AutoOrientCommand(double target, double fuzz, double time_req_f, boolean BDM) {
+		this.target = target;
+		this.bostonDynamicsMode = BDM;
+		this.fuzz = fuzz;
+		this.time_req = 1000;// (long)(time_req*1000.);
+		setSmartDashboard("AUTO_ORIENT_COMMAND", "CONSTRUCTED");
+		// requires(Robot.imuSubsystem);
+		requires(getDrivetrainSubsystem());
 	}
-	
-	private double getAngle(){
-		double a = Robot.imuSubsystem.getZ()+target;
-		while(a<-360)a+=360;
-		if(a<0)a+=360;
-		while(a>360)a-=360;
+
+	private double getAngle() {
+		double a = getImuSubsystem().getZ() + target;
+		while (a < -360)
+			a += 360;
+		if (a < 0)
+			a += 360;
+		while (a > 360)
+			a -= 360;
 		return a;
 	}
-	
-	private boolean onTarget(){
-		if (Math.abs(getAngle())<fuzz) return true;
-		if (Math.abs(getAngle()-360)<fuzz) return true;
+
+	private boolean onTarget() {
+		if (Math.abs(getAngle()) < fuzz)
+			return true;
+		if (Math.abs(getAngle() - 360) < fuzz)
+			return true;
 		return false;
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(bostonDynamicsMode) return false;
-		if(done_start_time==-1){
-			if(onTarget()){
-				done_start_time=System.currentTimeMillis();
+		if (bostonDynamicsMode)
+			return false;
+		if (done_start_time == -1) {
+			if (onTarget()) {
+				done_start_time = now();
 			}
-		}else{
-			if(onTarget()){
-				if((System.currentTimeMillis()-done_start_time)>time_req){
+		} else {
+			if (onTarget()) {
+				if ((now() - done_start_time) > time_req) {
 					return true;
 				}
-			}else{
-				done_start_time=-1;
+			} else {
+				done_start_time = -1;
 			}
 		}
 		return false;
 	}
-	
-	public void execute(){
-		SmartDashboard.putString("AUTO_ORIENT_COMMAND", "EXECUTING");
-		double delta=getAngle();
+
+	private long now() {
+		return System.currentTimeMillis();
+	}
+
+	public void execute() {
+		setSmartDashboard("AUTO_ORIENT_COMMAND", "EXECUTING");
+		double delta = getAngle();
 		double dir = 1;
-		if(delta>180){
-			delta=360-delta;
-			dir=-1;
+		if (delta > 180) {
+			delta = 360 - delta;
+			dir = -1;
 		}
-		double kP=Preferences.getInstance().getDouble("kP", 0.1);
-		
-		double calc = (delta/360)*kP;
-		calc+=Preferences.getInstance().getDouble("kBASE", 0.1);
-		
-		if (calc>Preferences.getInstance().getDouble("kCAP", 0.4)){
-			calc=Preferences.getInstance().getDouble("kCAP", 0.4);
+		double kP = getPreferences().getDouble("kP", 0.1);
+
+		double calc = (delta / 360) * kP;
+		calc += getPreferences().getDouble("kBASE", 0.1);
+
+		if (calc > getPreferences().getDouble("kCAP", 0.4)) {
+			calc = getPreferences().getDouble("kCAP", 0.4);
 		}
-		
-		calc*=dir;
-		
-		SmartDashboard.putNumber("AOC_Angle", getAngle());
-		SmartDashboard.putNumber("calc", calc);
-		SmartDashboard.putBoolean("ontarget", onTarget());
-		SmartDashboard.putNumber("dst", done_start_time);
-		SmartDashboard.putNumber("dtime", System.currentTimeMillis()-done_start_time);
-		SmartDashboard.putNumber("treq", time_req);
-		
-		if(!onTarget()){
-			Robot.drivetrainSubsystem.tankDrive(1*calc, -1*calc);
-			SmartDashboard.putBoolean("filtered_running", true);
-		}
-		else{
-			Robot.drivetrainSubsystem.tankDrive(0, 0);
-			SmartDashboard.putBoolean("filtered_running", false);
+
+		calc *= dir;
+
+		setSmartDashboard("AOC_Angle", getAngle());
+		setSmartDashboard("calc", calc);
+		setSmartDashboard("ontarget", onTarget());
+		setSmartDashboard("dst", done_start_time);
+		setSmartDashboard("dtime", now() - done_start_time);
+		setSmartDashboard("treq", time_req);
+
+		if (!onTarget()) {
+			getDrivetrainSubsystem().tankDrive(1 * calc, -1 * calc);
+			setSmartDashboard("filtered_running", true);
+		} else {
+			getDrivetrainSubsystem().tankDrive(0, 0);
+			setSmartDashboard("filtered_running", false);
 		}
 	}
-	
-	public void initialize(){
-		SmartDashboard.putString("AUTO_ORIENT_COMMAND", "INITILIZING");
+
+	public void initialize() {
+		setSmartDashboard("AUTO_ORIENT_COMMAND", "INITILIZING");
 	}
-	
-	public void end(){
-		SmartDashboard.putString("AUTO_ORIENT_COMMAND", "STOPPED");
+
+	public void end() {
+		setSmartDashboard("AUTO_ORIENT_COMMAND", "STOPPED");
 	}
 
 }

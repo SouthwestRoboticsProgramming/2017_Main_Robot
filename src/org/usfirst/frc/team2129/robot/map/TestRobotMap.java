@@ -3,7 +3,6 @@ package org.usfirst.frc.team2129.robot.map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.usfirst.frc.team2129.util.encoderdesc.CANTalonEncoderDescriptor;
 import org.usfirst.frc.team2129.util.encoderdesc.IEncoderDescriptor;
 import org.usfirst.frc.team2129.util.encoderdesc.NullEncoderDescriptor;
 import org.usfirst.frc.team2129.util.encoderdesc.QuadratureEncoderDescriptor;

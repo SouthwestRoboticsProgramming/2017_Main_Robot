@@ -11,48 +11,49 @@ import org.usfirst.frc.team2129.util.motordesc.MotorDescriptor;
 import org.usfirst.frc.team2129.util.motordesc.PWMMotorDescriptor;
 
 public class ProductionRobotMap {
-	//Compressor
+	// Compressor
 	public int Compressor = 0;
-	
-	//Drive Motors
+
+	// Drive Motors
 	public MotorDescriptor LeftMotor1 = new CANMotorDescriptor(10);
 	public MotorDescriptor LeftMotor2 = new CANMotorDescriptor(11);
 	public MotorDescriptor RightMotor1 = new CANMotorDescriptor(20);
 	public MotorDescriptor RightMotor2 = new CANMotorDescriptor(21);
-	
-	//Lifter Motors
+
+	// Lifter Motors
 	public MotorDescriptor LiftMotor1 = new PWMMotorDescriptor(0);
 	public MotorDescriptor LiftMotor2 = new PWMMotorDescriptor(1);
-	
-	//Gear Stuff
+
+	// Gear Stuff
 	public MotorDescriptor GearMotor = new CANMotorDescriptor(31, true);
-	
-	//Encoders (DI)
+
+	// Encoders (DI)
 	public IEncoderDescriptor leftEncoder = new QuadratureEncoderDescriptor(0, 1);
 	public IEncoderDescriptor rightEncoder = new QuadratureEncoderDescriptor(2, 3);
 	public IEncoderDescriptor gearEncoder = new QuadratureEncoderDescriptor(5, 6);
 	public IEncoderDescriptor climbEncoder = new CANTalonEncoderDescriptor(LeftMotor2);
-	
-	//Digital sensors (DI)
+
+	// Digital sensors (DI)
 	public int gearLightSensor = 4;
-	
-	//Flashy Lights (RELAYS)
+
+	// Flashy Lights (RELAYS)
 	public int FlashyLightLeft = 0;
 	public int FlashyLightRight = 1;
-	
-	//Solenoids (SOLENOIDS)
+
+	// Solenoids (SOLENOIDS)
 	public int shifter = 0;
 	public int gearSolenoid = 1;
-	
-	//Cameras
+
+	// Cameras
 	public SortedMap<String, Integer> cameras;
 	String defaultCamera = "Climber_Camera";
-	public ProductionRobotMap(){
-		cameras=new TreeMap<String, Integer>();
-		cameras.put(defaultCamera, 0);
-		cameras.put("Front_Camera", 1);
+
+	public ProductionRobotMap() {
+		cameras = new TreeMap<String, Integer>();
+		cameras.put(defaultCamera, 1);
+		cameras.put("Front_Camera", 0);
 	}
-	
-	//Ultrasonic
+
+	// Ultrasonic
 	public int Ultrasonic = 0;
 }

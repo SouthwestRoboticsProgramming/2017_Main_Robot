@@ -1,15 +1,14 @@
 package org.usfirst.frc.team2129.robot.commands;
 
-import org.usfirst.frc.team2129.robot.Robot;
+import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class UserDriveCommand extends Command {
-	
-	double left, right;
-	
+public class UserDriveCommand extends Team2129Command {
+	private double left, right;
+
 	public UserDriveCommand() {
-		requires(Robot.drivetrainSubsystem);
+		requires(getDrivetrainSubsystem());
 	}
 
 	protected boolean isFinished() {
@@ -17,10 +16,20 @@ public class UserDriveCommand extends Command {
 	}
 
 	protected void execute() {
-		left = Robot.oi.leftJoystick.getY();
-		right = Robot.oi.rightJoystick.getY();
-		
-		Robot.drivetrainSubsystem.tankDrive(left, right);
-		Robot.drivetrainSubsystem.setShift(Robot.oi.leftJoystick.getRawButton(1)||Robot.oi.rightJoystick.getRawButton(1));
+		left = adjustSpeed(getLeftJoystick().getY());
+		right = adjustSpeed(getRightJoystick().getY());
+
+		getDrivetrainSubsystem().tankDrive(left, right);
+		getDrivetrainSubsystem().setShift(getLeftJoystick().getRawButton(1) || getRightJoystick().getRawButton(1));
+	}
+	
+	private double adjustSpeed(double rawSpeed) {
+		return getSpeedMultiplier() * rawSpeed;
+	}
+
+	private double getSpeedMultiplier() {
+		//TODO: Is SmartDashboard supposed to be wired to "Preferences" in some way?
+		return SmartDashboard.getNumber(DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
+//		return getPreferences().getDouble(DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
 	}
 }

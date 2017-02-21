@@ -4,19 +4,21 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class XSolenoidWrapper {
-	Solenoid s;
-	DoubleSolenoid d;
-	
-	public XSolenoidWrapper(Solenoid s){
-		this.s=s;
+	private Solenoid singleSolenoid;
+	private DoubleSolenoid doubleSolenoid;
+
+	public XSolenoidWrapper(Solenoid s) {
+		this.singleSolenoid = s;
 	}
-	
-	public XSolenoidWrapper(DoubleSolenoid d){
-		this.d=d;
+
+	public XSolenoidWrapper(DoubleSolenoid d) {
+		this.doubleSolenoid = d;
 	}
-	
-	public void set(boolean state){
-		if(this.s!=null) this.s.set(state);
-		if(this.d!=null) this.d.set(state?DoubleSolenoid.Value.kForward:DoubleSolenoid.Value.kReverse);
+
+	public void set(boolean state) {
+		if (singleSolenoid != null)
+			singleSolenoid.set(state);
+		if (doubleSolenoid != null)
+			doubleSolenoid.set(state ? DoubleSolenoid.Value.kForward : DoubleSolenoid.Value.kReverse);
 	}
 }
