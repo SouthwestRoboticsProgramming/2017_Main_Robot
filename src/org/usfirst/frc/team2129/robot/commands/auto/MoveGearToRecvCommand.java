@@ -37,3 +37,13 @@ public class MoveGearToRecvCommand extends Team2129Command {
 		setSmartDashboard("gc_state", "2_done");
 	}
 }
+
+//class MoveGearToRecvCommand(Command):
+//	input=robot.encoderthing
+//	output=robot.gearmotor
+//	def start(self):
+//		self.pid=PIDController(self.input, self.output)
+//		(setattr(self.pid, k, v) for k, v in self.get_config().items())
+//		self.pid.start()
+//  def end(self):
+//		self.pid.stop()

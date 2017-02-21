@@ -26,8 +26,8 @@ public class AutoGearAlignmentCommand extends Team2129Command {
 		double speed = ((double) Math.abs(offset) / 90.) * getPreferences().getDouble("gear_align_spd", 0.3);
 		speed += getPreferences().getDouble("gear_align_base", 0.3);
 
-		if (Math.max(Math.abs(getDrivetrainSubsystem().getLeftEncoder().getRate()),
-				Math.abs(getDrivetrainSubsystem().getRightEncoder().getRate())) < getPreferences().getDouble("gear_align_0fuzz", 4)) {
+		if (Math.max(Math.abs(getDrivetrainSubsystem().getLeftIEncoder().getRate()),
+				Math.abs(getDrivetrainSubsystem().getRightIEncoder().getRate())) < getPreferences().getDouble("gear_align_0fuzz", 4)) {
 			speed += getPreferences().getDouble("gear_align_0bonus", 0.1);
 		}
 

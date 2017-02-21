@@ -2,8 +2,6 @@ package org.usfirst.frc.team2129.robot.commands;
 
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class UserDriveCommand extends Team2129Command {
 	private double left, right;
 
@@ -20,7 +18,6 @@ public class UserDriveCommand extends Team2129Command {
 		right = adjustSpeed(getRightJoystick().getY());
 
 		getDrivetrainSubsystem().tankDrive(left, right);
-		getDrivetrainSubsystem().setShift(getLeftJoystick().getRawButton(1) || getRightJoystick().getRawButton(1));
 	}
 	
 	private double adjustSpeed(double rawSpeed) {
@@ -29,7 +26,8 @@ public class UserDriveCommand extends Team2129Command {
 
 	private double getSpeedMultiplier() {
 		//TODO: Is SmartDashboard supposed to be wired to "Preferences" in some way?
-		return SmartDashboard.getNumber(DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
-//		return getPreferences().getDouble(DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
+//		return SmartDashboard.getNumber(DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
+		return getPreferences().getDouble(
+				(getLeftJoystick().getRawButton(1) || getRightJoystick().getRawButton(1))?DrivetrainSubsystem.SHIFT_SPEED_MULTIPLIER:DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
 	}
 }

@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class DrivetrainSubsystem extends Team2129Subsystem {
 	public static final String SPEED_MULTIPLIER = "speed_multiplier";
 
+	public static final String SHIFT_SPEED_MULTIPLIER = "shift_speed_multiplier";
+
 	private SpeedController leftGearboxMotor1;
 	private SpeedController leftGearboxMotor2;
 	private SplitSpeedController leftGearbox;
@@ -54,7 +56,7 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 		rightEncoder = getRightEncoder();
 		// Ultrasonic1 = new AnalogInput(RobotMap.Ultrasonic);//needs port
 		// LightSensorLeft = new DigitalInput(RobotMap.DriveLightLeft);
-		// LightSensorRight = new DigitalInput(RobotMap.DriveLightRight);
+		// LightSensorRight = new DigitalInput(RobotMap.DriveLightRight); 
 	}
 
 	public void tankDrive(double left, double right) {
@@ -93,21 +95,18 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 		shifter.set(state);
 	}
 
-	public IEncoder getLeftEncoder() {
+	public IEncoder getLeftIEncoder() {
 		return leftEncoder;
 	}
 
-	public IEncoder getRightEncoder() {
+	public IEncoder getRightIEncoder() {
 		return rightEncoder;
 	}
 
 	public void setDashboardValues() {
-		setSmartDashboard("left_encoder_traversal", getLeftEncoder().getDistance());
-		setSmartDashboard("left_encoder_speed", getLeftEncoder().getRate());
-		setSmartDashboard("right_encoder_traversal", getRightEncoder().getDistance());
-		setSmartDashboard("right_encoder_speed", getRightEncoder().getRate());
-
-		// TODO: Is this just an init for the ReportCommand?
-		setSmartDashboard(SPEED_MULTIPLIER, 0.7d);
+		setSmartDashboard("left_encoder_traversal", getLeftIEncoder().getDistance());
+		setSmartDashboard("left_encoder_speed", getLeftIEncoder().getRate());
+		setSmartDashboard("right_encoder_traversal", getRightIEncoder().getDistance());
+		setSmartDashboard("right_encoder_speed", getRightIEncoder().getRate());
 	}
 }

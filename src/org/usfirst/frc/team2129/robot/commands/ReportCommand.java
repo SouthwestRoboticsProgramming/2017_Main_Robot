@@ -48,8 +48,8 @@ public class ReportCommand extends Team2129Command {
 			getImuSubsystem().calibrate();
 			getGearSubsystem().zeroAngle();
 			getImuSubsystem().zero();
-			getDrivetrainSubsystem().getLeftEncoder().zero();
-			getDrivetrainSubsystem().getRightEncoder().zero();
+			getDrivetrainSubsystem().getLeftIEncoder().zero();
+			getDrivetrainSubsystem().getRightIEncoder().zero();
 		}
 	}
 

@@ -1,11 +1,11 @@
 import pygame, json, time
-# from networktables import NetworkTables
+from networktables import NetworkTables
 
-# time.sleep(0.1)
-# NetworkTables.initialize("10.21.29.2")
-# time.sleep(0.1)
-# sd=NetworkTables.getTable("SmartDashboard")
-# time.sleep(0.1)
+time.sleep(0.1)
+NetworkTables.initialize("172.22.11.2")
+time.sleep(0.1)
+sd=NetworkTables.getTable("SmartDashboard")
+time.sleep(0.1)
 # assert NetworkTables.isConnected(), "Not connected"
 def r():
 	SCREEN_X=950
@@ -61,9 +61,9 @@ def r():
 
 	positions={num:Position(num, (x,y), num<8, d, 15 if num in [0,1,2,3,12,13,14,15] else 8) for num, x, y, d in pos_data}
 
-	for pos in set(positions.keys()):
-		if pos not in [4,11,1,2,3,12,13,14,15]:
-			del positions[pos]
+	# for pos in set(positions.keys()):
+	# 	if pos not in [4,11,1,2,3,12,13,14,15]:
+	# 		del positions[pos]
 
 	positions[4].speed=0.1
 	positions[11].speed=-0.3
@@ -77,9 +77,9 @@ def r():
 		clock.tick(60)
 		screen.fill((0,0,0))
 		screen.blit(image, (BOARD_X,BOARD_Y))
-		# for num, v in enumerate(sd.getString("pdp_status").split(";")[1:]):
-		# 	if num in positions:
-		# 		positions[num].speed=float(v)*(1/12)
+		for num, v in enumerate(sd.getString("pdp_status").split(";")[1:]):
+			if num in positions:
+				positions[num].speed=float(v)*(1/12)
 		[p.draw(screen) for p in positions.values()]
 		pygame.display.flip()
 
