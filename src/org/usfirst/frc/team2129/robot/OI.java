@@ -4,8 +4,10 @@ import org.usfirst.frc.team2129.robot.commands.AutomatedClimbCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.CalibrateAndMoveGear;
+import org.usfirst.frc.team2129.robot.commands.auto.FullAutoClimbCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -50,10 +52,13 @@ public class OI {
 	
 	public OI(){
 		new JoystickButton(rightJoystick, 2).whileHeld(new AutoGearAlignmentCommand());
-		Command acc = new AutomatedClimbCommand();
+		Command climb = new FullAutoClimbCommand( );
 		
-		new JoystickButton(rightJoystick, 4).toggleWhenActive(acc);
-		new JoystickButton(leftJoystick, 4).toggleWhenActive(acc);
+		Button lbtn4 = new JoystickButton(rightJoystick, 4);
+		Button rbtn4 = new JoystickButton(leftJoystick, 4);
+		
+		lbtn4.toggleWhenActive(climb);
+		rbtn4.toggleWhenActive(climb);
 		
 		new JoystickButton(leftJoystick, 11).whenPressed(new CalibrateAndMoveGear());
 		new JoystickButton(leftJoystick, 12).whenPressed(new AlignGearForPlacementCommand());

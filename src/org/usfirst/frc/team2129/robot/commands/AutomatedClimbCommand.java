@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2129.robot.commands;
 
+import org.usfirst.frc.team2129.robot.Robot;
+
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -10,13 +12,15 @@ public class AutomatedClimbCommand extends ClimbCommand {
 	private Timer timer;
 	private boolean finished;
 	private boolean started;
+	private String climb_speed_var;
 
-	public AutomatedClimbCommand() {
+	public AutomatedClimbCommand(String climb_speed_var) {
 		super();
 		requires(getSubsystem());
 		timer = new Timer();
 		timer.reset();
 		timer.stop();
+		this.climb_speed_var=climb_speed_var;
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class AutomatedClimbCommand extends ClimbCommand {
 	}
 
 	private void climb() {
-		getSubsystem().setSpeed(Preferences.getInstance().getDouble("auto_climb_speed", AUTO_CLIMB_SPEED));
+		getSubsystem().setSpeed(Preferences.getInstance().getDouble(climb_speed_var, AUTO_CLIMB_SPEED));
 	}
 
 	private double getClimbingThreshold() {

@@ -8,9 +8,9 @@
 </Read_HTTP>
 <RGB_Filter>
   <channel>2</channel>
-  <hue_value>61</hue_value>
+  <hue_value>92</hue_value>
   <hysteresis>0</hysteresis>
-  <min_value>32</min_value>
+  <min_value>52</min_value>
 </RGB_Filter>
 <Blob_Overlap>
   <image1>Current</image1>
@@ -188,6 +188,9 @@ else:
   <y_start>0</y_start>
   <y_start_map>0</y_start_map>
 </Display_Line>
+<Gamma>
+  <gain>0.60</gain>
+</Gamma>
 <NetworkTables>
   <delay>100</delay>
   <filter_type_index>0</filter_type_index>
@@ -197,3 +200,25 @@ else:
   <variables_to_send>L_OFF_X</variables_to_send>
   <variable_type_index>0</variable_type_index>
 </NetworkTables>
+<Video_Recorder>
+  <absolute_frame_delay/>
+  <command_map/>
+  <filename>C:\Users\Paul\Desktop\test.rvid</filename>
+  <frame_count/>
+  <frame_limit/>
+  <frame_unit>0</frame_unit>
+  <increment>1</increment>
+  <is_playing>FALSE</is_playing>
+  <is_recording>FALSE</is_recording>
+  <loop_playback>1</loop_playback>
+  <number_files>0</number_files>
+  <overlay_image/>
+  <pre_record_frames/>
+  <relative_frame_delay>5</relative_frame_delay>
+  <skip_first_number>0</skip_first_number>
+  <skip_first_type>0</skip_first_type>
+  <skip_last_number>0</skip_last_number>
+  <skip_last_type>0</skip_last_type>
+  <time_frequency>1</time_frequency>
+  <time_limit/>
+</Video_Recorder>

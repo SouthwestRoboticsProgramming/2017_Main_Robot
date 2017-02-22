@@ -3,13 +3,16 @@ package org.usfirst.frc.team2129.robot.commands;
 import edu.wpi.cscore.VideoException;
 import edu.wpi.cscore.VideoProperty;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ManualCameraCommand extends Team2129Command {
 	private SendableChooser<String> chooser;
 	private String selected;
+	private boolean swapDown = false;
 
 	public ManualCameraCommand() {
 		requires(getCameraSubsystem());
+		setAll();
 	}
 
 	protected boolean isFinished() {
@@ -31,9 +34,36 @@ public class ManualCameraCommand extends Team2129Command {
 	boolean set = false;
 
 	public void execute() {
-		if (chooser.getSelected() != selected) {
-			selected = chooser.getSelected();
-			getCameraSubsystem().setCamera(selected);
+//		if (chooser.getSelected() != selected) {
+//			selected = chooser.getSelected();
+//			getCameraSubsystem().setCamera(selected);
+//		}
+		SmartDashboard.putString("cam_sel", selected);
+		SmartDashboard.putBoolean("cam_sel_bdown", swapDown);
+		
+		if (getLeftJoystick().getRawButton(5) || getRightJoystick().getRawButton(5)){
+			if(!swapDown){
+				swapDown=true; 
+				boolean this_one = false; 
+				boolean good = false;
+				for (String cam : getCameraSubsystem().getCameraNames()) {
+					if(this_one){
+						getCameraSubsystem().setCamera(cam);
+						selected=cam;
+						good = true;
+						break;
+					}
+					if(cam.equals(selected)){
+						this_one=true;
+					}
+				}
+				if(!good){
+					selected=getCameraSubsystem().getCameraNames().stream().findFirst().get();
+					getCameraSubsystem().setCamera(selected);
+				}
+			}
+		}else{
+			swapDown=false;
 		}
 
 		if (getLeftJoystick().getRawButton(11))
@@ -42,15 +72,23 @@ public class ManualCameraCommand extends Team2129Command {
 		if (getLeftJoystick().getRawButton(10)) {
 			if (!set) {
 				set = true;
-				setVideoProperties();
-				setExposure();
-				setWhiteBalance();
-				setBrightness();
+				setExtended();
 			}
 		} else {
 			set = false;
 		}
 		setSmartDashboard("cam_v_set", set);
+	}
+	
+	public void setAll(){
+		setPreferences();
+		setExtended();
+	}
+	
+	private void setExtended(){
+		setBrightness();
+		setWhiteBalance();
+		setExposure();
 	}
 
 	private void setPreferences() {

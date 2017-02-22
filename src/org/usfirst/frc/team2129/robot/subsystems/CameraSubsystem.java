@@ -53,7 +53,7 @@ public class CameraSubsystem extends Team2129Subsystem {
 
 	public void setCamera(String camera) {
 		if (cameras.containsKey(camera)) {
-			curr = camera;
+			curr = camera;  
 			server.setSource(cameras.get(camera));
 		}
 	}

@@ -47,7 +47,7 @@ public class TestRobotMap {
 	public int gearSolenoid = 1;
 	
 	public SortedMap<String, Integer> cameras;
-	String defaultCamera = "cam0";
+	String defaultCamera = "Foo";
 	public TestRobotMap(){
 		cameras=new TreeMap<String, Integer>();
 		cameras.put(defaultCamera, 0);

@@ -1,19 +1,8 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
 import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
-
-import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.FlashyLightsSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.PeripheralsManagmentSubsystem;
-
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,13 +12,26 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 
-
 import org.usfirst.frc.team2129.robot.map.TestRobotMap;
-@SuppressWarnings("unused") //Yellow triangles bug me, and this is so that you can switch prod<-->test quickfasts
+import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.FlashyLightsSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.PeripheralsManagmentSubsystem;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+@SuppressWarnings("unused") // Yellow triangles bug me, and this is so that you
+							// can switch prod<-->test quickfasts
 public class Robot extends IterativeRobot {
 
-	public static final TestRobotMap map = new TestRobotMap();
-//	public static final ProductionRobotMap map = new ProductionRobotMap();
+//	public static final TestRobotMap map = new TestRobotMap();
+	 public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PeripheralsManagmentSubsystem peripheralsSubsystem = new PeripheralsManagmentSubsystem();
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();
 	public static OI oi;
 	public static final IMUSubsystem imuSubsystem = new IMUSubsystem();
+	private Command autoCommand;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -47,6 +50,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		cameraSubsystem.init();
 	}
 
 	/**
@@ -75,11 +79,11 @@ public class Robot extends IterativeRobot {
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
-	
-	public void autonomousInit(){
-		//new AutoOrientCommand(180, 5).st;
+	public void autonomousInit() {
+		
+		autoCommand = new AutoOrientCommand(180, 5, 0.1, false);
+		autoCommand.start();
 	}
-	
 
 	/**
 	 * This function is called periodically during autonomous
@@ -95,7 +99,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		cameraSubsystem.init();
+		if (autoCommand != null) {
+			autoCommand.cancel();
+		}
 	}
 
 	/**
