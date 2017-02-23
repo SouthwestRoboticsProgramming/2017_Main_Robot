@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2129.robot;
 
-import org.usfirst.frc.team2129.robot.commands.AutomatedClimbCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.CalibrateAndMoveGear;

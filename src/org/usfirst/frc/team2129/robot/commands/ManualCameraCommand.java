@@ -105,17 +105,17 @@ public class ManualCameraCommand extends Team2129Command {
 		}
 	}
 
-	private void setVideoProperties() {
-		try {
-			for (VideoProperty p : getCameraSubsystem().getCurrentCam().enumerateProperties()) {
-				if (getPreferences().containsKey(p.getName())) {
-					p.set(getPreferences().getInt("CAM_" + p.getName(), p.get()));
-				}
-			}
-		} catch (VideoException vx) {
-			wrErr(vx, "prefs");
-		}
-	}
+//	private void setVideoProperties() { //This is actually broken
+//		try {
+//			for (VideoProperty p : getCameraSubsystem().getCurrentCam().enumerateProperties()) {
+//				if (getPreferences().containsKey(p.getName())) {
+//					p.set(getPreferences().getInt("CAM_" + p.getName(), p.get()));
+//				}
+//			}
+//		} catch (VideoException vx) {
+//			wrErr(vx, "prefs");
+//		}
+//	}
 
 	private void setWhiteBalance() {
 		try {

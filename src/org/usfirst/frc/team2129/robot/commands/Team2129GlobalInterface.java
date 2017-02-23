@@ -1,7 +1,5 @@
 package org.usfirst.frc.team2129.robot.commands;
 
-import java.util.Map;
-
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
@@ -11,10 +9,7 @@ import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.PeripheralsManagmentSubsystem;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
