@@ -62,29 +62,13 @@ public interface Team2129GlobalInterface {
 	default FlashyLightsSubsystem getLightsSubsystem() {
 		return Robot.lightsSubsystem;
 	}
-
+	
 	default ClimberSubsystem getClimberSubsystem() {
 		return Robot.climberSubsystem;
 	}
 
 	default Preferences getPreferences() {
 		return Preferences.getInstance();
-	}
-	
-	default SpeedController getGearMotor() {
-		return getGearSubsystem().getGearMotor();
-	}
-	
-	default Solenoid getGearSolenoid() {
-		return getGearSubsystem().getGearSolenoid();
-	}
-	
-	default DigitalInput getGearLightSensor() {
-		return getGearSubsystem().getGearLightSensor();
-	}
-	
-	default Map<String, Integer> getCameraMap() {
-		return Robot.map.cameras;
 	}
 
 	// TODO: Where does this output go?

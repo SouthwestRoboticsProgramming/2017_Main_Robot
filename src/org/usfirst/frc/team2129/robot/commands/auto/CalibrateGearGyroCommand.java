@@ -25,17 +25,17 @@ public class CalibrateGearGyroCommand extends Team2129Command {
 			if (Math.abs(getGearSubsystem().getRate()) < 1 || finished) {
 				// UGH. Just have the GearSubsystem do this .. drilling drilling
 				getGearSubsystem().zeroAngle();
-				getGearMotor().set(0);
+				getGearSubsystem().setGearMotor(0);
 				finished = true;
 				setSmartDashboard("gc_state", "1_done");
 			} else {
-				getGearMotor().set(rate);
+				getGearSubsystem().setGearMotor(rate);
 			}
 		} else {
 			if (Math.abs(getGearSubsystem().getRate()) > 0) {
 				started = true;
 			}
-			getGearMotor().set(rate);
+			getGearSubsystem().setGearMotor(rate);
 		}
 	}
 }

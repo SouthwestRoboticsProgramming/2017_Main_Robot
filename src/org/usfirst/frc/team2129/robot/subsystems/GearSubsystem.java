@@ -5,6 +5,7 @@ import org.usfirst.frc.team2129.robot.commands.ManualGearCommand;
 import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -65,6 +66,18 @@ public class GearSubsystem extends Team2129Subsystem {
 		setSmartDashboard("gear_enc_pos", getAngle());
 		setSmartDashboard("gear_enc_rate", getRate());
 		setSmartDashboard("gear_light", getGearLightSensor().get());
+	}
+
+	public void setGearSolenoid(boolean b) {
+		this.gearSolenoid.set(b);
+	}
+
+	public void setGearMotor(double x) {
+		this.gearMotor.set(x);
+	}
+
+	public PIDOutput getPIDOutput() {
+		return this.gearMotor;
 	}
 	
 }

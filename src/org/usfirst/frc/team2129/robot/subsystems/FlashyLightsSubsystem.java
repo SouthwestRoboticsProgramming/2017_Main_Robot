@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.ManualBlinkCommand;
 
 import edu.wpi.first.wpilibj.Relay;
@@ -14,8 +15,8 @@ public class FlashyLightsSubsystem extends Team2129Subsystem {
 	private Relay right;
 
 	public FlashyLightsSubsystem() {
-		left = new Relay(getLeftFlashyLight(), FORWARD);
-		right = new Relay(getRightFlashyLight(), FORWARD);
+		left = new Relay(Robot.map.FlashyLightLeft, FORWARD);
+		right = new Relay(Robot.map.FlashyLightRight, FORWARD);
 	}
 
 	protected void initDefaultCommand() {

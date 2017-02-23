@@ -12,7 +12,7 @@ public class AlignGearForPlacementCommand extends Team2129Command {
 
 	public AlignGearForPlacementCommand() {
 		requires(getGearSubsystem());
-		gearPID = new PIDController(0.1, 0.01, 0, getGearSubsystem().getPIDSource(), getGearMotor());
+		gearPID = new PIDController(0.1, 0.01, 0, getGearSubsystem().getPIDSource(), getGearSubsystem().getPIDOutput());
 		t = new Timer();
 	}
 

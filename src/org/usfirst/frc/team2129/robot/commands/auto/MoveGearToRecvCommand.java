@@ -9,7 +9,7 @@ public class MoveGearToRecvCommand extends Team2129Command {
 
 	public MoveGearToRecvCommand() {
 		requires(getGearSubsystem());
-		gearPID = new PIDController(0.1, 0.01, 0, getGearSubsystem().getPIDSource(), getGearMotor());
+		gearPID = new PIDController(0.1, 0.01, 0, getGearSubsystem().getPIDSource(), getGearSubsystem().getPIDOutput());
 	}
 
 	protected boolean isFinished() {

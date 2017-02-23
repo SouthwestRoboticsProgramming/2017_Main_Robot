@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.ManualClimbCommand;
 import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 
@@ -12,9 +13,9 @@ public class ClimberSubsystem extends Team2129Subsystem {
 	public IEncoder encoder;
 
 	public ClimberSubsystem() {
-		climbMotor1 = getLiftMotor1();
-		climbMotor2 = getLiftMotor2();
-		encoder = getClimbEncoder();
+		climbMotor1 = Robot.map.LiftMotor1.get();
+		climbMotor2 = Robot.map.LiftMotor2.get();
+		encoder = Robot.map.climbEncoder.get();
 	}
 
 	protected void initDefaultCommand() {

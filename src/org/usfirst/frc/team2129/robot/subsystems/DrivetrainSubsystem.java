@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
 import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 
@@ -28,35 +29,26 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 	private IEncoder leftEncoder;
 	private IEncoder rightEncoder;
 
-	private AnalogInput Ultrasonic1;
-
-	// Mark has a plan for these
-	private DigitalInput LightSensorLeft;
-	private DigitalInput LightSensorRight;
-
 	protected void initDefaultCommand() {
 		setDefaultCommand(new UserDriveCommand());
 	}
 
 	public DrivetrainSubsystem() {
 		// TODO: Huh? Left == right?
-		leftGearboxMotor1 = getRightMotor1();
-		leftGearboxMotor2 = getRightMotor2();
+		leftGearboxMotor1 = Robot.map.RightMotor1.get();
+		leftGearboxMotor2 = Robot.map.RightMotor2.get();
 		leftGearbox = new SplitSpeedController(leftGearboxMotor1, leftGearboxMotor2);
 
-		rightGearboxMotor1 = getLeftMotor1();
-		rightGearboxMotor2 = getLeftMotor2();
+		rightGearboxMotor1 = Robot.map.LeftMotor1.get();
+		rightGearboxMotor2 = Robot.map.LeftMotor2.get();
 		rightGearbox = new SplitSpeedController(rightGearboxMotor1, rightGearboxMotor2);
 
-		shifter = new Solenoid(getShifter());
+		shifter = new Solenoid(Robot.map.shifter);
 
 		robotDrive = new RobotDrive(leftGearbox, rightGearbox);
 
-		leftEncoder = getLeftEncoder();
-		rightEncoder = getRightEncoder();
-		// Ultrasonic1 = new AnalogInput(RobotMap.Ultrasonic);//needs port
-		// LightSensorLeft = new DigitalInput(RobotMap.DriveLightLeft);
-		// LightSensorRight = new DigitalInput(RobotMap.DriveLightRight); 
+		leftEncoder = Robot.map.leftEncoder.get();
+		rightEncoder = Robot.map.rightEncoder.get();
 	}
 
 	public void tankDrive(double left, double right) {
@@ -65,30 +57,13 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 		
 		if (Math.abs(left) < dmz && Math.abs(right) < dmz) {
 			if (getPreferences().getBoolean("dynamic_gy_mute", false)) {
-				freezeImu();
+				Robot.imuSubsystem.freeze();
 				setSmartDashboard("dynamic_gy_freeze", true);
 			}
 		} else {
-			unFreezeImu();
+			Robot.imuSubsystem.unFreezeImu();
 			setSmartDashboard("dynamic_gy_freeze", false);
 		}
-	}
-
-	// Mark has a plan for all of this...
-	public int getValue() {
-		return Ultrasonic1.getValue();
-	}
-
-	public double getVoltage() {
-		return Ultrasonic1.getVoltage();
-	}
-
-	public boolean getLeft() {
-		return LightSensorLeft.get();
-	}
-
-	public boolean getRight() {
-		return LightSensorRight.get();
 	}
 
 	public void setShift(boolean state) {
