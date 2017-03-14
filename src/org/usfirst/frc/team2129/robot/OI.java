@@ -2,6 +2,7 @@ package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
+import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.CalibrateAndMoveGear;
 import org.usfirst.frc.team2129.robot.commands.auto.FullAutoClimbCommand;
 
@@ -50,7 +51,9 @@ public class OI {
 	public Joystick        thirdJoystick       = new Joystick(2);
 	
 	public OI(){
-		new JoystickButton(rightJoystick, 2).whileHeld(new AutoGearAlignmentCommand());
+		Command aga = new AutoGearAlignmentCommand();
+		new JoystickButton(rightJoystick, 2).whenPressed(aga);
+		new JoystickButton(rightJoystick, 3).cancelWhenPressed(aga);
 		Command climb = new FullAutoClimbCommand( );
 		
 		Button lbtn4 = new JoystickButton(rightJoystick, 4);
@@ -60,7 +63,10 @@ public class OI {
 		rbtn4.toggleWhenActive(climb);
 		
 		new JoystickButton(leftJoystick, 11).whenPressed(new CalibrateAndMoveGear());
-		new JoystickButton(leftJoystick, 12).whenPressed(new AlignGearForPlacementCommand());
+		new JoystickButton(leftJoystick, 10).whenPressed(new AlignGearForPlacementCommand());
+		Command bdm = new AutoOrientCommand(0, 2, 0, true);
+		new JoystickButton(leftJoystick, 8).whenPressed(bdm);
+		new JoystickButton(leftJoystick, 9).cancelWhenPressed(bdm);
 	}
 	
 }

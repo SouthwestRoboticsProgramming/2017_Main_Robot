@@ -30,8 +30,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 							// can switch prod<-->test quickfasts
 public class Robot extends IterativeRobot {
 
-//	public static final TestRobotMap map = new TestRobotMap();
-	 public static final ProductionRobotMap map = new ProductionRobotMap();
+	public static final TestRobotMap map = new TestRobotMap();
+//	 public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PeripheralsManagmentSubsystem peripheralsSubsystem = new PeripheralsManagmentSubsystem();

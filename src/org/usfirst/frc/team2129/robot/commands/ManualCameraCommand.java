@@ -34,7 +34,7 @@ public class ManualCameraCommand extends Team2129Command {
 	boolean set = false;
 
 	public void execute() {
-//		if (chooser.getSelected() != selected) {
+//		if (chooser.getSelected() != selected) { //Disabled for using the buttons instead
 //			selected = chooser.getSelected();
 //			getCameraSubsystem().setCamera(selected);
 //		}
