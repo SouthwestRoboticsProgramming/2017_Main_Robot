@@ -1,0 +1,17 @@
+                   AUTO CLIMB
+auto_grab                   = Power for the phase of auto-climb when it's spinning slow to grab
+auto_climb                  = Power for the phase of auto-climb when actually climbing
+auto_climb_off_threshold    = Rate threshold for assuming were stopped when auto-climbing
+auto_climb_done_time        = Time for rate to be under `auto_climb_off_threshold` to be considered stopped
+
+
+                   AUTO ALIGNMENT
+gear_align_inv_side         = Reverse sides when auto-aligning
+gear_align_spd              = Ratio for alignment porportional to distance from correct (probably best be low or 0)
+gear_align_base             = Base speed for alignment
+gear_align_0bonus           = Speed bonus when encoders don't read movement (to get over sticktion)
+gear_align_emul             = Global multiplier for everything above
+gear_align_inv              = End inversion
+gear_align_fuzz             = Threshold (in degrees) to be considered on target and just drive straight
+gear_align_sts              = Rate at which to drive straight when above limit tripped
+gear_align_opp              = 
