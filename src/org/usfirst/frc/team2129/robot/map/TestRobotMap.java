@@ -19,10 +19,10 @@ public class TestRobotMap {
 	public int Compressor = 0;
 	
 	//Drive Motors
-	public MotorDescriptor LeftMotor1 = new PWMMotorDescriptor(0);
-	public MotorDescriptor LeftMotor2 = new PWMMotorDescriptor(1);
-	public MotorDescriptor RightMotor1 = new PWMMotorDescriptor(2, true);
-	public MotorDescriptor RightMotor2 = new PWMMotorDescriptor(3, true); 
+	public MotorDescriptor LeftMotor1 = new PWMMotorDescriptor(0, true);
+	public MotorDescriptor LeftMotor2 = new PWMMotorDescriptor(2);
+	public MotorDescriptor RightMotor1 = new PWMMotorDescriptor(1, true);
+	public MotorDescriptor RightMotor2 = new PWMMotorDescriptor(3); 
 	
 	//Lifter Motors
 	public MotorDescriptor LiftMotor1 = new RelayMotorDescriptor_DO_NOT_USE_THIS_IS_ILLEGAL(3);

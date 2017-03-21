@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class RelayMotorDescriptor_DO_NOT_USE_THIS_IS_ILLEGAL extends MotorDescriptor {
+	/*
+	 * For the love of god don't use this
+	 */
 	int spot;
 	boolean rev;
 	

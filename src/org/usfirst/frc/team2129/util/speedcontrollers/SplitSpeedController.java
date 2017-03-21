@@ -1,8 +1,12 @@
-package org.usfirst.frc.team2129.robot.subsystems;
+package org.usfirst.frc.team2129.util.speedcontrollers;
 
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class SplitSpeedController implements SpeedController {
+	/*
+	 * Simple utility class to do all the things done to one to the other.
+	 * Inversion happens in this, as opposed to being passed along (to allow having two motors with different inversion states in the same SplitSpeedController)
+	 */
 	private double state;
 	private boolean inv;
 	private SpeedController s1, s2;

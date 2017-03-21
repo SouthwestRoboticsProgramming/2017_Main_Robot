@@ -3,6 +3,9 @@ package org.usfirst.frc.team2129.util.encoderdesc.iencoder;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class QuadratureEncoder extends IEncoderPIDSourceImplWrapper {
+	/*
+	 * Just wrap a Encoder into an IEncoder
+	 */
 	private Encoder _encoder;
 
 	public QuadratureEncoder(int i1, int i2) {
