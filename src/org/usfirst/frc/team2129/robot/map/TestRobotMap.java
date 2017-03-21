@@ -49,10 +49,11 @@ public class TestRobotMap {
 	public int gearSolenoid = 1;
 	
 	public SortedMap<String, Integer> cameras;
-	String defaultCamera = "Aux Camera";
+	String defaultCamera = "Climber Camera";
 	public TestRobotMap(){
 		cameras=new TreeMap<String, Integer>();
 		cameras.put(defaultCamera, 0);
 		cameras.put("Front Camera", 1);
+		cameras.put("Other Camera", 2);
 	}
 }
