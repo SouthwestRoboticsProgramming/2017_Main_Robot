@@ -1,0 +1,10 @@
+Oh no! Someone moved the motor/sensor, and now it's connected in a new port/different way/not at all!
+
+ * Open up ProductionRobotMap or TestRobotMap (whichever your using, can be set in the Robot)
+ * Find the thing your talking about, e.g. LeftMotor1 or leftEncoder
+ * Change the thing on the right hand side of the equals:
+   * For moving the connector/changing the address, but keeping the connection type, just change the number to what it should be. If you need to invert/un-invert it, add or remove the `,true` boolean in the constructor (parenthesies)
+   * For moving to a new type of connector, you'll have to replace that snippet entirely. The available varieties are in the `org.usfirst.frc.team2129.util.motordesc.*` and `org.usfirst.frc.team2129.util.encoderdesc.*` packages
+   * For things that are just a number, just change the number to the new value of whatever type it is of.
+
+Redeploy via Ctrl-B
