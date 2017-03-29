@@ -25,9 +25,10 @@ public class UserDriveCommand extends Team2129Command {
 	}
 
 	private double getSpeedMultiplier() {
+		return 0.5d;
 		//TODO: Is SmartDashboard supposed to be wired to "Preferences" in some way?
 //		return SmartDashboard.getNumber(DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
-		return getPreferences().getDouble(
-				(getLeftJoystick().getRawButton(1) || getRightJoystick().getRawButton(1))?DrivetrainSubsystem.SHIFT_SPEED_MULTIPLIER:DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
+//		return getPreferences().getDouble(
+//				(getLeftJoystick().getRawButton(1) || getRightJoystick().getRawButton(1))?DrivetrainSubsystem.SHIFT_SPEED_MULTIPLIER:DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
 	}
 }

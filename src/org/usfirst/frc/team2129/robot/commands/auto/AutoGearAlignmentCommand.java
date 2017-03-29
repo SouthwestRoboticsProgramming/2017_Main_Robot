@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoGearAlignmentCommand extends Team2129Command {
 
 	private String offsetKey = "L_OFF_X";
+	boolean isFinished;
 
 	public AutoGearAlignmentCommand() {
 		requires(getDrivetrainSubsystem());
+		isFinished = false;
 	}
 
 	protected int getOffset() {
@@ -19,15 +21,17 @@ public class AutoGearAlignmentCommand extends Team2129Command {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return !SmartDashboard.getString("L_OFF_X_OK", "NO").equals("OK");
 	}
 
 	public void execute() {
-		SmartDashboard.putString("loffxok_v", SmartDashboard.getString("L_OFF_X_OK", "NO"));
+		System.err.println("Running");
+		SmartDashboard.putNumber("AutoGearAlignmentCommand_time", System.currentTimeMillis());
+		SmartDashboard.putString("loffxok_v_v", SmartDashboard.getString("L_OFF_X_OK", "NO"));
 		if (!SmartDashboard.getString("L_OFF_X_OK", "NO").equals("OK")){
 			Robot.drivetrainSubsystem.tankDrive(0, 0);
 			return;
-		} 
+		}
 		int offset = getOffset();
 		
 		boolean side = offset > 0;

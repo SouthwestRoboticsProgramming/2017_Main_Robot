@@ -6,8 +6,8 @@ public class ManualGearCommand extends Team2129Command {
 	}
 
 	public void execute() {
-		getGearSubsystem().setGearSolenoid(getLeftJoystick().getRawButton(3)||getRightJoystick().getRawButton(3));
-		getGearSubsystem().setGearMotor(getThirdJoystick().getX());
+		//getGearSubsystem().setGearSolenoid(getLeftJoystick().getRawButton(3)||getRightJoystick().getRawButton(3));
+		//getGearSubsystem().setGearMotor(getThirdJoystick().getX());
 	}
 
 	protected boolean isFinished() {

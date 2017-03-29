@@ -4,13 +4,13 @@
   <erase_on_error>TRUE</erase_on_error>
   <is_active>TRUE</is_active>
   <timeout>1000</timeout>
-  <url>roboRIO-2129-FRC.local:1180/stream.mjpg</url>
+  <url>10.21.29.2:1180/stream.mjpg</url>
 </Read_HTTP>
 <RGB_Filter>
   <channel>2</channel>
-  <hue_value>92</hue_value>
+  <hue_value>20</hue_value>
   <hysteresis>0</hysteresis>
-  <min_value>52</min_value>
+  <min_value>9</min_value>
 </RGB_Filter>
 <Blob_Overlap>
   <image1>Current</image1>
@@ -27,18 +27,9 @@
         <filter_id>8</filter_id>
         <invert_count>0</invert_count>
         <invert_threshold>0</invert_threshold>
-        <minimum_size>11</minimum_size>
+        <minimum_size>7</minimum_size>
         <weight_threshold>0.5</weight_threshold>
       </filter>
-      <filter:2>
-        <count_threshold>0</count_threshold>
-        <create_array>0</create_array>
-        <filter_id>91</filter_id>
-        <invert_count>0</invert_count>
-        <invert_threshold>0</invert_threshold>
-        <num_holes>0</num_holes>
-        <weight_threshold>0.5</weight_threshold>
-      </filter:2>
     </tab>
     <tab:2/>
     <tab:3/>
@@ -136,7 +127,9 @@ if len(blobs)==2:
 	center=(blobs[0][0]+blobs[1][0])/2.
 	rr.SetVariable("L_OFF_X", int(target-center));
 	rr.SetVariable("L_OFF_C", center)
+	rr.SetVariable("L_OFF_X_OK", "OK")
 else:
+	rr.SetVariable("L_OFF_X_OK", "NO")
 	pass#rr.SetVariable("L_OFF_X", "??")
 	#rr.SetVariable("L_OFF_C", "??")</script>
   <source_mode>gui</source_mode>
@@ -188,37 +181,13 @@ else:
   <y_start>0</y_start>
   <y_start_map>0</y_start_map>
 </Display_Line>
-<Gamma>
-  <gain>0.60</gain>
-</Gamma>
 <NetworkTables>
   <delay>100</delay>
   <filter_type_index>0</filter_type_index>
-  <hostname>roboRIO-2129-FRC.local</hostname>
+  <hostname>10.21.29.2</hostname>
   <port>1735</port>
   <prefix>/SmartDashboard/</prefix>
-  <variables_to_send>L_OFF_X</variables_to_send>
+  <variables_to_send>L_OFF_X
+L_OFF_X_OK</variables_to_send>
   <variable_type_index>0</variable_type_index>
 </NetworkTables>
-<Video_Recorder>
-  <absolute_frame_delay/>
-  <command_map/>
-  <filename>C:\Users\Paul\Desktop\test.rvid</filename>
-  <frame_count/>
-  <frame_limit/>
-  <frame_unit>0</frame_unit>
-  <increment>1</increment>
-  <is_playing>FALSE</is_playing>
-  <is_recording>FALSE</is_recording>
-  <loop_playback>1</loop_playback>
-  <number_files>0</number_files>
-  <overlay_image/>
-  <pre_record_frames/>
-  <relative_frame_delay>5</relative_frame_delay>
-  <skip_first_number>0</skip_first_number>
-  <skip_first_type>0</skip_first_type>
-  <skip_last_number>0</skip_last_number>
-  <skip_last_type>0</skip_last_type>
-  <time_frequency>1</time_frequency>
-  <time_limit/>
-</Video_Recorder>

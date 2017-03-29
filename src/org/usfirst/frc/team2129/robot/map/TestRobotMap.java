@@ -52,8 +52,8 @@ public class TestRobotMap {
 	String defaultCamera = "Climber Camera";
 	public TestRobotMap(){
 		cameras=new TreeMap<String, Integer>();
-		cameras.put(defaultCamera, 0);
+		cameras.put(defaultCamera, 2);
 		cameras.put("Front Camera", 1);
-		cameras.put("Other Camera", 2);
+		cameras.put("Other Camera", 0);
 	}
 }

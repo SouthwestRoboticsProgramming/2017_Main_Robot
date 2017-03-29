@@ -18,8 +18,4 @@ public abstract class Team2129Command extends Command implements Team2129GlobalI
 	protected Joystick getRightJoystick() {
 		return Robot.oi.rightJoystick;
 	}
-
-	protected Joystick getThirdJoystick() {
-		return Robot.oi.thirdJoystick;
-	}
 }

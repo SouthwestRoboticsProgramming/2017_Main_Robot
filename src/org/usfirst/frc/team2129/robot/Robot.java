@@ -1,8 +1,8 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.auto.AutoAlignAndDriveCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
-import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -80,8 +80,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		
-		autoCommand = new AutoOrientCommand(180, 5, 0.1, false);
+		autoCommand = new AutoAlignAndDriveCommand("", "");
 		autoCommand.start();
 	}
 

@@ -48,7 +48,7 @@ public class OI {
 	
 	public Joystick        leftJoystick        = new Joystick(0);
 	public Joystick        rightJoystick       = new Joystick(1);
-	public Joystick        thirdJoystick       = new Joystick(2);
+	//public Joystick        thirdJoystick       = new Joystick(2);
 	
 	public OI(){
 		Command aga = new AutoGearAlignmentCommand();
@@ -62,11 +62,11 @@ public class OI {
 		lbtn4.toggleWhenActive(climb);
 		rbtn4.toggleWhenActive(climb);
 		 
-		new JoystickButton(leftJoystick, 11).whenPressed(new CalibrateAndMoveGear());
-		new JoystickButton(leftJoystick, 10).whenPressed(new AlignGearForPlacementCommand());
-		Command bdm = new AutoOrientCommand(0, 2, 0, true);
-		new JoystickButton(leftJoystick, 8).whenPressed(bdm);
-		new JoystickButton(leftJoystick, 9).cancelWhenPressed(bdm);
+//		new JoystickButton(leftJoystick, 11).whenPressed(new CalibrateAndMoveGear());
+//		new JoystickButton(leftJoystick, 10).whenPressed(new AlignGearForPlacementCommand());
+//		Command bdm = new AutoOrientCommand(0, 2, 0, true);
+//		new JoystickButton(leftJoystick, 8).whenPressed(bdm);
+//		new JoystickButton(leftJoystick, 9).cancelWhenPressed(bdm);
 	}
 	
 }

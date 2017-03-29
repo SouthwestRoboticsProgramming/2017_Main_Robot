@@ -14,4 +14,4 @@ gear_align_emul             = Global multiplier for everything above
 gear_align_inv              = End inversion
 gear_align_fuzz             = Threshold (in degrees) to be considered on target and just drive straight
 gear_align_sts              = Rate at which to drive straight when above limit tripped
-gear_align_opp              = 
+gear_align_opp              = Rate at which to drive the other side when aligning

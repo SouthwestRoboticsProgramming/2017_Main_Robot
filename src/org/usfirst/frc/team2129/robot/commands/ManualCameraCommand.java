@@ -51,6 +51,7 @@ public class ManualCameraCommand extends Team2129Command {
 						getCameraSubsystem().setCamera(cam);
 						selected=cam;
 						good = true;
+						setExtended();
 						break;
 					}
 					if(cam.equals(selected)){
@@ -60,6 +61,7 @@ public class ManualCameraCommand extends Team2129Command {
 				if(!good){
 					selected=getCameraSubsystem().getCameraNames().stream().findFirst().get();
 					getCameraSubsystem().setCamera(selected);
+					setExtended();
 				}
 			}
 		}else{
@@ -92,9 +94,9 @@ public class ManualCameraCommand extends Team2129Command {
 	}
 
 	private void setPreferences() {
-		for (VideoProperty p : getCameraSubsystem().getCurrentCam().enumerateProperties()) {
-			getPreferences().putInt("CAM_" + p.getName(), p.get());
-		}
+//		for (VideoProperty p : getCameraSubsystem().getCurrentCam().enumerateProperties()) {
+//			getPreferences().putInt("CAM_" + p.getName(), p.get());
+//		}
 	}
 
 	private void setBrightness() {

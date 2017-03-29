@@ -1,0 +1,26 @@
+If you have the problem where you can't see the robot in any way, try the following:
+ * Make sure the RoboRIO is _on_ and you don't have a electrical connection problem somewhere
+ * If over WiFi:
+   * Make sure the RoboRIO is plugged into the OUTER (that is, farthest from power port) port of the router
+   * If the router just rebooted, wait... it can take up to 90 seconds or smth
+   * Try just reflashing the router, it sometimes craps out
+ * If all of the above don't work, and/or you just want to try connecting over ethernet (e.g. in the pit)
+   * Make sure it's phyiscally connected - on the team laptop it dosen't want to fit right
+ * As a last-resort, you can use the A-to-B USB adapter for connecting directly to the laptop. This should always work barring broken RoboRIO. Worst-case scenario, you will have to reimage the RoboRIO. Over USB, it should be accessible over the IP 172.22.11.2
+ 
+If you see connection over wifi/ethernet but the software can't talk to the roborio, try the following:
+ * Try setting whatever network adapter you are using to:
+   * IP: 10.21.29.77
+   * Subnet: 255.255.255.0
+   * Others default (DNS empty)
+   * In the SWRobotics_2017 folder I have bat files to set the WIFI to these (and back to default). For ethernet (which you may or may not be using) you can access it in Wireless Icon in taskbar -> Network and Sharing Center -> WIFI (in the connections) -> properties -> IPv4 (make sure to hit all the OKs on your way out)
+ * Also try setting it to dynamic (maybe, sometimes on the actual feild you need this)
+
+The robot is supposed to be able to be found at the following IPs:
+ * 10.21.29.2 (RoboRIO IP address)
+ * roboRIO-2129-FRC.local (mDNS address, flaky)
+ * 172.22.11.2 (Static USB cable IP)
+
+If for some reason you have to change how you connect to the RoboRIO (10.21.29.2 is what you _should_ be using), you'll have to update the RoboRealm settings in two spots:
+ * In the first filter item, in the address box. ONLY CHANGE THE ADDRESS PART. You'll probably have to hit stop for it to be editable, then start again
+ * In the NetworkTables filter, in the address box. ONLY CHANGE THE ADDRESS PART
