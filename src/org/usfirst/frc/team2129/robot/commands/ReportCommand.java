@@ -43,14 +43,14 @@ public class ReportCommand extends Team2129Command {
 	}
 
 	private void resetSubsystems() {
-		// TODO: probably should delegate to each subsystem
-		if (getLeftJoystick().getRawButton(11) || getRightJoystick().getRawButton(11)) {
-			getImuSubsystem().calibrate();
-			getGearSubsystem().zeroAngle();
-			getImuSubsystem().zero();
-			getDrivetrainSubsystem().getLeftIEncoder().zero();
-			getDrivetrainSubsystem().getRightIEncoder().zero();
-		}
+//		// TODO: probably should delegate to each subsystem
+//		if (getLeftJoystick().getRawButton(12) || getRightJoystick().getRawButton(12)) {
+//			getImuSubsystem().calibrate();
+//			getGearSubsystem().zeroAngle();
+//			getImuSubsystem().zero();
+//			getDrivetrainSubsystem().getLeftIEncoder().zero();
+//			getDrivetrainSubsystem().getRightIEncoder().zero();
+//		}
 	}
 
 }

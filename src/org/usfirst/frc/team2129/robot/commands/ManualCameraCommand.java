@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2129.robot.commands;
 
 import edu.wpi.cscore.VideoException;
-import edu.wpi.cscore.VideoProperty;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -40,7 +39,7 @@ public class ManualCameraCommand extends Team2129Command {
 //		}
 		SmartDashboard.putString("cam_sel", selected);
 		SmartDashboard.putBoolean("cam_sel_bdown", swapDown);
-		
+
 		if (getLeftJoystick().getRawButton(5) || getRightJoystick().getRawButton(5)){
 			if(!swapDown){
 				swapDown=true; 
@@ -67,6 +66,32 @@ public class ManualCameraCommand extends Team2129Command {
 		}else{
 			swapDown=false;
 		}
+//		if (getLeftJoystick().getRawButton(5) || getRightJoystick().getRawButton(5)){
+//			if(!swapDown){
+//				swapDown=true; 
+//				boolean this_one = false; 
+//				boolean good = false;
+//				for (String cam : getCameraSubsystem().getCameraNames()) {
+//					if(this_one){
+//						getCameraSubsystem().setCamera(cam);
+//						selected=cam;
+//						good = true;
+//						setExtended();
+//						break;
+//					}
+//					if(cam.equals(selected)){
+//						this_one=true;
+//					}
+//				}
+//				if(!good){
+//					selected=getCameraSubsystem().getCameraNames().stream().findFirst().get();
+//					getCameraSubsystem().setCamera(selected);
+//					setExtended();
+//				}
+//			}
+//		}else{
+//			swapDown=false;
+//		}
 
 		if (getLeftJoystick().getRawButton(11))
 			setPreferences();

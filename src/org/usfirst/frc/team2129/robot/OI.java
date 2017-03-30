@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.IndexedCameraCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
@@ -46,19 +47,23 @@ public class OI {
 	
 	
 	
-	public Joystick        leftJoystick        = new Joystick(0);
-	public Joystick        rightJoystick       = new Joystick(1);
+	public Joystick        leftJoystick        = new Joystick(1);
+	public Joystick        rightJoystick       = new Joystick(0);
 	//public Joystick        thirdJoystick       = new Joystick(2);
 	
 	public OI(){
 		Command aga = new AutoGearAlignmentCommand();
-		new JoystickButton(rightJoystick, 7).whenPressed(aga);
-		new JoystickButton(rightJoystick, 8).cancelWhenPressed(aga);
+		new JoystickButton(leftJoystick, 2).whileHeld(aga);
+		//new JoystickButton(leftJoystick, 8).cancelWhenPressed(aga);
 		Command climb = new FullAutoClimbCommand( );
 		
 		Button lbtn4 = new JoystickButton(rightJoystick, 4);
 		Button rbtn4 = new JoystickButton(leftJoystick, 4);
-		
+
+		new JoystickButton(leftJoystick, 7).whenPressed(new IndexedCameraCommand("Front"));
+		new JoystickButton(leftJoystick, 9).whenPressed(new IndexedCameraCommand("Middle"));
+		new JoystickButton(leftJoystick, 11).whenPressed(new IndexedCameraCommand("Back"));
+
 		lbtn4.toggleWhenActive(climb);
 		rbtn4.toggleWhenActive(climb);
 		 

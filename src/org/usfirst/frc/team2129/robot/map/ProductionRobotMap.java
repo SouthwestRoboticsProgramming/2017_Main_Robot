@@ -46,12 +46,13 @@ public class ProductionRobotMap {
 
 	// Cameras
 	public SortedMap<String, Integer> cameras; 
-	String defaultCamera = "Front Cam";
+	String defaultCamera = "Front";
 
-	public ProductionRobotMap() {
-		cameras = new TreeMap<String, Integer>();
-		cameras.put(defaultCamera, 1);
-		cameras.put("Climber Cam", 0);
+	public ProductionRobotMap(){
+		cameras=new TreeMap<String, Integer>();
+		cameras.put("Back", 2);
+		cameras.put("Front", 1);
+		cameras.put("Middle", 0);
 	}
 
 	// Ultrasonic

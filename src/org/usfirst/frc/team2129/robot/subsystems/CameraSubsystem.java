@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.usfirst.frc.team2129.robot.Robot;
-import org.usfirst.frc.team2129.robot.commands.ManualCameraCommand;
+import org.usfirst.frc.team2129.robot.commands.IndexedCameraCommand;
 
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
@@ -21,7 +21,8 @@ public class CameraSubsystem extends Team2129Subsystem {
 	}
 
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ManualCameraCommand());
+////		setDefaultCommand(new ManualCameraCommand());
+//		setDefaultCommand(new IndexedCameraCommand("Front"));
 	}
 
 	public void init() {
@@ -51,7 +52,13 @@ public class CameraSubsystem extends Team2129Subsystem {
 		return Robot.map.cameras.keySet();
 	}
 
+	public Integer getCameraNamed(String name) {
+		return Robot.map.cameras.get(name);
+	}
+
 	public void setCamera(String camera) {
+		System.err.println("Setting camera " + camera);
+		setSmartDashboard("cam_sel", camera);
 		if (cameras.containsKey(camera)) {
 			curr = camera;  
 			server.setSource(cameras.get(camera));
@@ -59,6 +66,8 @@ public class CameraSubsystem extends Team2129Subsystem {
 	}
 
 	public UsbCamera getCurrentCam() {
+		if (curr == null)
+			curr = "Front";
 		return cameras.get(curr);
 	}
 
