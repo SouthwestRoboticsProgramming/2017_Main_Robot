@@ -59,8 +59,8 @@ public class OI {
 		//new JoystickButton(leftJoystick, 8).cancelWhenPressed(aga);
 		Command climb = new FullAutoClimbCommand( );
 		
-		Button lbtn4 = new JoystickButton(rightJoystick, 4);
-		Button rbtn4 = new JoystickButton(leftJoystick, 4);
+		Button lbtn1 = new JoystickButton(rightJoystick, 1);
+		Button rbtn1 = new JoystickButton(leftJoystick, 1);
 
 		new JoystickButton(leftJoystick, 7).whenPressed(new IndexedCameraCommand("Front"));
 		new JoystickButton(leftJoystick, 9).whenPressed(new IndexedCameraCommand("Middle"));
@@ -69,8 +69,8 @@ public class OI {
 		new JoystickButton(leftJoystick, 9).whenPressed(new SetForward());
 		new JoystickButton(leftJoystick, 11).whenPressed(new SetReversed());
 
-		lbtn4.toggleWhenActive(climb);
-		rbtn4.toggleWhenActive(climb);
+		lbtn1.toggleWhenActive(climb);
+		rbtn1.toggleWhenActive(climb);
 		 
 //		new JoystickButton(leftJoystick, 11).whenPressed(new CalibrateAndMoveGear());
 //		new JoystickButton(leftJoystick, 10).whenPressed(new AlignGearForPlacementCommand());
