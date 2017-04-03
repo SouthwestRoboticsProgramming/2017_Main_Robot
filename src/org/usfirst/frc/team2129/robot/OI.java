@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.IndexedCameraCommand;
+import org.usfirst.frc.team2129.robot.commands.SetForward;
+import org.usfirst.frc.team2129.robot.commands.SetReversed;
 import org.usfirst.frc.team2129.robot.commands.auto.AlignGearForPlacementCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
@@ -63,6 +65,9 @@ public class OI {
 		new JoystickButton(leftJoystick, 7).whenPressed(new IndexedCameraCommand("Front"));
 		new JoystickButton(leftJoystick, 9).whenPressed(new IndexedCameraCommand("Middle"));
 		new JoystickButton(leftJoystick, 11).whenPressed(new IndexedCameraCommand("Back"));
+		new JoystickButton(leftJoystick, 7).whenPressed(new SetForward());
+		new JoystickButton(leftJoystick, 9).whenPressed(new SetForward());
+		new JoystickButton(leftJoystick, 11).whenPressed(new SetReversed());
 
 		lbtn4.toggleWhenActive(climb);
 		rbtn4.toggleWhenActive(climb);

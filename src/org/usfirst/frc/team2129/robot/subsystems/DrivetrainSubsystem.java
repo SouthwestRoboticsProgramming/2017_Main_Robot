@@ -13,6 +13,8 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 	public static final String SPEED_MULTIPLIER = "speed_multiplier";
 
 	public static final String SHIFT_SPEED_MULTIPLIER = "shift_speed_multiplier";
+	
+	private boolean reversed;
 
 	private SpeedController leftGearboxMotor1;
 	private SpeedController leftGearboxMotor2;
@@ -33,6 +35,7 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 	}
 
 	public DrivetrainSubsystem() {
+		reversed = false;
 		// TODO: Huh? Left == right?
 		leftGearboxMotor1 = Robot.map.RightMotor1.get();
 		leftGearboxMotor2 = Robot.map.RightMotor2.get();
@@ -51,7 +54,11 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 	}
 
 	public void tankDrive(double left, double right) {
-		robotDrive.tankDrive(left, right);
+		if (reversed) {
+			robotDrive.tankDrive(right * -1, left * -1);
+		} else {
+			robotDrive.tankDrive(left, right);
+		}
 		double dmz = getPreferences().getDouble("gy_mute_zone", 0.02);
 		
 		if (Math.abs(left) < dmz && Math.abs(right) < dmz) {
@@ -63,6 +70,10 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 			Robot.imuSubsystem.unFreezeImu();
 			setSmartDashboard("dynamic_gy_freeze", false);
 		}
+	}
+	
+	public void setReversed(boolean state) {
+		reversed = state;
 	}
 
 	public void setShift(boolean state) {
