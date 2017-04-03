@@ -15,5 +15,6 @@ public class SetForward extends Team2129Command {
 	
 	public void execute() {
 		getDrivetrainSubsystem().setReversed(false);
+		finished = true;
 	}
 }
