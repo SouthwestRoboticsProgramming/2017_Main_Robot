@@ -2,17 +2,7 @@
 package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.auto.AutoAlignAndDriveCommand;
-import org.usfirst.frc.team2129.robot.commands.auto.AutoOrientCommand;
-
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
-
-import org.usfirst.frc.team2129.robot.map.TestRobotMap;
+import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
 import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
@@ -30,8 +20,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 							// can switch prod<-->test quickfasts
 public class Robot extends IterativeRobot {
 
-	public static final TestRobotMap map = new TestRobotMap();
-//	 public static final ProductionRobotMap map = new ProductionRobotMap();
+//	public static final TestRobotMap map = new TestRobotMap();
+	 public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
 	public static final PeripheralsManagmentSubsystem peripheralsSubsystem = new PeripheralsManagmentSubsystem();
@@ -80,7 +70,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autoCommand = new AutoAlignAndDriveCommand("", "");
+		autoCommand = new AutoAlignAndDriveCommand("auto_drive_speed", "auto_drive_time");
 		autoCommand.start();
 	}
 

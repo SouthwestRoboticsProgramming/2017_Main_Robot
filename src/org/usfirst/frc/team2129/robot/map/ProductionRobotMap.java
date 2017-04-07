@@ -23,8 +23,8 @@ public class ProductionRobotMap {
 	// Lifter Motors
 	public MotorDescriptor LiftMotor1 = new PWMMotorDescriptor(0);
 	public MotorDescriptor LiftMotor2 = new PWMMotorDescriptor(1);
- 
-	// Gear Stuff 
+
+	// Gear Stuff
 	public MotorDescriptor GearMotor = new CANMotorDescriptor(31, true);
 
 	// Encoders (DI)
@@ -34,10 +34,10 @@ public class ProductionRobotMap {
 	public IEncoderDescriptor climbEncoder = new CANTalonEncoderDescriptor(LeftMotor2);
 
 	// Digital sensors (DI)
-	public int gearLightSensor = 4;  
+	public int gearLightSensor = 4;
 
 	// Flashy Lights (RELAYS)
-	public int FlashyLightLeft = 0; 
+	public int FlashyLightLeft = 0;
 	public int FlashyLightRight = 1;
 
 	// Solenoids (SOLENOIDS)
@@ -45,16 +45,15 @@ public class ProductionRobotMap {
 	public int gearSolenoid = 1;
 
 	// Cameras
-	public SortedMap<String, Integer> cameras; 
-	String defaultCamera = "Front";
+	public SortedMap<String, Integer> cameras;
 
-	public ProductionRobotMap(){
-		cameras=new TreeMap<String, Integer>();
-		cameras.put("Back", 2);
-		cameras.put("Front", 1);
-		cameras.put("Middle", 0);
+	public ProductionRobotMap() {
+		cameras = new TreeMap<String, Integer>();
+		cameras.put("Back", 1);
+		cameras.put("Front", 0);
+		cameras.put("Middle", 2);
 	}
 
 	// Ultrasonic
 	public int Ultrasonic = 0;
-} 
+}

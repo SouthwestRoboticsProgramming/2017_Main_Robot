@@ -3,7 +3,7 @@ package org.usfirst.frc.team2129.robot.commands;
 public class ManualClimbCommand extends ClimbCommand {
 
 	public ManualClimbCommand(){
-		requires(getSubsystem());
+		requires(getClimberSubsystem());
 	}
 	
 	protected boolean isFinished() {
@@ -11,8 +11,11 @@ public class ManualClimbCommand extends ClimbCommand {
 	}
 
 	public void execute() {
-//		getSubsystem().setSpeed(Robot.oi.thirdJoystick.getY());
-		getSubsystem().stopClimbing();
+		if (getLeftJoystick().getRawButton(1)) {
+			getClimberSubsystem().setSpeed(-0.5);
+		} else {
+			getClimberSubsystem().setSpeed(0);
+		}
 	}
 
 }

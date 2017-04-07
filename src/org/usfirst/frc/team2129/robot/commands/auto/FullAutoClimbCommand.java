@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class FullAutoClimbCommand extends CommandGroup {
 	public FullAutoClimbCommand(){
-		System.err.println("THIS IS SUPPOSED TO RUN");
+		System.err.println("Running Climb command");
 		addSequential(new AutomatedClimbCommand("auto_grab"));
 		addSequential(new AutomatedClimbCommand("auto_climb"));
 	}

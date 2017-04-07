@@ -4,41 +4,24 @@ import edu.wpi.cscore.VideoException;
 
 public class IndexedCameraCommand extends Team2129Command {
 	private String cameraName;
-	boolean set = false;
+	private boolean reversed = false;
 
-	public IndexedCameraCommand(String cameraName) {
+	public IndexedCameraCommand(String cameraName, boolean reversed) {
 		requires(getCameraSubsystem());
 //		setAll();
 		this.cameraName = cameraName;
+		this.reversed = reversed;
 	}
 
 	protected boolean isFinished() {
-		return set;
+		return true;
 	}
-
-	public void initialize() {
-		set = false;
-	}
-
-	
 
 	public void execute() {
+		getDrivetrainSubsystem().setReversed(reversed);
 		getCameraSubsystem().setCamera(cameraName);
 		setExtended();
-		set=true;
-
-//		if (getLeftJoystick().getRawButton(11))
-//			setPreferences();
-//
-//		if (getLeftJoystick().getRawButton(10)) {
-//			if (!set) {
-//				set = true;
-//				setExtended();
-//			}
-//		} else {
-//			set = false;
-//		}
-		setSmartDashboard("cam_v_set", set);
+		setSmartDashboard("cam_v_set", true);
 	}
 	
 	public void setAll(){

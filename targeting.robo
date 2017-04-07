@@ -4,13 +4,12 @@
   <erase_on_error>TRUE</erase_on_error>
   <is_active>TRUE</is_active>
   <timeout>1000</timeout>
-  <url>10.21.29.2:1180/stream.mjpg</url>
+  <url>roborio-2129-frc.local:1180/stream.mjpg</url>
 </Read_HTTP>
 <RGB_Filter>
-  <channel>2</channel>
-  <hue_value>109</hue_value>
+  <channel>8</channel>
   <hysteresis>0</hysteresis>
-  <min_value>64</min_value>
+  <min_value>130</min_value>
 </RGB_Filter>
 <Blob_Overlap>
   <image1>Current</image1>
@@ -27,7 +26,7 @@
         <filter_id>8</filter_id>
         <invert_count>0</invert_count>
         <invert_threshold>0</invert_threshold>
-        <minimum_size>15</minimum_size>
+        <minimum_size>24</minimum_size>
         <weight_threshold>0.5</weight_threshold>
       </filter>
     </tab>

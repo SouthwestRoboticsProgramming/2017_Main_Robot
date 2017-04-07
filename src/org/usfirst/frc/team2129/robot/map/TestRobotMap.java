@@ -15,43 +15,42 @@ import org.usfirst.frc.team2129.util.motordesc.RelayMotorDescriptor_DO_NOT_USE_T
 
 public class TestRobotMap {
 
-	//Compressor
+	// Compressor
 	public int Compressor = 0;
-	
-	//Drive Motors
+
+	// Drive Motors
 	public MotorDescriptor LeftMotor1 = new PWMMotorDescriptor(0, true);
 	public MotorDescriptor LeftMotor2 = new PWMMotorDescriptor(2);
 	public MotorDescriptor RightMotor1 = new PWMMotorDescriptor(1, true);
-	public MotorDescriptor RightMotor2 = new PWMMotorDescriptor(3); 
-	
-	//Lifter Motors
+	public MotorDescriptor RightMotor2 = new PWMMotorDescriptor(3);
+
+	// Lifter Motors
 	public MotorDescriptor LiftMotor1 = new RelayMotorDescriptor_DO_NOT_USE_THIS_IS_ILLEGAL(3);
 	public MotorDescriptor LiftMotor2 = new NullMotorDescriptor();
-	
-	public MotorDescriptor GearMotor = new CANMotorDescriptor(1);	
-	
-	//Encoders (DI)
+
+	public MotorDescriptor GearMotor = new CANMotorDescriptor(1);
+
+	// Encoders (DI)
 	public IEncoderDescriptor leftEncoder = new QuadratureEncoderDescriptor(0, 1);
 	public IEncoderDescriptor rightEncoder = new QuadratureEncoderDescriptor(2, 3);
 	public IEncoderDescriptor gearEncoder = new QuadratureEncoderDescriptor(5, 6);
 	public IEncoderDescriptor climbEncoder = new CANTalonEncoderDescriptor(GearMotor);
-	
-	//Digital sensors (DI)
+
+	// Digital sensors (DI)
 	public int gearLightSensor = 4;
-	
-	
-	//Flashy Lights (RELAYS)
+
+	// Flashy Lights (RELAYS)
 	public int FlashyLightLeft = 0;
 	public int FlashyLightRight = 1;
-	 
-	//Solenoids (SOLENOIDS)
+
+	// Solenoids (SOLENOIDS)
 	public int shifter = 0;
 	public int gearSolenoid = 1;
-	
+
 	public SortedMap<String, Integer> cameras;
-	public TestRobotMap(){
-		cameras=new TreeMap<String, Integer>();
-		
+
+	public TestRobotMap() {
+		cameras = new TreeMap<String, Integer>();
 		cameras.put("Back", 1);
 		cameras.put("Middle", 2);
 		cameras.put("Front", 0);

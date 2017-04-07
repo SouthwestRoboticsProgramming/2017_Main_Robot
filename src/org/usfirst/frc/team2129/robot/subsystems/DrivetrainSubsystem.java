@@ -54,6 +54,7 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 	}
 
 	public void tankDrive(double left, double right) {
+//		log("LEFT = " + left + " RIGHT = " + right);
 		if (reversed) {
 			robotDrive.tankDrive(right * -1, left * -1);
 		} else {
@@ -93,5 +94,9 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 		setSmartDashboard("left_encoder_speed", getLeftIEncoder().getRate());
 		setSmartDashboard("right_encoder_traversal", getRightIEncoder().getDistance());
 		setSmartDashboard("right_encoder_speed", getRightIEncoder().getRate());
+
+		// Autonomous mode
+		setSmartDashboard("auto_drive_speed", 0.5);
+		setSmartDashboard("auto_drive_time", 2);
 	}
 }
