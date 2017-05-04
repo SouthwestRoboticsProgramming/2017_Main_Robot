@@ -2,7 +2,6 @@ package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.IndexedCameraCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.AutoGearAlignmentCommand;
-import org.usfirst.frc.team2129.robot.commands.auto.FullAutoClimbCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -47,11 +46,11 @@ public class OI implements Buttons {
 	public OI(){
 		Command autoAlignCommand = new AutoGearAlignmentCommand();
 		new JoystickButton(leftJoystick, AUTO_ALIGN_BUTTON).whileHeld(autoAlignCommand);
-		new JoystickButton(rightJoystick, AUTO_CLIMB_BUTTON).whenPressed(new FullAutoClimbCommand());
-
-		//new JoystickButton(leftJoystick, 1).whileHeld(new ManualClimbCommand());
+//		new JoystickButton(rightJoystick, AUTO_CLIMB_BUTTON).whenPressed(new FullAutoClimbCommand());
+//		new JoystickButton(leftJoystick, SHIFTER_BUTTON).whenPressed(new FastForwardCommand());
+		
+//		new JoystickButton(rightJoystick, 1).whileHeld(new ManualClimbCommand());
 		//new JoystickButton(leftJoystick, 8).cancelWhenPressed(autoAlignCommand);		
-
 		//Not working for some reason
 //		Command climb = new FullAutoClimbCommand( );
 //		Button lbtn1 = new JoystickButton(rightJoystick, AUTO_CLIMB_BUTTON);

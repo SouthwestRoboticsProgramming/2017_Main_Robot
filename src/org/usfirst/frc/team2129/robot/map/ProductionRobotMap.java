@@ -50,8 +50,8 @@ public class ProductionRobotMap {
 	public ProductionRobotMap() {
 		cameras = new TreeMap<String, Integer>();
 		cameras.put("Back", 1);
-		cameras.put("Front", 0);
 		cameras.put("Middle", 2);
+		cameras.put("Front", 0);
 	}
 
 	// Ultrasonic

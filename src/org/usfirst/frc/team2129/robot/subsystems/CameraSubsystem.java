@@ -30,6 +30,7 @@ public class CameraSubsystem extends Team2129Subsystem {
 			inited = true;
 			server = new MjpegServer("RoboRIO-2129-FRC", 1180);
 			Robot.map.cameras.forEach((name, value) -> initCamera(name, value));
+			curr = "Front";
 			setCamera(curr);
 		}
 	}

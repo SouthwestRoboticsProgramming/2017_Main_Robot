@@ -11,8 +11,10 @@ public class ManualClimbCommand extends ClimbCommand {
 	}
 
 	public void execute() {
-		if (getLeftJoystick().getRawButton(1)) {
-			getClimberSubsystem().setSpeed(-0.5);
+		if (getRightJoystick().getRawButton(AUTO_CLIMB_BUTTON)) {
+			getClimberSubsystem().setSpeed(0.5);
+		} else if (getRightJoystick().getRawButton(11)) {
+			getClimberSubsystem().setSpeed(1.0);
 		} else {
 			getClimberSubsystem().setSpeed(0);
 		}

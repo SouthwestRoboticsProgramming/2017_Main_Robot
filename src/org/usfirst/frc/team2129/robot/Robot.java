@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team2129.robot;
 
-import org.usfirst.frc.team2129.robot.commands.auto.AutoAlignAndDriveCommand;
+import org.usfirst.frc.team2129.robot.commands.auto.FullAutoCommand;
 import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
 import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
@@ -70,7 +70,8 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		autoCommand = new AutoAlignAndDriveCommand("auto_drive_speed", "auto_drive_time");
+//		autoCommand = new AutoAlignAndDriveCommand("auto_drive_speed", "auto_drive_time");
+		autoCommand = new FullAutoCommand();
 		autoCommand.start();
 	}
 

@@ -3,9 +3,15 @@ package org.usfirst.frc.team2129.robot.commands;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 
 public class UserDriveCommand extends Team2129Command {
-
+	
+	double rightMulti;
+	double multi;
+	double notFull;
+	
 	public UserDriveCommand() {
 		requires(getDrivetrainSubsystem());
+		notFull = 0.7;
+		rightMulti = getPreferences().getDouble("RightMulti", 0.75);
 	}
 
 	protected boolean isFinished() {
@@ -13,19 +19,41 @@ public class UserDriveCommand extends Team2129Command {
 	}
 
 	protected void execute() {
+		rightMulti = 1.0;//getPreferences().getDouble("rightMulti", 0.75);
 		double left = adjustSpeed(getLeftJoystick().getY());
 		double right = adjustSpeed(getRightJoystick().getY());
+//		
+//		if (isShifted()) {
+//			getDrivetrainSubsystem().setShift(true);
+//			multi = 1; 
+//		} else {
+//			getDrivetrainSubsystem().setShift(false);
+//			multi = notFull;
+//		}
 
-		// Go forward slowly Fix
-		if (getRightJoystick().getRawButton(2)) {
-			getDrivetrainSubsystem().tankDrive(-0.5, -0.5);
-		} else {
-			getDrivetrainSubsystem().tankDrive(left, right);
-		}
+		getDrivetrainSubsystem().setShift(false);
+		if (isSlowForwardMode()) {
+			getDrivetrainSubsystem().tankDrive(-0.5 * rightMulti, -0.5);
+			
+		} else if (isFastForwardMode()) {
+			getDrivetrainSubsystem().setShift(true);
+			getDrivetrainSubsystem().tankDrive(-1.0 * rightMulti, -1.0);
+			
+		} else
+			getDrivetrainSubsystem().tankDrive(left * rightMulti, right);
+	}
+	
+	private boolean isFastForwardMode() {
+		return getLeftJoystick().getRawButton(SHIFTER_BUTTON);
+	}
+	
+	private boolean isSlowForwardMode() {
+		return getRightJoystick().getRawButton(SLOW_DRIVE_BUTTON);
 	}
 
 	private double adjustSpeed(double rawSpeed) {
-		return getSpeedMultiplier() * rawSpeed;
+		//Alex wants more power
+		return rawSpeed;// getSpeedMultiplier() * rawSpeed;
 	}
 
 	private double getSpeedMultiplier() {

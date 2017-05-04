@@ -23,7 +23,7 @@ public class ClimberSubsystem extends Team2129Subsystem {
 	}
 
 	public void setSpeed(double speed) {
-		climbMotor1.set(-speed);
+		climbMotor1.set(speed);
 		climbMotor2.set(speed);
 	}
 
