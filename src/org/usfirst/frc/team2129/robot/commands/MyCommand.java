@@ -2,13 +2,13 @@ package org.usfirst.frc.team2129.robot.commands;
 
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 
-public class UserDriveCommand extends Team2129Command {
+public class MyCommand extends Team2129Command {
 	
 	double rightMulti;
 	double multi;
 	double notFull;
 	
-	public UserDriveCommand() {
+	public MyCommand() {
 		requires(getDrivetrainSubsystem());
 		notFull = 0.7;
 		rightMulti = getPreferences().getDouble("RightMulti", 0.75);
@@ -31,7 +31,7 @@ public class UserDriveCommand extends Team2129Command {
 //			getDrivetrainSubsystem().setShift(false);
 //			multi = notFull;
 //		}
-		
+
 		getDrivetrainSubsystem().setShift(false);
 		if (isSlowForwardMode()) {
 			getDrivetrainSubsystem().tankDrive(-0.5 * rightMulti, -0.5);
@@ -39,11 +39,9 @@ public class UserDriveCommand extends Team2129Command {
 		} else if (isFastForwardMode()) {
 			getDrivetrainSubsystem().setShift(true);
 			getDrivetrainSubsystem().tankDrive(-1.0 * rightMulti, -1.0);
-	
-		} else {
-			getDrivetrainSubsystem().arcadeDrive(-getLeftJoystick().getY(), -getLeftJoystick().getTwist());
-//			getDrivetrainSubsystem().tankDrive(left * rightMulti, right);
-		}
+			
+		} else
+			getDrivetrainSubsystem().tankDrive(left * rightMulti, right);
 	}
 	
 	private boolean isFastForwardMode() {
@@ -55,6 +53,7 @@ public class UserDriveCommand extends Team2129Command {
 	}
 
 	private double adjustSpeed(double rawSpeed) {
+		//Alex wants more power
 		return rawSpeed;// getSpeedMultiplier() * rawSpeed;
 	}
 

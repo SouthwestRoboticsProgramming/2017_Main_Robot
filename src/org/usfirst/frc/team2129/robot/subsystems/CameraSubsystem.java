@@ -15,7 +15,7 @@ public class CameraSubsystem extends Team2129Subsystem {
 	private boolean inited = false;
 	private MjpegServer server;
 	private Map<String, UsbCamera> cameras = new HashMap<String, UsbCamera>();
-	private String curr;
+	private String currentCamera;
 	
 	public CameraSubsystem() {
 	}
@@ -30,8 +30,8 @@ public class CameraSubsystem extends Team2129Subsystem {
 			inited = true;
 			server = new MjpegServer("RoboRIO-2129-FRC", 1180);
 			Robot.map.cameras.forEach((name, value) -> initCamera(name, value));
-			curr = "Front";
-			setCamera(curr);
+			currentCamera = "Front";
+			setCamera(currentCamera);
 		}
 	}
 
@@ -42,7 +42,7 @@ public class CameraSubsystem extends Team2129Subsystem {
 			cameras.put(name, cam);
 			VideoMode[] modes = cam.enumerateVideoModes();
 			cam.setVideoMode(modes[modes.length - 1]);
-			curr = name;
+			currentCamera = name;
 			
 		} catch (Exception e) {
 			log("Snarfed err" + e.toString() + "creating cam " + name);
@@ -61,15 +61,15 @@ public class CameraSubsystem extends Team2129Subsystem {
 		System.err.println("Setting camera " + camera);
 		setSmartDashboard("cam_sel", camera);
 		if (cameras.containsKey(camera)) {
-			curr = camera;  
+			currentCamera = camera;  
 			server.setSource(cameras.get(camera));
 		}
 	}
 
 	public UsbCamera getCurrentCam() {
-		if (curr == null)
-			curr = "Front";
-		return cameras.get(curr);
+		if (currentCamera == null)
+			currentCamera = "Front";
+		return cameras.get(currentCamera);
 	}
 
 	public void configCamera() {

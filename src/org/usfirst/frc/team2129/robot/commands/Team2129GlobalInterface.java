@@ -3,9 +3,9 @@ package org.usfirst.frc.team2129.robot.commands;
 import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
-import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.FlashyLightsSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.GearSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.Team2129DrivetrainSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IMUSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.PeripheralsManagmentSubsystem;
 
@@ -42,7 +42,9 @@ public interface Team2129GlobalInterface {
 		return Robot.gearSubsystem;
 	}
 
-	default DrivetrainSubsystem getDrivetrainSubsystem() {
+	default Team2129DrivetrainSubsystem getDrivetrainSubsystem() {
+//		if (Robot.USING_MECHANUM)
+//			return Robot.mechanumDrivetrainSubsystem;
 		return Robot.drivetrainSubsystem;
 	}
 

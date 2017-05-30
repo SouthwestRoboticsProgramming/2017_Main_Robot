@@ -35,6 +35,6 @@ public class LookForPegCommand extends Team2129Command {
 
 	@Override
 	protected boolean isFinished() {
-		return SmartDashboard.getString("L_OFF_X_OK", "NO").equals("OK");
+		return SmartDashboard.getString(AutoGearAlignmentCommand.OFFSET_OK, "NO").equals("OK");
 	}
 }

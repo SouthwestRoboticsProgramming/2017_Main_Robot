@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.Robot;
-import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
 import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 import org.usfirst.frc.team2129.util.speedcontrollers.SplitSpeedController;
 
@@ -9,9 +8,8 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 
-public class DrivetrainSubsystem extends Team2129Subsystem {
+public class DrivetrainSubsystem extends Team2129DrivetrainSubsystem {
 	public static final String SPEED_MULTIPLIER = "speed_multiplier";
-
 	public static final String SHIFT_SPEED_MULTIPLIER = "shift_speed_multiplier";
 	
 	private boolean reversed;
@@ -29,10 +27,6 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 
 	private IEncoder leftEncoder;
 	private IEncoder rightEncoder;
-
-	protected void initDefaultCommand() {
-		setDefaultCommand(new UserDriveCommand());
-	}
 
 	public DrivetrainSubsystem() {
 		reversed = false;
@@ -71,6 +65,11 @@ public class DrivetrainSubsystem extends Team2129Subsystem {
 			Robot.imuSubsystem.unFreezeImu();
 			setSmartDashboard("dynamic_gy_freeze", false);
 		}
+	}
+
+	public void arcadeDrive(double moveValue, double rotateValue) {
+		System.err.println("ARCADE: move=" + moveValue + " rotate=" + rotateValue);
+		robotDrive.arcadeDrive(moveValue, rotateValue, true);
 	}
 	
 	public void setReversed(boolean state) {
