@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.commands.MechanumDriveCommand;
 import org.usfirst.frc.team2129.robot.map.MechanumRobotMap;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -15,11 +16,16 @@ public class MechanumDrivetrainSubsystem extends Team2129DrivetrainSubsystem {
 	private MechanumRobotMap map = new MechanumRobotMap();
 
 	public MechanumDrivetrainSubsystem() {
-		leftFrontGearboxMotor1 = map.getLeftFrontMotor().get();
-		rightFrontGearboxMotor1 = map.getRightFrontMotor().get();
-		leftRearGearboxMotor1 = map.getRightFrontMotor().get();
-		rightRearGearboxMotor1 = map.getRightRearMotor().get();
-		robotDrive = new RobotDrive(leftFrontGearboxMotor1, leftRearGearboxMotor1, rightFrontGearboxMotor1, rightRearGearboxMotor1);
+		// The deploy fails trying to get these thhings
+//		leftFrontGearboxMotor1 = map.getLeftFrontMotor().get();
+//		rightFrontGearboxMotor1 = map.getRightFrontMotor().get();
+//		leftRearGearboxMotor1 = map.getRightFrontMotor().get();
+//		rightRearGearboxMotor1 = map.getRightRearMotor().get();
+//		robotDrive = new RobotDrive(leftFrontGearboxMotor1, leftRearGearboxMotor1, rightFrontGearboxMotor1, rightRearGearboxMotor1);
+	}
+	
+	protected void initDefaultCommand() {
+		setDefaultCommand(new MechanumDriveCommand());
 	}
 
 	public void tankDrive(double left, double right) {

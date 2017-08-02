@@ -91,7 +91,7 @@ public class AutoOrientCommand extends Team2129Command {
 		setSmartDashboard("treq", time_req);
 
 		if (!onTarget()) {
-			getDrivetrainSubsystem().tankDrive(1 * calc, -1 * calc);
+//			getDrivetrainSubsystem().tankDrive(1 * calc, -1 * calc);
 			setSmartDashboard("filtered_running", true);
 		} else {
 			getDrivetrainSubsystem().tankDrive(0, 0);

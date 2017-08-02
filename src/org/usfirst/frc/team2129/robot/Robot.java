@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.auto.FullAutoCommand;
-import org.usfirst.frc.team2129.robot.map.TestRobotMap;
+import org.usfirst.frc.team2129.robot.map.ProductionRobotMap;
 import org.usfirst.frc.team2129.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
@@ -23,17 +23,18 @@ public class Robot extends IterativeRobot {
 	
 	// TO Use the robot with Mechanum wheels, set this to true, otherwise false
 	public static final boolean USING_MECHANUM = false;
+	public static final boolean USE_ARCADE_DRIVE = false;
 	
 	// This is the test robot (NOT competition)
-	public static final TestRobotMap map = new TestRobotMap();
-	
+//	public static final TestRobotMap map = new TestRobotMap();
+//	
 	// TO Fix the imports, CTRL+Shift+O
 	
 	// Competition robot
-//	 public static final ProductionRobotMap map = new ProductionRobotMap();
+	 public static final ProductionRobotMap map = new ProductionRobotMap();
 
 	public static final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
-//	public static final MechanumDrivetrainSubsystem mechanumDrivetrainSubsystem = new MechanumDrivetrainSubsystem();
+	public static final MechanumDrivetrainSubsystem mechanumDrivetrainSubsystem = new MechanumDrivetrainSubsystem();
 	public static final PeripheralsManagmentSubsystem peripheralsSubsystem = new PeripheralsManagmentSubsystem();
 	public static final GearSubsystem gearSubsystem = new GearSubsystem();
 	public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();

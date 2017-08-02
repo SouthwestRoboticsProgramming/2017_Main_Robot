@@ -1,15 +1,17 @@
 package org.usfirst.frc.team2129.robot.commands;
 
+import org.usfirst.frc.team2129.robot.Robot;
 import org.usfirst.frc.team2129.robot.subsystems.DrivetrainSubsystem;
 
 public class UserDriveCommand extends Team2129Command {
-	
+
 	double rightMulti;
 	double multi;
 	double notFull;
-	
+
 	public UserDriveCommand() {
-		requires(getDrivetrainSubsystem());
+		requires(Robot.drivetrainSubsystem);
+//		requires(getDrivetrainSubsystem());
 		notFull = 0.7;
 		rightMulti = getPreferences().getDouble("RightMulti", 0.75);
 	}
@@ -20,36 +22,43 @@ public class UserDriveCommand extends Team2129Command {
 
 	@Override
 	protected void execute() {
-		rightMulti = 1.0;//getPreferences().getDouble("rightMulti", 0.75);
+		rightMulti = 1.0;// getPreferences().getDouble("rightMulti", 0.75);
 		double left = adjustSpeed(getLeftJoystick().getY());
 		double right = adjustSpeed(getRightJoystick().getY());
-//		
-//		if (isShifted()) {
-//			getDrivetrainSubsystem().setShift(true);
-//			multi = 1; 
-//		} else {
-//			getDrivetrainSubsystem().setShift(false);
-//			multi = notFull;
-//		}
-		
+		//
+		// if (isShifted()) {
+		// getDrivetrainSubsystem().setShift(true);
+		// multi = 1;
+
+		// } else {
+		// getDrivetrainSubsystem().setShift(false);
+		// multi = notFull;
+		// }
+
 		getDrivetrainSubsystem().setShift(false);
-		if (isSlowForwardMode()) {
-			getDrivetrainSubsystem().tankDrive(-0.5 * rightMulti, -0.5);
-			
-		} else if (isFastForwardMode()) {
-			getDrivetrainSubsystem().setShift(true);
-			getDrivetrainSubsystem().tankDrive(-1.0 * rightMulti, -1.0);
-	
-		} else {
-			getDrivetrainSubsystem().arcadeDrive(-getLeftJoystick().getY(), -getLeftJoystick().getTwist());
-//			getDrivetrainSubsystem().tankDrive(left * rightMulti, right);
-		}
+//		if (isSlowForwardMode()) {
+//			log("SLOW FORWARD MODE");
+//			getDrivetrainSubsystem().tankDrive(-0.5, -0.5);
+
+//		} else if (isFastForwardMode()) {
+//			log("FAST FORWARD MODE");
+//			getDrivetrainSubsystem().setShift(true);
+//			getDrivetrainSubsystem().tankDrive(-1.0, -1.0);
+
+//		} else {
+			if (Robot.USE_ARCADE_DRIVE) {
+				getDrivetrainSubsystem().arcadeDrive(-getLeftJoystick().getY(), -getLeftJoystick().getTwist());
+			} else {
+				// THE JOYSTICKS ARE REVERSED
+				getDrivetrainSubsystem().tankDrive(left, -1*right);
+			}
+//		}
 	}
-	
+
 	private boolean isFastForwardMode() {
 		return getLeftJoystick().getRawButton(SHIFTER_BUTTON);
 	}
-	
+
 	private boolean isSlowForwardMode() {
 		return getRightJoystick().getRawButton(SLOW_DRIVE_BUTTON);
 	}
@@ -64,7 +73,7 @@ public class UserDriveCommand extends Team2129Command {
 		// way?
 		// return SmartDashboard.getNumber(DrivetrainSubsystem.SPEED_MULTIPLIER,
 		// 0.7d);
-		return getPreferences().getDouble((getLeftJoystick().getRawButton(SHIFTER_BUTTON)) ? DrivetrainSubsystem.SHIFT_SPEED_MULTIPLIER
-				: DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
+		return getPreferences().getDouble(
+				(getLeftJoystick().getRawButton(SHIFTER_BUTTON)) ? DrivetrainSubsystem.SHIFT_SPEED_MULTIPLIER : DrivetrainSubsystem.SPEED_MULTIPLIER, 0.7d);
 	}
 }

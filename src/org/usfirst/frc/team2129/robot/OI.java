@@ -40,12 +40,13 @@ public class OI implements Buttons {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public Joystick        leftJoystick        = new Joystick(1);
-	public Joystick        rightJoystick       = new Joystick(0);
+	public Joystick        leftJoystick        = new Joystick(0);
+	public Joystick        rightJoystick       = new Joystick(1);
 	
 	public OI(){
-		Command autoAlignCommand = new AutoGearAlignmentCommand();
-		new JoystickButton(leftJoystick, AUTO_ALIGN_BUTTON).whileHeld(autoAlignCommand);
+//		Command autoAlignCommand = new AutoGearAlignmentCommand();
+//		new JoystickButton(leftJoystick, AUTO_ALIGN_BUTTON).whileHeld(autoAlignCommand);
+		
 //		new JoystickButton(rightJoystick, AUTO_CLIMB_BUTTON).whenPressed(new FullAutoClimbCommand());
 //		new JoystickButton(leftJoystick, SHIFTER_BUTTON).whenPressed(new FastForwardCommand());
 		

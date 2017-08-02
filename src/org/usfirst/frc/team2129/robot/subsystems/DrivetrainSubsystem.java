@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.Robot;
+import org.usfirst.frc.team2129.robot.commands.UserDriveCommand;
 import org.usfirst.frc.team2129.util.encoderdesc.iencoder.IEncoder;
 import org.usfirst.frc.team2129.util.speedcontrollers.SplitSpeedController;
 
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class DrivetrainSubsystem extends Team2129DrivetrainSubsystem {
 	public static final String SPEED_MULTIPLIER = "speed_multiplier";
 	public static final String SHIFT_SPEED_MULTIPLIER = "shift_speed_multiplier";
-	
+
 	private boolean reversed;
 
 	private SpeedController leftGearboxMotor1;
@@ -47,15 +48,19 @@ public class DrivetrainSubsystem extends Team2129DrivetrainSubsystem {
 		rightEncoder = Robot.map.rightEncoder.get();
 	}
 
+	protected void initDefaultCommand() {
+		setDefaultCommand(new UserDriveCommand());
+	}
+
 	public void tankDrive(double left, double right) {
 //		log("LEFT = " + left + " RIGHT = " + right);
 		if (reversed) {
-			robotDrive.tankDrive(right * -1, left * -1);
+			robotDrive.tankDrive(left * -1, right * -1);
 		} else {
 			robotDrive.tankDrive(left, right);
 		}
 		double dmz = getPreferences().getDouble("gy_mute_zone", 0.02);
-		
+
 		if (Math.abs(left) < dmz && Math.abs(right) < dmz) {
 			if (getPreferences().getBoolean("dynamic_gy_mute", false)) {
 				Robot.imuSubsystem.freeze();
@@ -71,7 +76,7 @@ public class DrivetrainSubsystem extends Team2129DrivetrainSubsystem {
 		System.err.println("ARCADE: move=" + moveValue + " rotate=" + rotateValue);
 		robotDrive.arcadeDrive(moveValue, rotateValue, true);
 	}
-	
+
 	public void setReversed(boolean state) {
 		reversed = state;
 	}

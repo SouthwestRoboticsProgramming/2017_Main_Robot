@@ -43,8 +43,8 @@ public interface Team2129GlobalInterface {
 	}
 
 	default Team2129DrivetrainSubsystem getDrivetrainSubsystem() {
-//		if (Robot.USING_MECHANUM)
-//			return Robot.mechanumDrivetrainSubsystem;
+		if (Robot.USING_MECHANUM)
+			return Robot.mechanumDrivetrainSubsystem;
 		return Robot.drivetrainSubsystem;
 	}
 

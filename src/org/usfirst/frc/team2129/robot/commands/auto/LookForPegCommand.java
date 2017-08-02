@@ -26,11 +26,11 @@ public class LookForPegCommand extends Team2129Command {
 	}
 
 	private void spinLeft() {
-		getDrivetrainSubsystem().tankDrive(-SPIN_SPEED, SPIN_SPEED);
+//		getDrivetrainSubsystem().tankDrive(-SPIN_SPEED, SPIN_SPEED);
 	}
 
 	private void spinRight() {
-		getDrivetrainSubsystem().tankDrive(SPIN_SPEED, -SPIN_SPEED);
+//		getDrivetrainSubsystem().tankDrive(SPIN_SPEED, -SPIN_SPEED);
 	}
 
 	@Override

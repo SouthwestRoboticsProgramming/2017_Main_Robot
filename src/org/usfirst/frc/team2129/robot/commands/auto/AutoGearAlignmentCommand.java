@@ -30,7 +30,7 @@ public class AutoGearAlignmentCommand extends Team2129Command {
 		SmartDashboard.putNumber("AutoGearAlignmentCommand_time", System.currentTimeMillis());
 		SmartDashboard.putString("loffxok_v_v", SmartDashboard.getString(OFFSET_OK, "NO"));
 		if (!SmartDashboard.getString(OFFSET_OK, "NO").equals("OK")){
-			Robot.drivetrainSubsystem.tankDrive(0, 0);
+//			Robot.drivetrainSubsystem.tankDrive(0, 0);
 			return;
 		}
 		int offset = getOffset();
